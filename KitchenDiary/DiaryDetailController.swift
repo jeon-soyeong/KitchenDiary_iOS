@@ -65,7 +65,7 @@ class DiaryDetailController: UIViewController, UITextViewDelegate {
 //               keyboardAnimate(keyboardRectangle: keyboardRectangle, textField: cardNickTextField)
 //           }
        }
-    
+    ///
     
     @objc func keyboardHide(_ notification: Notification){
                 self.view.transform = .identity
