@@ -1,0 +1,6 @@
+framework module Pods_KitchenDiaryTests {
+  umbrella header "Pods-KitchenDiaryTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

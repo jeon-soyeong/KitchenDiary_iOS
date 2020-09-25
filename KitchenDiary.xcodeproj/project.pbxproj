@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0733117BEFB0AFFD1370D47B /* Pods_KitchenDiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC52F4C658F0B667AE20CAC4 /* Pods_KitchenDiaryTests.framework */; };
+		11A77EBBB1FFBE2E43375563 /* Pods_KitchenDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113D13110C9C628B8701D7C4 /* Pods_KitchenDiary.framework */; };
+		9B1F1FD02514A481002487F7 /* MyKitchenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F1FCF2514A481002487F7 /* MyKitchenController.swift */; };
+		9B5413E42519FB5A00071544 /* DiaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5413E32519FB5A00071544 /* DiaryController.swift */; };
+		9B98930F2512498B00589B5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B98930E2512498B00589B5B /* AppDelegate.swift */; };
+		9B9893112512498B00589B5B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9893102512498B00589B5B /* SceneDelegate.swift */; };
+		9B9893132512498B00589B5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9893122512498B00589B5B /* ViewController.swift */; };
+		9B9893162512498B00589B5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B9893142512498B00589B5B /* Main.storyboard */; };
+		9B9893182512499100589B5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B9893172512499100589B5B /* Assets.xcassets */; };
+		9B98931B2512499100589B5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B9893192512499100589B5B /* LaunchScreen.storyboard */; };
+		9BA29EFB251B32C30075703D /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA29EFA251B32C30075703D /* RatingControl.swift */; };
+		9BA29EFF251C4AC70075703D /* DiaryDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA29EFE251C4AC60075703D /* DiaryDetailController.swift */; };
+		9BF09CD0251353440094ABC5 /* a펜글씨L.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9BF09CC5251352E90094ABC5 /* a펜글씨L.otf */; };
+		9BF09CDB251353720094ABC5 /* a펜글씨B.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9BF09CCD251352EA0094ABC5 /* a펜글씨B.otf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9B9893222512499200589B5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B9893032512498B00589B5B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B98930A2512498B00589B5B;
+			remoteInfo = KitchenDiary;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		113D13110C9C628B8701D7C4 /* Pods_KitchenDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KitchenDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A96BF60A91E6140D93B97B3 /* Pods-KitchenDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-KitchenDiaryTests/Pods-KitchenDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		874976254886C52919D6F206 /* Pods-KitchenDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenDiary.release.xcconfig"; path = "Target Support Files/Pods-KitchenDiary/Pods-KitchenDiary.release.xcconfig"; sourceTree = "<group>"; };
+		9B1F1FCF2514A481002487F7 /* MyKitchenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKitchenController.swift; sourceTree = "<group>"; };
+		9B5413E32519FB5A00071544 /* DiaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryController.swift; sourceTree = "<group>"; };
+		9B98930B2512498B00589B5B /* KitchenDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KitchenDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B98930E2512498B00589B5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9B9893102512498B00589B5B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		9B9893122512498B00589B5B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9B9893152512498B00589B5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9B9893172512499100589B5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9B98931A2512499100589B5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9B98931C2512499100589B5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B9893212512499200589B5B /* KitchenDiaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KitchenDiaryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BA29EFA251B32C30075703D /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
+		9BA29EFE251C4AC60075703D /* DiaryDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailController.swift; sourceTree = "<group>"; };
+		9BF09CC5251352E90094ABC5 /* a펜글씨L.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "a펜글씨L.otf"; path = "../../../../../../Library/Fonts/a펜글씨L.otf"; sourceTree = "<group>"; };
+		9BF09CCD251352EA0094ABC5 /* a펜글씨B.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "a펜글씨B.otf"; path = "../../../../../../Library/Fonts/a펜글씨B.otf"; sourceTree = "<group>"; };
+		DB787DB6E08760A3F2D2F6A0 /* Pods-KitchenDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenDiary.debug.xcconfig"; path = "Target Support Files/Pods-KitchenDiary/Pods-KitchenDiary.debug.xcconfig"; sourceTree = "<group>"; };
+		FC52F4C658F0B667AE20CAC4 /* Pods_KitchenDiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KitchenDiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFD3B418735807B782F85B94 /* Pods-KitchenDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenDiaryTests.release.xcconfig"; path = "Target Support Files/Pods-KitchenDiaryTests/Pods-KitchenDiaryTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9B9893082512498B00589B5B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11A77EBBB1FFBE2E43375563 /* Pods_KitchenDiary.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9B98931E2512499200589B5B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0733117BEFB0AFFD1370D47B /* Pods_KitchenDiaryTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		542D36BD758B276C2B744E51 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DB787DB6E08760A3F2D2F6A0 /* Pods-KitchenDiary.debug.xcconfig */,
+				874976254886C52919D6F206 /* Pods-KitchenDiary.release.xcconfig */,
+				5A96BF60A91E6140D93B97B3 /* Pods-KitchenDiaryTests.debug.xcconfig */,
+				FFD3B418735807B782F85B94 /* Pods-KitchenDiaryTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9B9893022512498B00589B5B = {
+			isa = PBXGroup;
+			children = (
+				9B98930D2512498B00589B5B /* KitchenDiary */,
+				9B98930C2512498B00589B5B /* Products */,
+				542D36BD758B276C2B744E51 /* Pods */,
+				CD1E20DEEF7CA3D8C1A18B32 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9B98930C2512498B00589B5B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9B98930B2512498B00589B5B /* KitchenDiary.app */,
+				9B9893212512499200589B5B /* KitchenDiaryTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9B98930D2512498B00589B5B /* KitchenDiary */ = {
+			isa = PBXGroup;
+			children = (
+				9B98930E2512498B00589B5B /* AppDelegate.swift */,
+				9B9893102512498B00589B5B /* SceneDelegate.swift */,
+				9B9893122512498B00589B5B /* ViewController.swift */,
+				9B9893142512498B00589B5B /* Main.storyboard */,
+				9BA29EFE251C4AC60075703D /* DiaryDetailController.swift */,
+				9BA29EFA251B32C30075703D /* RatingControl.swift */,
+				9B5413E32519FB5A00071544 /* DiaryController.swift */,
+				9B1F1FCF2514A481002487F7 /* MyKitchenController.swift */,
+				9B9893172512499100589B5B /* Assets.xcassets */,
+				9B9893192512499100589B5B /* LaunchScreen.storyboard */,
+				9BF09CCD251352EA0094ABC5 /* a펜글씨B.otf */,
+				9BF09CC5251352E90094ABC5 /* a펜글씨L.otf */,
+				9B98931C2512499100589B5B /* Info.plist */,
+			);
+			path = KitchenDiary;
+			sourceTree = "<group>";
+		};
+		CD1E20DEEF7CA3D8C1A18B32 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				113D13110C9C628B8701D7C4 /* Pods_KitchenDiary.framework */,
+				FC52F4C658F0B667AE20CAC4 /* Pods_KitchenDiaryTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9B98930A2512498B00589B5B /* KitchenDiary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9B98932A2512499200589B5B /* Build configuration list for PBXNativeTarget "KitchenDiary" */;
+			buildPhases = (
+				C63BB711C8004C52FA41438C /* [CP] Check Pods Manifest.lock */,
+				9B9893072512498B00589B5B /* Sources */,
+				9B9893082512498B00589B5B /* Frameworks */,
+				9B9893092512498B00589B5B /* Resources */,
+				288C458856BAD9B4E76972E1 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KitchenDiary;
+			productName = KitchenDiary;
+			productReference = 9B98930B2512498B00589B5B /* KitchenDiary.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9B9893202512499200589B5B /* KitchenDiaryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9B98932D2512499200589B5B /* Build configuration list for PBXNativeTarget "KitchenDiaryTests" */;
+			buildPhases = (
+				D6DA111AF861653FA3FCA8B3 /* [CP] Check Pods Manifest.lock */,
+				9B98931D2512499200589B5B /* Sources */,
+				9B98931E2512499200589B5B /* Frameworks */,
+				9B98931F2512499200589B5B /* Resources */,
+				ECA1CEAF9BBD746208C19799 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9B9893232512499200589B5B /* PBXTargetDependency */,
+			);
+			name = KitchenDiaryTests;
+			productName = KitchenDiaryTests;
+			productReference = 9B9893212512499200589B5B /* KitchenDiaryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9B9893032512498B00589B5B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1170;
+				LastUpgradeCheck = 1170;
+				ORGANIZATIONNAME = "Soyeong Jeon";
+				TargetAttributes = {
+					9B98930A2512498B00589B5B = {
+						CreatedOnToolsVersion = 11.7;
+					};
+					9B9893202512499200589B5B = {
+						CreatedOnToolsVersion = 11.7;
+						TestTargetID = 9B98930A2512498B00589B5B;
+					};
+				};
+			};
+			buildConfigurationList = 9B9893062512498B00589B5B /* Build configuration list for PBXProject "KitchenDiary" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9B9893022512498B00589B5B;
+			productRefGroup = 9B98930C2512498B00589B5B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9B98930A2512498B00589B5B /* KitchenDiary */,
+				9B9893202512499200589B5B /* KitchenDiaryTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9B9893092512498B00589B5B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BF09CDB251353720094ABC5 /* a펜글씨B.otf in Resources */,
+				9BF09CD0251353440094ABC5 /* a펜글씨L.otf in Resources */,
+				9B98931B2512499100589B5B /* LaunchScreen.storyboard in Resources */,
+				9B9893182512499100589B5B /* Assets.xcassets in Resources */,
+				9B9893162512498B00589B5B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9B98931F2512499200589B5B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		288C458856BAD9B4E76972E1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KitchenDiary/Pods-KitchenDiary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KitchenDiary/Pods-KitchenDiary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KitchenDiary/Pods-KitchenDiary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C63BB711C8004C52FA41438C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KitchenDiary-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6DA111AF861653FA3FCA8B3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KitchenDiaryTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECA1CEAF9BBD746208C19799 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KitchenDiaryTests/Pods-KitchenDiaryTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KitchenDiaryTests/Pods-KitchenDiaryTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KitchenDiaryTests/Pods-KitchenDiaryTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9B9893072512498B00589B5B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B1F1FD02514A481002487F7 /* MyKitchenController.swift in Sources */,
+				9BA29EFF251C4AC70075703D /* DiaryDetailController.swift in Sources */,
+				9B5413E42519FB5A00071544 /* DiaryController.swift in Sources */,
+				9B9893132512498B00589B5B /* ViewController.swift in Sources */,
+				9B98930F2512498B00589B5B /* AppDelegate.swift in Sources */,
+				9BA29EFB251B32C30075703D /* RatingControl.swift in Sources */,
+				9B9893112512498B00589B5B /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9B98931D2512499200589B5B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9B9893232512499200589B5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9B98930A2512498B00589B5B /* KitchenDiary */;
+			targetProxy = 9B9893222512499200589B5B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9B9893142512498B00589B5B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B9893152512498B00589B5B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9B9893192512499100589B5B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B98931A2512499100589B5B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9B9893282512499200589B5B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9B9893292512499200589B5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9B98932B2512499200589B5B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB787DB6E08760A3F2D2F6A0 /* Pods-KitchenDiary.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 577SG3C42S;
+				INFOPLIST_FILE = KitchenDiary/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.soyeong.KitchenDiary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9B98932C2512499200589B5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 874976254886C52919D6F206 /* Pods-KitchenDiary.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 577SG3C42S;
+				INFOPLIST_FILE = KitchenDiary/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.soyeong.KitchenDiary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9B98932E2512499200589B5B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A96BF60A91E6140D93B97B3 /* Pods-KitchenDiaryTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 577SG3C42S;
+				INFOPLIST_FILE = KitchenDiaryTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.soyeong.KitchenDiaryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KitchenDiary.app/KitchenDiary";
+			};
+			name = Debug;
+		};
+		9B98932F2512499200589B5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFD3B418735807B782F85B94 /* Pods-KitchenDiaryTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 577SG3C42S;
+				INFOPLIST_FILE = KitchenDiaryTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.soyeong.KitchenDiaryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KitchenDiary.app/KitchenDiary";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9B9893062512498B00589B5B /* Build configuration list for PBXProject "KitchenDiary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B9893282512499200589B5B /* Debug */,
+				9B9893292512499200589B5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9B98932A2512499200589B5B /* Build configuration list for PBXNativeTarget "KitchenDiary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B98932B2512499200589B5B /* Debug */,
+				9B98932C2512499200589B5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9B98932D2512499200589B5B /* Build configuration list for PBXNativeTarget "KitchenDiaryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B98932E2512499200589B5B /* Debug */,
+				9B98932F2512499200589B5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9B9893032512498B00589B5B /* Project object */;
+}
