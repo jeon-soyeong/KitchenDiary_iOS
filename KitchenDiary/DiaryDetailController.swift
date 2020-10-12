@@ -36,7 +36,6 @@ class DiaryDetailController: UIViewController, UITextViewDelegate, UIScrollViewD
         scrollView.addGestureRecognizer(singleTapGestureRecognizer)
         photoImageView.isUserInteractionEnabled = true
                
-       
         memoText.isScrollEnabled = false
         textViewDidChange(memoText)
     }
