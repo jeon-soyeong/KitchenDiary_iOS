@@ -36,46 +36,70 @@ class DiaryDetailController: UIViewController, UITextViewDelegate, UIScrollViewD
         scrollView.addGestureRecognizer(singleTapGestureRecognizer)
         photoImageView.isUserInteractionEnabled = true
                
-        memoText.isScrollEnabled = false
+      //  memoText.isScrollEnabled = false
         textViewDidChange(memoText)
     }
     
+    private let maxHeight: CGFloat = 100
+    
+    private var isOversized = false {
+          didSet {
+              guard oldValue != isOversized else {
+                  return
+              }
+              
+            //memoText.easy.reload()
+            memoText.isScrollEnabled = isOversized
+            memoText.setNeedsUpdateConstraints()
+          }
+      }
+    
     func textViewDidChange(_ textView: UITextView) {
         
-        let size = CGSize(width: view.frame.width, height: .infinity)
-        let estimatedSize = textView.sizeThatFits(size)
-        textView.constraints.forEach { (constraint) in
-            if constraint.firstAttribute == .height {
-                constraint.constant = estimatedSize.height
-                self.view.layoutIfNeeded()
-            }
-        }
-        let memoCount = "\(memoText.text.count)"
+        if textView.contentSize.height >= maxHeight {
+            memoText.isScrollEnabled = true
+                }
+        
+//        let size = CGSize(width: view.frame.width, height: .infinity)
+//        let estimatedSize = textView.sizeThatFits(size)
+//        textView.constraints.forEach { (constraint) in
+//            if constraint.firstAttribute == .height {
+//                constraint.constant = estimatedSize.height
+//                self.view.layoutIfNeeded()
+//            }
+//        }
+//
+        let memoCount = "\(textView.text.count)"
         textCount.text = memoCount
       
-   //     viewHeight.constant = memoText.frame.maxY + memoTextBottom.constant
+       // viewHeight.constant = textView.frame.maxY + memoTextBottom.constant
             
 //        var memoTextHeight = memoText.contentSize.height
 //
 //        print("memoText.contentSize.height: \(memoText.contentSize.height)")
 //        memoHeight.constant = memoTextHeight
-//        memoText.sizeToFit()
-//        memoText.layoutIfNeeded()
+
  
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         //줄 띄우기
-        if text == "\n" {
-            scrollView.contentSize.height += memoText.font?.pointSize ?? 0
-            viewHeight.constant += memoText.font?.pointSize ?? 0
-        }
+//        if text == "\n" {
+//            scrollView.contentSize.height += memoText.font?.pointSize ?? 0
+//            viewHeight.constant += memoText.font?.pointSize ?? 0
+//        }
         
         //backspace 클릭시 textvivew size가 줄었으면
         var originMemoTextSize = memoText.frame.height
        //var newMemoTextSize = originMemoTextSize - memoText.font!.pointSize ?? 0
         if text == "" && range.length > 0 {
-           
+            
+//            if (memoText.contentSize.height > memoText.frame.size.height) {
+//
+//                memoText.sizeToFit()
+//                memoText.layoutIfNeeded()
+//
+//            }
       
             
            // if viewHeight.constant != memoText.frame.maxY + memoTextBottom.constant {
