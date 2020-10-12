@@ -10,24 +10,24 @@ import UIKit
 import os.log
 
 class DiaryDetailController: UIViewController, UITextViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
-    @IBOutlet weak var ViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var MemoText: UITextView!
+    
+    @IBOutlet weak var memoHeight: NSLayoutConstraint!
+    @IBOutlet weak var viewHeight: NSLayoutConstraint!
+    @IBOutlet weak var memoText: UITextView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-   
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    var MemoTextHeight = 0
+    @IBOutlet weak var textCount: UILabel!
+    @IBOutlet weak var memoTextBottom: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.MemoText.layer.borderWidth = 1.0
-        self.MemoText.layer.borderColor = UIColor.black.cgColor
-        MemoText.delegate = self
+        self.memoText.layer.borderWidth = 1.0
+        self.memoText.layer.borderColor = UIColor.black.cgColor
+        memoText.delegate = self
         scrollView.delegate = self
         
-        placeholderSetting()
+        
         registerForKeyboardNotification()
         
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyTapMethod))
@@ -37,9 +37,9 @@ class DiaryDetailController: UIViewController, UITextViewDelegate, UIScrollViewD
         scrollView.addGestureRecognizer(singleTapGestureRecognizer)
         photoImageView.isUserInteractionEnabled = true
                
-        MemoText.delegate = self
-        MemoText.isScrollEnabled = false
-        textViewDidChange(MemoText)
+       
+        memoText.isScrollEnabled = false
+        textViewDidChange(memoText)
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -50,39 +50,67 @@ class DiaryDetailController: UIViewController, UITextViewDelegate, UIScrollViewD
             if constraint.firstAttribute == .height {
                 constraint.constant = estimatedSize.height
                 self.view.layoutIfNeeded()
-                print("'MemoTextHeight: \(estimatedSize.height)")
-                print("'MemoText.font?.pointSize ?? 0: \(MemoText.font?.pointSize ?? 0)")
             }
         }
+        let memoCount = "\(memoText.text.count)"
+        textCount.text = memoCount
+      
+   //     viewHeight.constant = memoText.frame.maxY + memoTextBottom.constant
+            
+//        var memoTextHeight = memoText.contentSize.height
+//
+//        print("memoText.contentSize.height: \(memoText.contentSize.height)")
+//        memoHeight.constant = memoTextHeight
+//        memoText.sizeToFit()
+//        memoText.layoutIfNeeded()
+ 
     }
     
-    @IBOutlet weak var bottomAnchor: NSLayoutConstraint!
-    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        //줄 띄우기
         if text == "\n" {
-            scrollView.contentSize.height += MemoText.font?.pointSize ?? 0
-            ViewHeight.constant += MemoText.font?.pointSize ?? 0
-
-            print("ViewHeight: \(ViewHeight)")
-            print("scrollview : \(scrollView.contentSize.height)")
+            scrollView.contentSize.height += memoText.font?.pointSize ?? 0
+            viewHeight.constant += memoText.font?.pointSize ?? 0
         }
         
-        //backspace버튼 클릭시
+        //backspace 클릭시 textvivew size가 줄었으면
+        var originMemoTextSize = memoText.frame.height
+       //var newMemoTextSize = originMemoTextSize - memoText.font!.pointSize ?? 0
         if text == "" && range.length > 0 {
-            print("backspace!!")
-            ViewHeight.constant -= MemoText.font?.pointSize ?? 0
+           
+      
             
-            print("ViewHeight: \(ViewHeight)")
-            print("scrollview : \(scrollView.contentSize.height)")
+           // if viewHeight.constant != memoText.frame.maxY + memoTextBottom.constant {
+
+//            if originMemoTextSize == newMemoTextSize {
+//                print("originMemoTextSize: \(originMemoTextSize)")
+//                print("newMemoTextSize: \(newMemoTextSize)")
+        //        viewHeight.constant -= memoText.font?.pointSize ?? 0
+//                originMemoTextSize = newMemoTextSize
+          //}
+            
+            if originMemoTextSize < 0 {
+                return false
+            }
         }
         
-        if MemoText.text.length
+   
+        
+        //글자수 200으로 제한하기
+        let currentText = memoText.text ?? ""
+
+           // attempt to read the range they are trying to change, or exit if we can't
+           guard let stringRange = Range(range, in: currentText) else { return false }
+
+           // add their new text to the existing text
+           let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
+        
+           // make sure the result is under 200 characters
+           return updatedText.count <= 200
         
         return true
     }
-    
-    
-    
+
     //tap시 keyborad 내리기
     @objc func MyTapMethod(sender: UITapGestureRecognizer) {
             self.view.endEditing(true)
@@ -92,28 +120,7 @@ class DiaryDetailController: UIViewController, UITextViewDelegate, UIScrollViewD
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
             self.view.endEditing(true)
     }
-    
-    func placeholderSetting() {
-        MemoText.text = "Memo"
-        MemoText.textColor = UIColor.lightGray
-    }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
-            textView.textAlignment = .left
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "Memo."
-            textView.textColor = UIColor.lightGray
-            textView.textAlignment = .center
-        }
-    }
-   
+
     func registerForKeyboardNotification(){
             NotificationCenter.default.addObserver(self, selector: #selector(keyBoardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -126,9 +133,6 @@ class DiaryDetailController: UIViewController, UITextViewDelegate, UIScrollViewD
     @objc func keyboardHide(_ notification: Notification){
         self.view.transform = .identity
         }
-    
-    
-   
     
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
             let imagePickerController = UIImagePickerController()
