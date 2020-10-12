@@ -27,7 +27,6 @@ class DiaryDetailController: UIViewController, UITextViewDelegate, UIScrollViewD
         memoText.delegate = self
         scrollView.delegate = self
         
-        
         registerForKeyboardNotification()
         
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyTapMethod))
