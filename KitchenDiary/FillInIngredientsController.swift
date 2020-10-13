@@ -12,6 +12,7 @@ class FillInIngredientsController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var memoText: UITextView!
     @IBOutlet weak var textCount: UILabel!
+    @IBOutlet weak var nameText: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +43,14 @@ extension FillInIngredientsController: UITextViewDelegate {
     }
     
     @objc func keyBoardShow(notification: NSNotification) {
+        
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue { UIView.animate(withDuration: 0.3, animations: { self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height) }) }
-       }
+        
+        //이름 수정시 화면고정
+        if nameText.isEditing {
+            UIView.animate(withDuration: 0, animations: { self.view.transform = CGAffineTransform(translationX: 0, y: 0) })
+        }
+    }
 
     @objc func keyboardHide(_ notification: Notification) {
         self.view.transform = .identity

@@ -124,13 +124,13 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="식재료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snF-rg-kex">
-                                <rect key="frame" x="15" y="464" width="60" height="20"/>
+                                <rect key="frame" x="15" y="464" width="60" height="17"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c1E-Ir-7xi">
-                                <rect key="frame" x="0.0" y="492" width="375" height="126"/>
+                                <rect key="frame" x="0.0" y="489" width="375" height="129"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="105" id="ZQA-Vn-P2N" customClass="IngredientsTableViewCell">
@@ -148,16 +148,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tFi-r3-rGh">
-                                                    <rect key="frame" x="26" y="42" width="153.5" height="20.5"/>
+                                                    <rect key="frame" x="26" y="42" width="156" height="20.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="유통기한 :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4H-be-QBA">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60.5" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="63" height="20.5"/>
                                                             <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="유통기한 날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qal-h8-A2Z">
-                                                            <rect key="frame" x="60.5" y="0.0" width="93" height="20.5"/>
+                                                            <rect key="frame" x="63" y="0.0" width="93" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -165,16 +165,16 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ex8-aL-4Vm">
-                                                    <rect key="frame" x="26" y="73" width="98" height="20.5"/>
+                                                    <rect key="frame" x="26" y="73" width="100.5" height="20.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메모 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqG-4i-b29">
-                                                            <rect key="frame" x="0.0" y="0.0" width="34.5" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="37" height="20.5"/>
                                                             <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메모 작성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8K-Cm-Fmn">
-                                                            <rect key="frame" x="34.5" y="0.0" width="63.5" height="20.5"/>
+                                                            <rect key="frame" x="37" y="0.0" width="63.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -396,6 +396,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="memoText" destination="7Yf-s2-Rqm" id="3ZB-bJ-twd"/>
+                        <outlet property="nameText" destination="A3a-EO-psP" id="mZb-js-Kac"/>
                         <outlet property="scrollView" destination="G9t-ih-qzn" id="mb8-th-YDc"/>
                         <outlet property="textCount" destination="AZI-Ba-M6C" id="2Tg-Hq-MdO"/>
                     </connections>
