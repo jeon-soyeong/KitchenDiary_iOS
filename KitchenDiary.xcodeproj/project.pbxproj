@@ -21,6 +21,7 @@
 		9BA29EFF251C4AC70075703D /* DiaryDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA29EFE251C4AC60075703D /* DiaryDetailController.swift */; };
 		9BF09CD0251353440094ABC5 /* a펜글씨L.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9BF09CC5251352E90094ABC5 /* a펜글씨L.otf */; };
 		9BF09CDB251353720094ABC5 /* a펜글씨B.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9BF09CCD251352EA0094ABC5 /* a펜글씨B.otf */; };
+		9BF218D32534BF2700E7C6C8 /* FillInIngredientsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF218D22534BF2600E7C6C8 /* FillInIngredientsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		9BA29EFE251C4AC60075703D /* DiaryDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailController.swift; sourceTree = "<group>"; };
 		9BF09CC5251352E90094ABC5 /* a펜글씨L.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "a펜글씨L.otf"; path = "../../../../../../Library/Fonts/a펜글씨L.otf"; sourceTree = "<group>"; };
 		9BF09CCD251352EA0094ABC5 /* a펜글씨B.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "a펜글씨B.otf"; path = "../../../../../../Library/Fonts/a펜글씨B.otf"; sourceTree = "<group>"; };
+		9BF218D22534BF2600E7C6C8 /* FillInIngredientsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillInIngredientsController.swift; sourceTree = "<group>"; };
 		DB787DB6E08760A3F2D2F6A0 /* Pods-KitchenDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenDiary.debug.xcconfig"; path = "Target Support Files/Pods-KitchenDiary/Pods-KitchenDiary.debug.xcconfig"; sourceTree = "<group>"; };
 		FC52F4C658F0B667AE20CAC4 /* Pods_KitchenDiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KitchenDiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD3B418735807B782F85B94 /* Pods-KitchenDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenDiaryTests.release.xcconfig"; path = "Target Support Files/Pods-KitchenDiaryTests/Pods-KitchenDiaryTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				9B9893102512498B00589B5B /* SceneDelegate.swift */,
 				9B9893122512498B00589B5B /* ViewController.swift */,
 				9B9893142512498B00589B5B /* Main.storyboard */,
+				9BF218D22534BF2600E7C6C8 /* FillInIngredientsController.swift */,
 				9BA29EFE251C4AC60075703D /* DiaryDetailController.swift */,
 				9BA29EFA251B32C30075703D /* RatingControl.swift */,
 				9B5413E32519FB5A00071544 /* DiaryController.swift */,
@@ -330,6 +333,7 @@
 				9B9893132512498B00589B5B /* ViewController.swift in Sources */,
 				9B98930F2512498B00589B5B /* AppDelegate.swift in Sources */,
 				9BA29EFB251B32C30075703D /* RatingControl.swift in Sources */,
+				9BF218D32534BF2700E7C6C8 /* FillInIngredientsController.swift in Sources */,
 				9B9893112512498B00589B5B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
