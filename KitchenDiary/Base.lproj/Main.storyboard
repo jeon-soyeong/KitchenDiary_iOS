@@ -124,13 +124,13 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="식재료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snF-rg-kex">
-                                <rect key="frame" x="15" y="464" width="60" height="17"/>
+                                <rect key="frame" x="15" y="464" width="60" height="20"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c1E-Ir-7xi">
-                                <rect key="frame" x="0.0" y="489" width="375" height="129"/>
+                                <rect key="frame" x="0.0" y="492" width="375" height="126"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientsTableViewCell" rowHeight="132" id="ZQA-Vn-P2N" customClass="IngredientsTableViewCell">
@@ -148,16 +148,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tFi-r3-rGh">
-                                                    <rect key="frame" x="26" y="75" width="156" height="20.5"/>
+                                                    <rect key="frame" x="26" y="75" width="153.5" height="20.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="유통기한 :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4H-be-QBA">
-                                                            <rect key="frame" x="0.0" y="0.0" width="63" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="60.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="유통기한 날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qal-h8-A2Z">
-                                                            <rect key="frame" x="63" y="0.0" width="93" height="20.5"/>
+                                                            <rect key="frame" x="60.5" y="0.0" width="93" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -165,16 +165,16 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ex8-aL-4Vm">
-                                                    <rect key="frame" x="26" y="106" width="100.5" height="20.5"/>
+                                                    <rect key="frame" x="26" y="106" width="98" height="20.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메모 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqG-4i-b29">
-                                                            <rect key="frame" x="0.0" y="0.0" width="37" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="34.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메모 작성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8K-Cm-Fmn">
-                                                            <rect key="frame" x="37" y="0.0" width="63.5" height="20.5"/>
+                                                            <rect key="frame" x="34.5" y="0.0" width="63.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -182,16 +182,16 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vNA-uk-TJR">
-                                                    <rect key="frame" x="28" y="45" width="68" height="20.5"/>
+                                                    <rect key="frame" x="28" y="45" width="64" height="20.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="보관 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYq-nv-H7J">
-                                                            <rect key="frame" x="0.0" y="0.0" width="38.5" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="34.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="보관" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zw6-8j-AAo">
-                                                            <rect key="frame" x="38.5" y="0.0" width="29.5" height="20.5"/>
+                                                            <rect key="frame" x="34.5" y="0.0" width="29.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -413,7 +413,7 @@
                     <navigationItem key="navigationItem" title="부엌 채우기" id="dYC-cN-m20">
                         <barButtonItem key="rightBarButtonItem" title="저장" id="rtd-0e-M6a">
                             <connections>
-                                <segue destination="TAU-OT-wsj" kind="unwind" unwindAction="unwindToIngredientslListWithSender:" id="rAu-JZ-bnS"/>
+                                <segue destination="TAU-OT-wsj" kind="unwind" unwindAction="unwindToIngredientslListWithSender:" id="xaq-o7-gcm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -692,7 +692,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="620"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="식사 제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IcO-Np-9EQ">
-                                                <rect key="frame" x="149.5" y="35" width="76.5" height="34"/>
+                                                <rect key="frame" x="150" y="35" width="75" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="Tc6-eP-TLs"/>
                                                 </constraints>
@@ -733,7 +733,7 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="식사평" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q4-Zb-nQK">
-                                                <rect key="frame" x="54" y="427" width="45" height="32"/>
+                                                <rect key="frame" x="54" y="427" width="47" height="32"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="32" id="tZL-eR-R0S"/>
@@ -760,7 +760,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEk-rh-wMa">
-                                                <rect key="frame" x="259" y="436" width="25" height="16"/>
+                                                <rect key="frame" x="261" y="436" width="25" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="PFV-Df-Xj7"/>
                                                     <constraint firstAttribute="height" constant="16" id="Yxa-wf-Wbh"/>
@@ -813,7 +813,13 @@
                             <constraint firstItem="h2z-mE-QX2" firstAttribute="trailing" secondItem="rAQ-cg-ZBX" secondAttribute="trailing" id="kBH-zh-h0g"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="gqo-TB-JNp"/>
+                    <navigationItem key="navigationItem" id="gqo-TB-JNp">
+                        <barButtonItem key="rightBarButtonItem" title="저장" id="Ccx-2i-jms">
+                            <connections>
+                                <segue destination="ZXA-ok-gta" kind="unwind" unwindAction="unwindToDiaryListWithSender:" id="UjU-Zj-878"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="MemoText" destination="m2K-QZ-l0p" id="zcH-1Q-bwJ"/>
@@ -828,6 +834,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kJF-sf-2Sj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="ZXA-ok-gta" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="1zF-Zb-iZ4">
                     <connections>
                         <action selector="selectImageFromPhotoLibrary:" destination="4QT-yO-XZg" id="jkH-BR-crw"/>
@@ -956,7 +963,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="7db-dA-5Iy"/>
-        <segue reference="YSS-UZ-DVc"/>
+        <segue reference="vcB-LS-Qaa"/>
         <segue reference="vY7-kq-bBD"/>
     </inferredMetricsTieBreakers>
     <resources>

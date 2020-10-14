@@ -32,4 +32,13 @@ class DiaryController: UIViewController, FSCalendarDelegate, FSCalendarDataSourc
     }
     */
 
+    //MARK: Actions
+    @IBAction func unwindToDiaryList (sender: UIStoryboardSegue) {
+        print("unwindToMealList 호출 1")
+        if let sourceViewController = sender.source as? DiaryDetailController {
+            print("unwindToMealList 호출 2")
+        }
+    }
+    
+    
 }

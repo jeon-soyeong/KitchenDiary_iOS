@@ -85,16 +85,16 @@ class FillInIngredientsController: UIViewController {
         textViewDidChange(ingredientsMemo)
     }
     
-    // This method lets you configure a view controller before it's presented.
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-
-     // Configure the destination view controller only when the save button is pressed.
-    guard let button = sender as? UIBarButtonItem, button === saveButton else{
-     print("saveButton 호출")
-      os_log ( "The save button was not pressed, cancelling" , log : OSLog . default , type : . debug )
-        return
-    }
+//    // This method lets you configure a view controller before it's presented.
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        super.prepare(for: segue, sender: sender)
+//
+//     // Configure the destination view controller only when the save button is pressed.
+//    guard let button = sender as? UIBarButtonItem, button === saveButton else{
+//     print("saveButton 호출")
+//      os_log ( "The save button was not pressed, cancelling" , log : OSLog . default , type : . debug )
+//        return
+//    }
 //        let name = ingredientsName.text ?? ""
 //
 //        let storage: String
@@ -117,7 +117,7 @@ class FillInIngredientsController: UIViewController {
 //    // 보낼
 //    // Set the meal to be passed to MealTableViewController after the unwind segue.
 //        ingredient = Ingredients(name: name , storageMethod: storage , expirationDate: exprirationDateStr, memo: memo)
-    }
+//    }
     
 }
 
