@@ -90,57 +90,58 @@ class MyKitchenController: UITableViewController {
     }
     */
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        super.prepare(for: segue, sender: sender)
-        
-        switch(segue.identifier ?? "") {
-            
-        case "AddItem":
-            os_log("Adding a new ingredient.", log: OSLog.default, type: .debug)
-            
-        case "ShowDetail":
-            guard let fillInIngredientsController = segue.destination as? FillInIngredientsController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
-            guard let selectedIngredientsCell = sender as? IngredientsTableViewCell else {
-                fatalError("Unexpected sender: \(sender)")
-            }
-            
-            guard let indexPath = tableView.indexPath(for: selectedIngredientsCell) else {
-                fatalError("The selected cell is not being displayed by the table")
-            }
-            
-            let selectedIngredients = ingredients[indexPath.row]
-            fillInIngredientsController.ingredient = selectedIngredients
-         
-        default:
-            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
-        }
-    }
+//    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//        super.prepare(for: segue, sender: sender)
+//
+//        switch(segue.identifier ?? "") {
+//
+//        case "AddItem":
+//            os_log("Adding a new ingredient.", log: OSLog.default, type: .debug)
+//
+//        case "ShowDetail":
+//            guard let fillInIngredientsController = segue.destination as? FillInIngredientsController else {
+//                fatalError("Unexpected destination: \(segue.destination)")
+//            }
+//
+//            guard let selectedIngredientsCell = sender as? IngredientsTableViewCell else {
+//                fatalError("Unexpected sender: \(sender)")
+//            }
+//
+//            guard let indexPath = tableView.indexPath(for: selectedIngredientsCell) else {
+//                fatalError("The selected cell is not being displayed by the table")
+//            }
+//
+//            let selectedIngredients = ingredients[indexPath.row]
+//            fillInIngredientsController.ingredient = selectedIngredients
+//
+//        default:
+//            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+//        }
+//    }
     
-//    //MARK: Actions
-//    @IBAction func unwindToMealList (sender: UIStoryboardSegue) {
-//        if let sourceViewController = sender.source as? FillInIngredientsController , let meal = sourceViewController.meal {
+    //MARK: Actions
+    @IBAction func unwindToIngredientslList (sender: UIStoryboardSegue) {
+        print("unwindToIngredientslList 호출")
+//        if let sourceViewController = sender.source as? FillInIngredientsController , let ingredient = sourceViewController.ingredient {
 //            //행이 선택(편집)되었는지 여부 확인
 //           if let selectedIndexPath = tableView.indexPathForSelectedRow {
 //               // Update an existing meal.
-//               meals[selectedIndexPath.row] = meal
+//               ingredients[selectedIndexPath.row] = ingredient
 //               tableView.reloadRows(at: [selectedIndexPath], with: .none)
 //           }
 //           else {
-//               // Add a new meal.
-//               let newIndexPath = IndexPath(row: meals.count, section: 0)
-//               
-//               meals.append(meal)
+//               // Add a new ingredient.
+//               let newIndexPath = IndexPath(row: ingredients.count, section: 0)
+//
+//               ingredients.append(ingredient)
 //               tableView.insertRows(at: [newIndexPath], with: .automatic)
 //           }
 //            //Save the meals.
 //            saveIngredients()
 //        }
-//    }
+    }
     
     
     
