@@ -415,9 +415,12 @@
                     </navigationItem>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="expirationDate" destination="ifi-v4-gy4" id="QnE-E7-DGr"/>
+                        <outlet property="ingredientsMemo" destination="7Yf-s2-Rqm" id="8FJ-3R-T2L"/>
+                        <outlet property="ingredientsName" destination="A3a-EO-psP" id="W7k-LY-gfq"/>
                         <outlet property="memoText" destination="7Yf-s2-Rqm" id="3ZB-bJ-twd"/>
-                        <outlet property="nameText" destination="A3a-EO-psP" id="mZb-js-Kac"/>
                         <outlet property="scrollView" destination="G9t-ih-qzn" id="mb8-th-YDc"/>
+                        <outlet property="storageMethod" destination="ypH-u9-40m" id="1rK-hx-qDK"/>
                         <outlet property="textCount" destination="AZI-Ba-M6C" id="2Tg-Hq-MdO"/>
                     </connections>
                 </viewController>
@@ -684,7 +687,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="620"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="식사 제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IcO-Np-9EQ">
-                                                <rect key="frame" x="149.5" y="35" width="76.5" height="34"/>
+                                                <rect key="frame" x="150" y="35" width="75" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="Tc6-eP-TLs"/>
                                                 </constraints>
@@ -725,7 +728,7 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="식사평" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q4-Zb-nQK">
-                                                <rect key="frame" x="54" y="427" width="45" height="32"/>
+                                                <rect key="frame" x="54" y="427" width="47" height="32"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="32" id="tZL-eR-R0S"/>
@@ -752,7 +755,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEk-rh-wMa">
-                                                <rect key="frame" x="259" y="436" width="25" height="16"/>
+                                                <rect key="frame" x="261" y="436" width="25" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="PFV-Df-Xj7"/>
                                                     <constraint firstAttribute="height" constant="16" id="Yxa-wf-Wbh"/>
@@ -831,7 +834,6 @@
         <!--시작하기-->
         <scene sceneID="Fdz-5V-IhD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Uwb-Za-2WK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jab-GJ-fWa" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="시작하기" image="home" id="fsh-bE-kyV">
                         <inset key="imageInsets" minX="150" minY="-31" maxX="150" maxY="-29"/>
@@ -847,6 +849,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="E6S-ch-acR"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uwb-Za-2WK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1058" y="38"/>
         </scene>
@@ -915,7 +918,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xrs-Km-v7z"/>
+        <segue reference="7db-dA-5Iy"/>
         <segue reference="YSS-UZ-DVc"/>
         <segue reference="vY7-kq-bBD"/>
     </inferredMetricsTieBreakers>

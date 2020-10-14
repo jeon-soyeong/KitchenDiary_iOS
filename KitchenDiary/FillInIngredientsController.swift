@@ -10,18 +10,41 @@ import UIKit
 class FillInIngredientsController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var memoText: UITextView!
     @IBOutlet weak var textCount: UILabel!
-    @IBOutlet weak var nameText: UITextField!
+    
+    @IBOutlet weak var ingredientsName: UITextField!
+    @IBOutlet weak var storageMethod: UISegmentedControl!
+    @IBOutlet weak var expirationDate: UIDatePicker!
+    @IBOutlet weak var ingredientsMemo: UITextView!
+    
+    // 받을
+    var ingredient: Ingredients?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        memoText.delegate = self
+        ingredientsMemo.delegate = self
         scrollView.delegate = self
         
-        memoText.layer.borderWidth = 1.0
-        memoText.layer.borderColor = UIColor.black.cgColor
+        
+        // Set up views if editing an existing Ingredients.
+              if let ingredient = ingredient {
+                  
+                ingredientsName.text = ingredient.name
+                
+// storageMethod = ingredient.storageMethod as? UISegmentedControl
+                
+                let expirationDatePick: String = ingredient.expirationDate
+                //let dateFormatter = ISO8601DateFormatter()
+                let dateFormatter = DateFormatter()
+                let date:Date = dateFormatter.date(from:expirationDatePick)!
+                expirationDate.date = date
+      
+                ingredientsMemo.text = ingredient.memo
+              }
+        
+        ingredientsMemo.layer.borderWidth = 1.0
+        ingredientsMemo.layer.borderColor = UIColor.black.cgColor
         
         registerForKeyboardNotification()
         
@@ -31,8 +54,27 @@ class FillInIngredientsController: UIViewController {
         singleTapGestureRecognizer.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(singleTapGestureRecognizer)
         
-        textViewDidChange(memoText)
+        textViewDidChange(ingredientsMemo)
     }
+    
+//    // This method lets you configure a view controller before it's presented.
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        super.prepare(for: segue, sender: sender)
+//
+//     // Configure the destination view controller only when the save button is pressed.
+//    guard let button = sender as? UIBarButtonItem, button === saveButton else{
+//      os_log ( "The save button was not pressed, cancelling" , log : OSLog . default , type : . debug )
+//        return
+//    }
+//        let name = nameTextField.text ?? ""
+//        let photo = photoImageView.image
+//        let rating = ratingControl.rating
+//
+//    // 보낼
+//    // Set the meal to be passed to MealTableViewController after the unwind segue.
+//    meal = Meal ( name : name , photo : photo , rating : rating )
+//    }
+    
 }
 
 extension FillInIngredientsController: UITextViewDelegate {
@@ -47,7 +89,7 @@ extension FillInIngredientsController: UITextViewDelegate {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue { UIView.animate(withDuration: 0.3, animations: { self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height) }) }
         
         //이름 수정시 화면고정
-        if nameText.isEditing {
+        if ingredientsName.isEditing {
             UIView.animate(withDuration: 0, animations: { self.view.transform = CGAffineTransform(translationX: 0, y: 0) })
         }
     }
@@ -64,7 +106,7 @@ extension FillInIngredientsController: UITextViewDelegate {
     //memoText.frame.height이 0보다 작으면 backspace 안되게 하기
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
-        let originMemoTextSize = memoText.frame.height
+        let originMemoTextSize = ingredientsMemo.frame.height
         if text == "" && range.length > 0 {
             if originMemoTextSize < 0 {
                 return false
@@ -72,7 +114,7 @@ extension FillInIngredientsController: UITextViewDelegate {
         }
         
         //글자수 200으로 제한하기
-        let currentText = memoText.text ?? ""
+        let currentText = ingredientsMemo.text ?? ""
 
        // attempt to read the range they are trying to change, or exit if we can't
        guard let stringRange = Range(range, in: currentText) else { return false }
