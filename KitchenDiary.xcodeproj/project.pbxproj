@@ -11,6 +11,8 @@
 		11A77EBBB1FFBE2E43375563 /* Pods_KitchenDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113D13110C9C628B8701D7C4 /* Pods_KitchenDiary.framework */; };
 		9B1F1FD02514A481002487F7 /* MyKitchenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F1FCF2514A481002487F7 /* MyKitchenController.swift */; };
 		9B5413E42519FB5A00071544 /* DiaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5413E32519FB5A00071544 /* DiaryController.swift */; };
+		9B5889AF2535F431008AFB2A /* IngredientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5889AE2535F431008AFB2A /* IngredientsTableViewCell.swift */; };
+		9B5889B1253611DA008AFB2A /* Ingredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5889B0253611DA008AFB2A /* Ingredients.swift */; };
 		9B98930F2512498B00589B5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B98930E2512498B00589B5B /* AppDelegate.swift */; };
 		9B9893112512498B00589B5B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9893102512498B00589B5B /* SceneDelegate.swift */; };
 		9B9893132512498B00589B5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9893122512498B00589B5B /* ViewController.swift */; };
@@ -40,6 +42,8 @@
 		874976254886C52919D6F206 /* Pods-KitchenDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenDiary.release.xcconfig"; path = "Target Support Files/Pods-KitchenDiary/Pods-KitchenDiary.release.xcconfig"; sourceTree = "<group>"; };
 		9B1F1FCF2514A481002487F7 /* MyKitchenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKitchenController.swift; sourceTree = "<group>"; };
 		9B5413E32519FB5A00071544 /* DiaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryController.swift; sourceTree = "<group>"; };
+		9B5889AE2535F431008AFB2A /* IngredientsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsTableViewCell.swift; sourceTree = "<group>"; };
+		9B5889B0253611DA008AFB2A /* Ingredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredients.swift; sourceTree = "<group>"; };
 		9B98930B2512498B00589B5B /* KitchenDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KitchenDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B98930E2512498B00589B5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B9893102512498B00589B5B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,11 +120,13 @@
 				9B9893102512498B00589B5B /* SceneDelegate.swift */,
 				9B9893122512498B00589B5B /* ViewController.swift */,
 				9B9893142512498B00589B5B /* Main.storyboard */,
+				9B5889B0253611DA008AFB2A /* Ingredients.swift */,
 				9BF218D22534BF2600E7C6C8 /* FillInIngredientsController.swift */,
 				9BA29EFE251C4AC60075703D /* DiaryDetailController.swift */,
 				9BA29EFA251B32C30075703D /* RatingControl.swift */,
 				9B5413E32519FB5A00071544 /* DiaryController.swift */,
 				9B1F1FCF2514A481002487F7 /* MyKitchenController.swift */,
+				9B5889AE2535F431008AFB2A /* IngredientsTableViewCell.swift */,
 				9B9893172512499100589B5B /* Assets.xcassets */,
 				9B9893192512499100589B5B /* LaunchScreen.storyboard */,
 				9BF09CCD251352EA0094ABC5 /* a펜글씨B.otf */,
@@ -327,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B5889AF2535F431008AFB2A /* IngredientsTableViewCell.swift in Sources */,
 				9B1F1FD02514A481002487F7 /* MyKitchenController.swift in Sources */,
 				9BA29EFF251C4AC70075703D /* DiaryDetailController.swift in Sources */,
 				9B5413E42519FB5A00071544 /* DiaryController.swift in Sources */,
@@ -334,6 +341,7 @@
 				9B98930F2512498B00589B5B /* AppDelegate.swift in Sources */,
 				9BA29EFB251B32C30075703D /* RatingControl.swift in Sources */,
 				9BF218D32534BF2700E7C6C8 /* FillInIngredientsController.swift in Sources */,
+				9B5889B1253611DA008AFB2A /* Ingredients.swift in Sources */,
 				9B9893112512498B00589B5B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
