@@ -19,25 +19,25 @@ class FillInIngredientsController: UIViewController {
     @IBOutlet weak var expirationDate: UIDatePicker!
     @IBOutlet weak var ingredientsMemo: UITextView!
     
-//    @IBAction func cancel(_ sender: UIBarButtonItem) {
-//       // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
-//       let isPresentingInAddMealMode = presentingViewController is UINavigationController
-//
-//       //모달로 닫을 때
-//       if isPresentingInAddMealMode {
-//           dismiss(animated: true, completion: nil)
-//       }
-//       //창에서 닫을 때
-//       else if let owningNavigationController = navigationController{
-//           owningNavigationController.popViewController(animated: true)
-//       }
-//       else {
-//           fatalError("The MealViewController is not inside a navigation controller.")
-//       }
-//   }
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+       // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
+       let isPresentingInAddMealMode = presentingViewController is UINavigationController
+
+       //모달로 닫을 때
+       if isPresentingInAddMealMode {
+           dismiss(animated: true, completion: nil)
+       }
+       //창에서 닫을 때
+       else if let owningNavigationController = navigationController{
+           owningNavigationController.popViewController(animated: true)
+       }
+       else {
+           fatalError("The MealViewController is not inside a navigation controller.")
+       }
+   }
     
     // 받을
-   // var ingredient: Ingredients?
+    var ingredient: Ingredients?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,31 +46,31 @@ class FillInIngredientsController: UIViewController {
         scrollView.delegate = self
         
         
-//        // Set up views if editing an existing Ingredients.
-//              if let ingredient = ingredient {
-//
-//                ingredientsName.text = ingredient.name
-//
-//                let storageStr = ingredient.storageMethod
-//                if storageStr == "냉장" {
-//                    storageMethod.selectedSegmentIndex = 0
-//                }
-//                else if storageStr == "냉동" {
-//                    storageMethod.selectedSegmentIndex = 1
-//                }
-//                else {
-//                    storageMethod.selectedSegmentIndex = 2
-//                }
-//
-//                let expirationDatePick: String = ingredient.expirationDate
-//                //let dateFormatter = ISO8601DateFormatter()
-//                let dateFormatter = DateFormatter()
-//                let date:Date = dateFormatter.date(from:expirationDatePick)!
-//                expirationDate.date = date
-//
-//                ingredientsMemo.text = ingredient.memo
-//              }
-//
+        // Set up views if editing an existing Ingredients.
+              if let ingredient = ingredient {
+
+                ingredientsName.text = ingredient.name
+
+                let storageStr = ingredient.storageMethod
+                if storageStr == "냉장" {
+                    storageMethod.selectedSegmentIndex = 0
+                }
+                else if storageStr == "냉동" {
+                    storageMethod.selectedSegmentIndex = 1
+                }
+                else {
+                    storageMethod.selectedSegmentIndex = 2
+                }
+
+                let expirationDatePick: String = ingredient.expirationDate
+                //let dateFormatter = ISO8601DateFormatter()
+                let dateFormatter = DateFormatter()
+                let date:Date = dateFormatter.date(from:expirationDatePick)!
+                expirationDate.date = date
+
+                ingredientsMemo.text = ingredient.memo
+              }
+
         ingredientsMemo.layer.borderWidth = 1.0
         ingredientsMemo.layer.borderColor = UIColor.black.cgColor
         
@@ -85,39 +85,39 @@ class FillInIngredientsController: UIViewController {
         textViewDidChange(ingredientsMemo)
     }
     
-//    // This method lets you configure a view controller before it's presented.
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        super.prepare(for: segue, sender: sender)
-//
-//     // Configure the destination view controller only when the save button is pressed.
-//    guard let button = sender as? UIBarButtonItem, button === saveButton else{
-//     print("saveButton 호출")
-//      os_log ( "The save button was not pressed, cancelling" , log : OSLog . default , type : . debug )
-//        return
-//    }
-//        let name = ingredientsName.text ?? ""
-//
-//        let storage: String
-//        if storageMethod.selectedSegmentIndex == 0 {
-//            storage = "냉장"
-//        }
-//        else if storageMethod.selectedSegmentIndex == 1 {
-//            storage = "냉동"
-//        }
-//        else {
-//            storage = "실온"
-//        }
-//
-//        let df = DateFormatter()
-//        df.dateFormat = "yyyy-MM-dd"
-//        let exprirationDateStr = df.string(from: expirationDate.date)
-//
-//        let memo = ingredientsMemo.text ?? ""
-//
-//    // 보낼
-//    // Set the meal to be passed to MealTableViewController after the unwind segue.
-//        ingredient = Ingredients(name: name , storageMethod: storage , expirationDate: exprirationDateStr, memo: memo)
-//    }
+    // This method lets you configure a view controller before it's presented.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+     // Configure the destination view controller only when the save button is pressed.
+    guard let button = sender as? UIBarButtonItem, button === saveButton else{
+     print("saveButton 호출")
+      os_log ( "The save button was not pressed, cancelling" , log : OSLog . default , type : . debug )
+        return
+    }
+        let name = ingredientsName.text ?? ""
+
+        let storage: String
+        if storageMethod.selectedSegmentIndex == 0 {
+            storage = "냉장"
+        }
+        else if storageMethod.selectedSegmentIndex == 1 {
+            storage = "냉동"
+        }
+        else {
+            storage = "실온"
+        }
+
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        let exprirationDateStr = df.string(from: expirationDate.date)
+
+        let memo = ingredientsMemo.text ?? ""
+
+    // 보낼
+    // Set the meal to be passed to MealTableViewController after the unwind segue.
+        ingredient = Ingredients(name: name , storageMethod: storage , expirationDate: exprirationDateStr, memo: memo)
+    }
     
 }
 

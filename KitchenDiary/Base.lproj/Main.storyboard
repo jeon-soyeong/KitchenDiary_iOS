@@ -35,7 +35,7 @@
                                     <color key="titleColor" systemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="UOa-b7-264" kind="show" id="vY7-kq-bBD"/>
+                                    <segue destination="8yG-kb-EZz" kind="show" id="CxJ-fn-yKM"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="garden" translatesAutoresizingMaskIntoConstraints="NO" id="ehN-oC-yM3">
@@ -85,7 +85,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="UOa-b7-264" kind="relationship" relationship="rootViewController" id="XHE-dn-hO7"/>
+                        <segue destination="8yG-kb-EZz" kind="relationship" relationship="rootViewController" id="9om-My-4qs"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="koz-XV-Hbg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -95,16 +95,14 @@
         <!--나의 부엌-->
         <scene sceneID="Z9Z-qW-BgN">
             <objects>
-                <viewController id="UOa-b7-264" customClass="MyKitchenController" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bKJ-dp-svi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="UOa-b7-264" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hqt-v0-5XW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myKitchen" translatesAutoresizingMaskIntoConstraints="NO" id="M5T-lq-mrM">
-                                <rect key="frame" x="0.0" y="34" width="375" height="364"/>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zxR-bp-TXm">
-                                <rect key="frame" x="270" y="406" width="89" height="25"/>
+                                <rect key="frame" x="270" y="362" width="89" height="25"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cooking" translatesAutoresizingMaskIntoConstraints="NO" id="lXp-fN-jhN">
                                         <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -124,13 +122,13 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="식재료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snF-rg-kex">
-                                <rect key="frame" x="15" y="464" width="60" height="17"/>
+                                <rect key="frame" x="15" y="420" width="60" height="17"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c1E-Ir-7xi">
-                                <rect key="frame" x="0.0" y="489" width="375" height="129"/>
+                                <rect key="frame" x="0.0" y="445" width="375" height="222"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientsTableViewCell" rowHeight="132" id="ZQA-Vn-P2N" customClass="IngredientsTableViewCell">
@@ -210,6 +208,9 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="myKitchen" translatesAutoresizingMaskIntoConstraints="NO" id="M5T-lq-mrM">
+                                <rect key="frame" x="0.0" y="-11" width="375" height="364"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QhE-dz-KEj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -237,9 +238,8 @@
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bKJ-dp-svi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1957.5999999999999" y="798.35082458770626"/>
+            <point key="canvasLocation" x="2614" y="-170"/>
         </scene>
         <!--부엌 채우기-->
         <scene sceneID="9Qg-S7-dQQ">
@@ -250,7 +250,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9t-ih-qzn">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0aM-0J-l4J">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="620"/>
@@ -432,6 +432,154 @@
                 <exit id="TAU-OT-wsj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3436" y="166"/>
+        </scene>
+        <!--나의 부엌-->
+        <scene sceneID="8ur-Ig-qbz">
+            <objects>
+                <tableViewController id="8yG-kb-EZz" customClass="MyKitchenController" customModule="KitchenDiary" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0mv-P2-Cjz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="EWP-2Z-riZ">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="442"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myKitchen" translatesAutoresizingMaskIntoConstraints="NO" id="4An-5e-2TG">
+                                    <rect key="frame" x="0.0" y="-10" width="375" height="364"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="식재료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVp-m0-Zzg">
+                                    <rect key="frame" x="18" y="413" width="47" height="18"/>
+                                    <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="18"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAG-Tv-bOE">
+                                    <rect key="frame" x="273" y="360" width="86" height="25"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cooking" translatesAutoresizingMaskIntoConstraints="NO" id="1Kr-A5-KdS">
+                                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="25" id="dxq-c1-ONC"/>
+                                                <constraint firstAttribute="height" constant="25" id="h5T-2g-aEO"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWF-SE-4NQ">
+                                            <rect key="frame" x="25" y="0.0" width="61" height="25"/>
+                                            <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="18"/>
+                                            <state key="normal" title="요리하기"/>
+                                            <connections>
+                                                <segue destination="weE-N5-h1n" kind="show" id="C7N-xB-dyM"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="bVp-m0-Zzg" firstAttribute="leading" secondItem="EWP-2Z-riZ" secondAttribute="leading" constant="18" id="EXr-RK-34m"/>
+                                <constraint firstItem="4An-5e-2TG" firstAttribute="top" secondItem="EWP-2Z-riZ" secondAttribute="top" constant="-10" id="JhK-ae-UZx"/>
+                                <constraint firstItem="bVp-m0-Zzg" firstAttribute="top" secondItem="vAG-Tv-bOE" secondAttribute="bottom" constant="28" id="Lcc-QN-Y3e"/>
+                                <constraint firstItem="vAG-Tv-bOE" firstAttribute="top" secondItem="4An-5e-2TG" secondAttribute="bottom" constant="6" id="SD8-Gb-DUW"/>
+                                <constraint firstAttribute="trailing" secondItem="vAG-Tv-bOE" secondAttribute="trailing" constant="16" id="UAj-Qe-qIK"/>
+                                <constraint firstItem="vAG-Tv-bOE" firstAttribute="leading" secondItem="EWP-2Z-riZ" secondAttribute="leading" constant="273" id="cqU-kn-Vf5"/>
+                                <constraint firstAttribute="trailing" secondItem="bVp-m0-Zzg" secondAttribute="trailing" constant="310" id="fyv-1N-TXz"/>
+                                <constraint firstItem="4An-5e-2TG" firstAttribute="leading" secondItem="EWP-2Z-riZ" secondAttribute="leading" id="jI0-d6-fD2"/>
+                                <constraint firstAttribute="trailing" secondItem="4An-5e-2TG" secondAttribute="trailing" id="mvX-8i-cN9"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientsTableViewCell" rowHeight="132" id="Lm5-l4-O0W" customClass="IngredientsTableViewCell">
+                                <rect key="frame" x="0.0" y="470" width="375" height="132"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lm5-l4-O0W" id="1Cp-FZ-hsl" customClass="IngredientsTableViewCell">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="132"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OoV-Fx-vUt">
+                                            <rect key="frame" x="26" y="13" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7jG-d6-0V9">
+                                            <rect key="frame" x="26" y="75" width="156" height="20.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="유통기한 :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OV-Ca-A0K">
+                                                    <rect key="frame" x="0.0" y="0.0" width="63" height="20.5"/>
+                                                    <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="유통기한 날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxI-8w-fom">
+                                                    <rect key="frame" x="63" y="0.0" width="93" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Atg-AN-TVh">
+                                            <rect key="frame" x="26" y="106" width="100.5" height="20.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메모 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxL-NE-ZBR">
+                                                    <rect key="frame" x="0.0" y="0.0" width="37" height="20.5"/>
+                                                    <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메모 작성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSq-70-hoc">
+                                                    <rect key="frame" x="37" y="0.0" width="63.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mce-Rs-IMX">
+                                            <rect key="frame" x="28" y="45" width="68" height="20.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="보관 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qep-MQ-3Kv">
+                                                    <rect key="frame" x="0.0" y="0.0" width="38.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="보관" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8r-2N-ZOt">
+                                                    <rect key="frame" x="38.5" y="0.0" width="29.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="IngredientsName" destination="OoV-Fx-vUt" id="HbD-0E-MOe"/>
+                                    <outlet property="StorageMethod" destination="h8r-2N-ZOt" id="Fuk-Bu-JW5"/>
+                                    <outlet property="expirationDate" destination="cxI-8w-fom" id="QwP-LK-KRz"/>
+                                    <outlet property="ingredientsMemo" destination="TSq-70-hoc" id="hrZ-bc-dmz"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8yG-kb-EZz" id="53D-7D-44G"/>
+                            <outlet property="delegate" destination="8yG-kb-EZz" id="tmx-fh-yBa"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="나의 부엌" id="2DA-t5-89N">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1Ka-UU-7J4">
+                            <connections>
+                                <segue destination="bDc-cX-KJ5" kind="show" identifier="AddItem" id="Buy-PT-RwW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MzU-O3-M5b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1975" y="794"/>
         </scene>
         <!--요리하기-->
         <scene sceneID="inC-fY-bzg">
@@ -623,18 +771,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="todayMeal" translatesAutoresizingMaskIntoConstraints="NO" id="vaw-Bq-ebS">
-                                <rect key="frame" x="154" y="64" width="67" height="60"/>
+                                <rect key="frame" x="154" y="20" width="67" height="60"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="7ET-dw-MAf" appends="YES" id="eqM-We-EYT"/>
                                 </connections>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gme-Q2-S9O" customClass="FSCalendar">
-                                <rect key="frame" x="0.0" y="109" width="376" height="499"/>
+                                <rect key="frame" x="0.0" y="65" width="376" height="572"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbv-AI-8Mt">
-                                <rect key="frame" x="42" y="68" width="32" height="30"/>
+                                <rect key="frame" x="42" y="24" width="32" height="103"/>
                                 <state key="normal" title="click"/>
                                 <connections>
                                     <segue destination="4QT-yO-XZg" kind="show" id="A6e-4P-sC3"/>
@@ -686,7 +834,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAQ-cg-ZBX">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXk-7Q-3qo">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="620"/>
@@ -963,8 +1111,9 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="7db-dA-5Iy"/>
-        <segue reference="vcB-LS-Qaa"/>
-        <segue reference="vY7-kq-bBD"/>
+        <segue reference="C7N-xB-dyM"/>
+        <segue reference="CxJ-fn-yKM"/>
+        <segue reference="Buy-PT-RwW"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="64" height="64"/>
