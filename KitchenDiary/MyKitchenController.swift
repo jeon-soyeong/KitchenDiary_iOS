@@ -17,7 +17,7 @@ class MyKitchenController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cookingButton.layer.cornerRadius = 0.5 * cookingButton.bounds.size.height
+        cookingButton.layer.cornerRadius = 0.3 * cookingButton.bounds.size.height
         
 //        navigationItem.leftBarButtonItem = editButtonItem
         

@@ -62,7 +62,9 @@ class FillInIngredientsController: UIViewController {
                 }
 
                 let expirationDateStr: String = ingredient.expirationDate
+                print("expirationDateStr: \(expirationDateStr)")
                 let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy년 MM월 dd일"
                 let now = NSDate()
                
                 let dateStr:Date = dateFormatter.date(from:expirationDateStr) ?? now as Date
