@@ -10,13 +10,13 @@ import UIKit
 import os.log
 
 class MyKitchenController: UITableViewController {
-
+    
     var ingredients = [Ingredients]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = 125
+       // tableView.estimatedRowHeight = 125
         tableView.rowHeight = UITableView.automaticDimension
         
         navigationItem.leftBarButtonItem = editButtonItem
@@ -54,7 +54,14 @@ class MyKitchenController: UITableViewController {
        cell.storageMethod.text = ingredient.storageMethod
        cell.expirationDate.text = ingredient.expirationDate
        cell.ingredientsMemo.text = ingredient.memo
-
+        
+    
+        //label 줄바꿈
+        cell.ingredientsMemo.preferredMaxLayoutWidth = (tableView.bounds.width - 120)
+        cell.ingredientsMemo.numberOfLines = 0
+//        cell.ingredientsMemo.lineBreakMode = .byWordWrapping
+//        cell.ingredientsMemo.sizeToFit()
+    
        return cell
     }
 

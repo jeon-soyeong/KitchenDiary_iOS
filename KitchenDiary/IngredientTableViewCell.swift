@@ -18,10 +18,6 @@ class IngredientTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        ingredientsMemo.lineBreakMode = .byWordWrapping
-        ingredientsMemo.numberOfLines = 0
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
