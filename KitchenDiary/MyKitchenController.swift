@@ -19,15 +19,12 @@ class MyKitchenController: UITableViewController {
         super.viewDidLoad()
         cookingButton.layer.cornerRadius = 0.3 * cookingButton.bounds.size.height
         
-//        navigationItem.leftBarButtonItem = editButtonItem
-        
        // tableViewCell Height AutoSizing
         tableView.rowHeight = UITableView.automaticDimension
         
-        
-//        if let savedIngredients = loadIngredients() {
-//            ingredients += savedIngredients
-//        }
+        if let savedIngredients = loadIngredients() {
+            ingredients += savedIngredients
+        }
     }
 
     //섹션표시 - Table view 1개만 필요
@@ -74,7 +71,7 @@ class MyKitchenController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             ingredients.remove(at: indexPath.row)
-          //  saveIngredients()
+            saveIngredients()
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
@@ -154,23 +151,23 @@ class MyKitchenController: UITableViewController {
                tableView.insertRows(at: [newIndexPath], with: .automatic)
            }
             //Save the meals.
-          //  saveIngredients()
+            saveIngredients()
         }
     }
     
     
     
-//    private func saveIngredients() {
-//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ingredients, toFile: Ingredients.ArchiveURL.path)
-//        if isSuccessfulSave {
-//            os_log("Ingredients successfully saved.", log: OSLog.default, type: .debug)
-//        } else {
-//                 os_log("failed to save Ingredients", log: OSLog.default, type: .error)
-//        }
-//    }
-//
-//    private func loadIngredients() -> [Ingredients]? {
-//        return NSKeyedUnarchiver.unarchiveObject(withFile: Ingredients.ArchiveURL.path) as? [Ingredients]
-//    }
+    private func saveIngredients() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ingredients, toFile: Ingredients.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("Ingredients successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+                 os_log("failed to save Ingredients", log: OSLog.default, type: .error)
+        }
+    }
+
+    private func loadIngredients() -> [Ingredients]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Ingredients.ArchiveURL.path) as? [Ingredients]
+    }
 
 }
