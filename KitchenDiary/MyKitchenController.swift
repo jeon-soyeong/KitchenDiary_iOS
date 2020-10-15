@@ -10,25 +10,25 @@ import UIKit
 import os.log
 
 class MyKitchenController: UITableViewController {
+
+    @IBOutlet weak var cookingButton: UIButton!
     
     var ingredients = [Ingredients]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        cookingButton.layer.cornerRadius = 0.5 * cookingButton.bounds.size.height
         
-       // tableView.estimatedRowHeight = 125
+//        navigationItem.leftBarButtonItem = editButtonItem
+        
+       // tableViewCell Height AutoSizing
         tableView.rowHeight = UITableView.automaticDimension
         
-        navigationItem.leftBarButtonItem = editButtonItem
         
 //        if let savedIngredients = loadIngredients() {
 //            ingredients += savedIngredients
 //        }
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension;
-      }
 
     //섹션표시 - Table view 1개만 필요
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -59,20 +59,15 @@ class MyKitchenController: UITableViewController {
         //label 줄바꿈
         cell.ingredientsMemo.preferredMaxLayoutWidth = (tableView.bounds.width - 120)
         cell.ingredientsMemo.numberOfLines = 0
-//        cell.ingredientsMemo.lineBreakMode = .byWordWrapping
-//        cell.ingredientsMemo.sizeToFit()
     
        return cell
     }
-
 
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-
-
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -103,36 +98,42 @@ class MyKitchenController: UITableViewController {
     }
     */
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//        super.prepare(for: segue, sender: sender)
-//
-//        switch(segue.identifier ?? "") {
-//
-//        case "AddItem":
-//            os_log("Adding a new ingredient.", log: OSLog.default, type: .debug)
-//
-//        case "ShowDetail":
-//            guard let fillInIngredientsController = segue.destination as? FillInIngredientsController else {
-//                fatalError("Unexpected destination: \(segue.destination)")
-//            }
-//
-//            guard let selectedIngredientsCell = sender as? IngredientsTableViewCell else {
-//                fatalError("Unexpected sender: \(sender)")
-//            }
-//
-//            guard let indexPath = tableView.indexPath(for: selectedIngredientsCell) else {
-//                fatalError("The selected cell is not being displayed by the table")
-//            }
-//
-//            let selectedIngredients = ingredients[indexPath.row]
-//            fillInIngredientsController.ingredient = selectedIngredients
-//
-//        default:
-//            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
-//        }
-//    }
+    //전달
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        super.prepare(for: segue, sender: sender)
+
+        switch(segue.identifier ?? "") {
+
+        case "AddItem":
+            print("AddItem 호출 1")
+            os_log("Adding a new ingredient.", log: OSLog.default, type: .debug)
+
+        case "Cooking":
+            print("Cooking 호출 1")
+            
+        case "ShowDetail":
+            print("ShowDetail 호출 1")
+            guard let fillInIngredientsController = segue.destination as? FillInIngredientsController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+
+            guard let selectedIngredientsCell = sender as? IngredientTableViewCell else {
+                fatalError("Unexpected sender: \(sender)")
+            }
+
+            guard let indexPath = tableView.indexPath(for: selectedIngredientsCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let selectedIngredients = ingredients[indexPath.row]
+            fillInIngredientsController.ingredient = selectedIngredients
+            
+        default:
+            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+        }
+    }
+    
     
     //MARK: Actions
     @IBAction func unwindToIngredientslList (sender: UIStoryboardSegue) {

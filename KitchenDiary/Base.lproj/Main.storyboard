@@ -463,10 +463,13 @@
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWF-SE-4NQ">
                                             <rect key="frame" x="25" y="0.0" width="61" height="25"/>
+                                            <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="18"/>
-                                            <state key="normal" title="요리하기"/>
+                                            <state key="normal" title="요리하기">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
                                             <connections>
-                                                <segue destination="weE-N5-h1n" kind="show" id="C7N-xB-dyM"/>
+                                                <segue destination="weE-N5-h1n" kind="show" identifier="Cooking" id="C7N-xB-dyM"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -603,6 +606,7 @@
                                     <outlet property="ingredientsMemo" destination="egB-9r-anV" id="aO7-bw-Kqk"/>
                                     <outlet property="ingredientsName" destination="7OP-qd-3fk" id="Bif-4Q-lUf"/>
                                     <outlet property="storageMethod" destination="aVC-WD-Sro" id="vPq-Fy-C6m"/>
+                                    <segue destination="bDc-cX-KJ5" kind="show" identifier="ShowDetail" id="eHf-BD-2a8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -618,6 +622,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cookingButton" destination="mWF-SE-4NQ" id="IjR-8i-uvP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MzU-O3-M5b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1122,6 +1129,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="7db-dA-5Iy"/>
         <segue reference="CxJ-fn-yKM"/>
+        <segue reference="Buy-PT-RwW"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="64" height="64"/>
@@ -1152,6 +1160,9 @@
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

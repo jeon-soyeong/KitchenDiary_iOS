@@ -45,30 +45,31 @@ class FillInIngredientsController: UIViewController {
         scrollView.delegate = self
         
         
-//        // Set up views if editing an existing Ingredients.
-//              if let ingredient = ingredient {
-//
-//                ingredientsName.text = ingredient.name
-//
-//                let storageStr = ingredient.storageMethod
-//                if storageStr == "냉장" {
-//                    storageMethod.selectedSegmentIndex = 0
-//                }
-//                else if storageStr == "냉동" {
-//                    storageMethod.selectedSegmentIndex = 1
-//                }
-//                else {
-//                    storageMethod.selectedSegmentIndex = 2
-//                }
-//
-//                let expirationDateStr: String = ingredient.expirationDate
-//                //let dateFormatter = ISO8601DateFormatter()
-//                let dateFormatter = DateFormatter()
-//                let dateStr:Date = dateFormatter.date(from:expirationDateStr)!
-//                expirationDate.date = dateStr
-//
-//                ingredientsMemo.text = ingredient.memo
-//             }
+        // Set up views if editing an existing Ingredients.
+              if let ingredient = ingredient {
+
+                ingredientsName.text = ingredient.name
+
+                let storageStr = ingredient.storageMethod
+                if storageStr == "냉장" {
+                    storageMethod.selectedSegmentIndex = 0
+                }
+                else if storageStr == "냉동" {
+                    storageMethod.selectedSegmentIndex = 1
+                }
+                else {
+                    storageMethod.selectedSegmentIndex = 2
+                }
+
+                let expirationDateStr: String = ingredient.expirationDate
+                let dateFormatter = DateFormatter()
+                let now = NSDate()
+               
+                let dateStr:Date = dateFormatter.date(from:expirationDateStr) ?? now as Date
+                expirationDate.date = dateStr
+
+                ingredientsMemo.text = ingredient.memo
+             }
 
         ingredientsMemo.layer.borderWidth = 1.0
         ingredientsMemo.layer.borderColor = UIColor.black.cgColor
