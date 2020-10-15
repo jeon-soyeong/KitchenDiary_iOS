@@ -11,16 +11,16 @@ import UIKit
 class IngredientTableViewCell: UITableViewCell {
 
     @IBOutlet weak var ingredientsName: UILabel!
-    
     @IBOutlet weak var storageMethod: UILabel!
-    
     @IBOutlet weak var expirationDate: UILabel!
-    
-    
     @IBOutlet weak var ingredientsMemo: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        ingredientsMemo.lineBreakMode = .byWordWrapping
+        ingredientsMemo.numberOfLines = 0
         // Initialization code
     }
 

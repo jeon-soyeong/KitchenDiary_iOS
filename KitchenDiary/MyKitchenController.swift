@@ -16,15 +16,19 @@ class MyKitchenController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.estimatedRowHeight = 125
+        tableView.rowHeight = UITableView.automaticDimension
+        
         navigationItem.leftBarButtonItem = editButtonItem
         
-        
-
 //        if let savedIngredients = loadIngredients() {
 //            ingredients += savedIngredients
 //        }
-        
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension;
+      }
 
     //섹션표시 - Table view 1개만 필요
     override func numberOfSections(in tableView: UITableView) -> Int {
