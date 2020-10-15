@@ -17,10 +17,12 @@ class MyKitchenController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = editButtonItem
+        
+        
 
-        if let savedIngredients = loadIngredients() {
-            ingredients += savedIngredients
-        }
+//        if let savedIngredients = loadIngredients() {
+//            ingredients += savedIngredients
+//        }
         
     }
 
@@ -37,9 +39,9 @@ class MyKitchenController: UITableViewController {
     //셀 구성 & 표시
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cellIdentifier = "IngredientsTableViewCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? IngredientsTableViewCell else {
-                fatalError ("The dequeued cell is not an instance of IngredientsTableViewCell.")
+        let cellIdentifier = "IngredientTableViewCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? IngredientTableViewCell else {
+                fatalError ("The dequeued cell is not an instance of IngredientTableViewCell.")
         }
 
        let ingredient = ingredients[indexPath.row ]
@@ -66,7 +68,7 @@ class MyKitchenController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             ingredients.remove(at: indexPath.row)
-            saveIngredients()
+          //  saveIngredients()
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
@@ -91,35 +93,35 @@ class MyKitchenController: UITableViewController {
     */
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        super.prepare(for: segue, sender: sender)
-
-        switch(segue.identifier ?? "") {
-
-        case "AddItem":
-            os_log("Adding a new ingredient.", log: OSLog.default, type: .debug)
-
-        case "ShowDetail":
-            guard let fillInIngredientsController = segue.destination as? FillInIngredientsController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-
-            guard let selectedIngredientsCell = sender as? IngredientsTableViewCell else {
-                fatalError("Unexpected sender: \(sender)")
-            }
-
-            guard let indexPath = tableView.indexPath(for: selectedIngredientsCell) else {
-                fatalError("The selected cell is not being displayed by the table")
-            }
-
-            let selectedIngredients = ingredients[indexPath.row]
-            fillInIngredientsController.ingredient = selectedIngredients
-
-        default:
-            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//        super.prepare(for: segue, sender: sender)
+//
+//        switch(segue.identifier ?? "") {
+//
+//        case "AddItem":
+//            os_log("Adding a new ingredient.", log: OSLog.default, type: .debug)
+//
+//        case "ShowDetail":
+//            guard let fillInIngredientsController = segue.destination as? FillInIngredientsController else {
+//                fatalError("Unexpected destination: \(segue.destination)")
+//            }
+//
+//            guard let selectedIngredientsCell = sender as? IngredientsTableViewCell else {
+//                fatalError("Unexpected sender: \(sender)")
+//            }
+//
+//            guard let indexPath = tableView.indexPath(for: selectedIngredientsCell) else {
+//                fatalError("The selected cell is not being displayed by the table")
+//            }
+//
+//            let selectedIngredients = ingredients[indexPath.row]
+//            fillInIngredientsController.ingredient = selectedIngredients
+//
+//        default:
+//            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+//        }
+//    }
     
     //MARK: Actions
     @IBAction func unwindToIngredientslList (sender: UIStoryboardSegue) {
@@ -140,23 +142,23 @@ class MyKitchenController: UITableViewController {
                tableView.insertRows(at: [newIndexPath], with: .automatic)
            }
             //Save the meals.
-            saveIngredients()
+          //  saveIngredients()
         }
     }
     
     
     
-    private func saveIngredients() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ingredients, toFile: Ingredients.ArchiveURL.path)
-        if isSuccessfulSave {
-            os_log("Ingredients successfully saved.", log: OSLog.default, type: .debug)
-        } else {
-                 os_log("failed to save Ingredients", log: OSLog.default, type: .error)
-        }
-    }
-
-    private func loadIngredients() -> [Ingredients]? {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: Ingredients.ArchiveURL.path) as? [Ingredients]
-    }
+//    private func saveIngredients() {
+//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ingredients, toFile: Ingredients.ArchiveURL.path)
+//        if isSuccessfulSave {
+//            os_log("Ingredients successfully saved.", log: OSLog.default, type: .debug)
+//        } else {
+//                 os_log("failed to save Ingredients", log: OSLog.default, type: .error)
+//        }
+//    }
+//
+//    private func loadIngredients() -> [Ingredients]? {
+//        return NSKeyedUnarchiver.unarchiveObject(withFile: Ingredients.ArchiveURL.path) as? [Ingredients]
+//    }
 
 }
