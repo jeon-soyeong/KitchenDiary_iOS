@@ -14,7 +14,7 @@ class IngredientTableViewCell: UITableViewCell {
     @IBOutlet weak var storageMethod: UILabel!
     @IBOutlet weak var expirationDate: UILabel!
     @IBOutlet weak var ingredientsMemo: UILabel!
-    
+    @IBOutlet weak var warning: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

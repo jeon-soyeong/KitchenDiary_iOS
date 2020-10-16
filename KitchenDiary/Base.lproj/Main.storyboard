@@ -23,13 +23,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 부엌으로 이동하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rol-BQ-zNq">
-                                <rect key="frame" x="135" y="174" width="200" height="20"/>
+                                <rect key="frame" x="135" y="174" width="200" height="23.5"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgA-d4-YBt">
-                                <rect key="frame" x="282" y="197.5" width="68" height="35"/>
+                                <rect key="frame" x="282" y="201" width="68" height="39"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="23"/>
                                 <state key="normal" title="&gt;">
                                     <color key="titleColor" systemColor="darkTextColor"/>
@@ -39,7 +39,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="garden" translatesAutoresizingMaskIntoConstraints="NO" id="ehN-oC-yM3">
-                                <rect key="frame" x="37.5" y="237.5" width="300" height="337"/>
+                                <rect key="frame" x="37.5" y="245" width="300" height="337"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="N8k-ns-Nw9"/>
                                     <constraint firstAttribute="height" constant="337" id="mJL-7l-eca"/>
@@ -569,6 +569,9 @@
                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warning" translatesAutoresizingMaskIntoConstraints="NO" id="fIL-mJ-HZ2">
+                                            <rect key="frame" x="330" y="17" width="26" height="26"/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="X9P-MP-CUg" firstAttribute="leading" secondItem="27K-fX-DSN" secondAttribute="leading" constant="29" id="3TJ-cw-xLL"/>
@@ -589,11 +592,18 @@
                                         <constraint firstItem="O9D-JC-a09" firstAttribute="leading" secondItem="27K-fX-DSN" secondAttribute="leading" constant="31" id="yne-pi-q4I"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="fIL-mJ-HZ2" firstAttribute="leading" secondItem="y35-C1-EJp" secondAttribute="leading" constant="330" id="IOU-Ec-HWQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="fIL-mJ-HZ2" secondAttribute="trailing" constant="19" id="WGX-XA-hzJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="fIL-mJ-HZ2" secondAttribute="bottom" constant="85" id="hvz-4d-qyv"/>
+                                    <constraint firstItem="fIL-mJ-HZ2" firstAttribute="top" secondItem="y35-C1-EJp" secondAttribute="top" constant="17" id="jPr-hA-hak"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="expirationDate" destination="uZo-NE-jdD" id="pXC-Ru-ZIj"/>
                                     <outlet property="ingredientsMemo" destination="egB-9r-anV" id="aO7-bw-Kqk"/>
                                     <outlet property="ingredientsName" destination="7OP-qd-3fk" id="Bif-4Q-lUf"/>
                                     <outlet property="storageMethod" destination="aVC-WD-Sro" id="vPq-Fy-C6m"/>
+                                    <outlet property="warning" destination="fIL-mJ-HZ2" id="w47-5y-LdD"/>
                                     <segue destination="bDc-cX-KJ5" kind="show" identifier="ShowDetail" id="eHf-BD-2a8"/>
                                 </connections>
                             </tableViewCell>
@@ -650,7 +660,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4lT-m9-HZg">
-                                                    <rect key="frame" x="246" y="223" width="121" height="50"/>
+                                                    <rect key="frame" x="246" y="223" width="118" height="50"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="todayMeal" translatesAutoresizingMaskIntoConstraints="NO" id="QXo-gA-KCM">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -660,7 +670,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcR-v4-3FZ">
-                                                            <rect key="frame" x="50" y="0.0" width="71" height="50"/>
+                                                            <rect key="frame" x="50" y="0.0" width="68" height="50"/>
                                                             <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="18"/>
                                                             <state key="normal" title="오늘 식사"/>
                                                             <connections>
@@ -711,7 +721,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i5y-sx-mOK">
-                                <rect key="frame" x="243" y="263" width="121" height="50"/>
+                                <rect key="frame" x="243" y="263" width="118" height="50"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="todayMeal" translatesAutoresizingMaskIntoConstraints="NO" id="llA-ni-dxs">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -721,7 +731,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uI8-YX-SOd">
-                                        <rect key="frame" x="50" y="0.0" width="71" height="50"/>
+                                        <rect key="frame" x="50" y="0.0" width="68" height="50"/>
                                         <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="18"/>
                                         <state key="normal" title="오늘 식사"/>
                                         <connections>
@@ -1158,6 +1168,7 @@
         <image name="underBookmark" width="69" height="38.5"/>
         <image name="underDiary" width="38" height="38"/>
         <image name="underMyKitchen" width="53" height="51.5"/>
+        <image name="warning" width="3125" height="3125"/>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

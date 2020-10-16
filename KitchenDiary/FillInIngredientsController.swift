@@ -19,31 +19,14 @@ class FillInIngredientsController: UIViewController {
     @IBOutlet weak var expirationDate: UIDatePicker!
     @IBOutlet weak var ingredientsMemo: UITextView!
     
-//    @IBAction func cancel(_ sender: UIBarButtonItem) {
-//       let isPresentingInAddMealMode = presentingViewController is UINavigationController
-//
-//       //모달로 닫을 때
-//       if isPresentingInAddMealMode {
-//           dismiss(animated: true, completion: nil)
-//       }
-//       //창에서 닫을 때
-//       else if let owningNavigationController = navigationController{
-//           owningNavigationController.popViewController(animated: true)
-//       }
-//       else {
-//           fatalError("The MealViewController is not inside a navigation controller.")
-//       }
-//   }
-    
     // 받을
     var ingredient: Ingredients?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ingredientsName.delegate = self
         ingredientsMemo.delegate = self
         scrollView.delegate = self
-        
         
         // Set up views if editing an existing Ingredients.
               if let ingredient = ingredient {
@@ -71,6 +54,8 @@ class FillInIngredientsController: UIViewController {
                 expirationDate.date = dateStr
 
                 ingredientsMemo.text = ingredient.memo
+                
+                updateSaveButtonState()
              }
 
         ingredientsMemo.layer.borderWidth = 1.0
@@ -180,4 +165,21 @@ extension FillInIngredientsController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
             self.view.endEditing(true)
     }
+}
+
+//textField 없을 때 저장 버튼 비활성화시키기
+extension FillInIngredientsController: UITextFieldDelegate {
+
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+      saveButton.isEnabled = false
+  }
+  
+  func textFieldDidEndEditing(_ textField: UITextField) {
+         updateSaveButtonState()
+  }
+    
+  func updateSaveButtonState() {
+        let text = ingredientsName.text ?? ""
+        saveButton.isEnabled = !text.isEmpty
+  }
 }

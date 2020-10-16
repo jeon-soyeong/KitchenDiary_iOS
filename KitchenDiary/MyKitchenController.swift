@@ -51,8 +51,25 @@ class MyKitchenController: UITableViewController {
        cell.storageMethod.text = ingredient.storageMethod
        cell.expirationDate.text = ingredient.expirationDate
        cell.ingredientsMemo.text = ingredient.memo
-        
+       
+        cell.warning.isHidden = true
     
+        //날짜 차이 구하기
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        let now = NSDate()
+       
+        let exprireDate: Date = dateFormatter.date(from:ingredient.expirationDate) ?? now as Date
+        let nowDate = now as Date
+        
+        let interval = exprireDate.timeIntervalSince(nowDate)
+        let days = Int(interval / 86400)
+        
+        //2일전 부터 보이기
+        if days <= 1 {
+            cell.warning.isHidden = false
+        }
+        
         //label 줄바꿈
         cell.ingredientsMemo.preferredMaxLayoutWidth = (tableView.bounds.width - 120)
         cell.ingredientsMemo.numberOfLines = 0
@@ -103,14 +120,12 @@ class MyKitchenController: UITableViewController {
         switch(segue.identifier ?? "") {
 
         case "AddItem":
-            print("AddItem 호출 1")
             os_log("Adding a new ingredient.", log: OSLog.default, type: .debug)
 
         case "Cooking":
-            print("Cooking 호출 1")
+            os_log("Cooking.", log: OSLog.default, type: .debug)
             
         case "ShowDetail":
-            print("ShowDetail 호출 1")
             guard let fillInIngredientsController = segue.destination as? FillInIngredientsController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
