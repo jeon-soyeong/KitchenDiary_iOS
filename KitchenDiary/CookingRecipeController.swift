@@ -12,6 +12,7 @@ class CookingRecipeController: UITableViewController {
 
     //받음
     var ingredientsArr = [String]()
+    var compareArr = Set<Int>()
         
     struct  IngredientsInfo: Codable {
         let Grid_20150827000000000227_1: IngredientsDetailInfo
@@ -43,8 +44,7 @@ class CookingRecipeController: UITableViewController {
             print("url: \(url)")
             print("333")
             
-            URLSession.shared.dataTask(with: url) {
-                (data, respnose, err) in
+            URLSession.shared.dataTask(with: url) { (data, respnose, err) in
                 print("444")
                 guard let data = data else {return}
                 print("555")
@@ -53,43 +53,25 @@ class CookingRecipeController: UITableViewController {
                     let decoder = JSONDecoder()
                     let detailInfo = try? decoder.decode(IngredientsInfo.self, from: data)
                     let recipeCount = detailInfo?.Grid_20150827000000000227_1.row.count ?? 0
+                    print("recipeCount: \(recipeCount)")
+                    print("recipeRow: \(detailInfo?.Grid_20150827000000000227_1.row)")
 
-                    var recipeIdArr = [Int]()
-                    var compareArr = [Int]()
+                    var recipeIdArr = Set<Int>()
                     
                     for j in 0 ..< recipeCount {
                         let recipeId = detailInfo?.Grid_20150827000000000227_1.row[j].RECIPE_ID
                         let irdntName = detailInfo?.Grid_20150827000000000227_1.row[j].IRDNT_NM
-                        
-                        for a in 0 ..< recipeIdArr.count {
-                            if recipeIdArr[a] == recipeId {
-                                compareArr.append(recipeIdArr[a])
-                            }
-                        }
-                        
-                        recipeIdArr.append(recipeId ?? -1)
-                        print("recipeIdArr[j] : \(recipeIdArr[j])")
-                        
-//                        for b in 0 ..< compareArr.count {
-//                           print(" compareArr[b]: \(compareArr[b])")
-//                        }
-                        
-                        print("recipeId: \(recipeId) irdntName: \(irdntName)")
-                        
+                        recipeIdArr.insert(recipeId ?? -1)
                     }
-            
-
-//                    print("detailInfo..RECIPE_ID: \(detailInfo?.endRow)")
+                    self.compareArr = self.compareArr.intersection(recipeIdArr)
                 } catch let jsonArr {
                     print("Error \(jsonArr)")
                 }
             }.resume()
-            
-            
         }
         
         
-        
+  
         
     }
 
