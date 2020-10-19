@@ -23,13 +23,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 부엌으로 이동하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rol-BQ-zNq">
-                                <rect key="frame" x="135" y="174" width="200" height="23.5"/>
+                                <rect key="frame" x="135" y="174" width="200" height="20"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgA-d4-YBt">
-                                <rect key="frame" x="282" y="201" width="68" height="39"/>
+                                <rect key="frame" x="282" y="197.5" width="68" height="35"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="23"/>
                                 <state key="normal" title="&gt;">
                                     <color key="titleColor" systemColor="darkTextColor"/>
@@ -39,7 +39,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="garden" translatesAutoresizingMaskIntoConstraints="NO" id="ehN-oC-yM3">
-                                <rect key="frame" x="37.5" y="245" width="300" height="337"/>
+                                <rect key="frame" x="37.5" y="237.5" width="300" height="337"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="N8k-ns-Nw9"/>
                                     <constraint firstAttribute="height" constant="337" id="mJL-7l-eca"/>
@@ -91,6 +91,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="koz-XV-Hbg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1048" y="804"/>
+        </scene>
+        <!--Cooking Recipe Controller-->
+        <scene sceneID="lD3-KA-vuG">
+            <objects>
+                <tableViewController id="5HC-4b-CaJ" customClass="CookingRecipeController" customModule="KitchenDiary" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="efw-e8-mjJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="281" id="xXW-H2-EDd">
+                                <rect key="frame" x="0.0" y="28" width="375" height="281"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xXW-H2-EDd" id="sg3-1P-oFo">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="281"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Len-hP-oLd">
+                                            <rect key="frame" x="10" y="16" width="59" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="19"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2CD-2s-lB6">
+                                            <rect key="frame" x="0.0" y="47" width="375" height="181"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bookmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="a8W-ie-dnV">
+                                            <rect key="frame" x="344" y="55" width="26" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oTj-fO-hcX">
+                                            <rect key="frame" x="242" y="226" width="121" height="50"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="todayMeal" translatesAutoresizingMaskIntoConstraints="NO" id="mbs-VU-k1T">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="2Af-Cm-XCS"/>
+                                                        <constraint firstAttribute="height" constant="50" id="rpL-yC-E7R"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krV-it-L9r">
+                                                    <rect key="frame" x="50" y="0.0" width="71" height="50"/>
+                                                    <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="18"/>
+                                                    <state key="normal" title="오늘 식사">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="koJ-Z1-Fzj" kind="show" id="FKN-k3-G7N"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="kbr-9J-Kx5" kind="show" id="yLr-dc-Y3a"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5HC-4b-CaJ" id="cTV-Lh-fDV"/>
+                            <outlet property="delegate" destination="5HC-4b-CaJ" id="bDr-Ek-mqL"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="RYa-Ng-iNl"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iIh-Sm-pRb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3065" y="1227"/>
         </scene>
         <!--부엌 채우기-->
         <scene sceneID="9Qg-S7-dQQ">
@@ -434,7 +505,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p5s-ee-FTG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="TAU-OT-wsj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3436" y="166"/>
+            <point key="canvasLocation" x="3078" y="493"/>
         </scene>
         <!--나의 부엌-->
         <scene sceneID="8ur-Ig-qbz">
@@ -477,7 +548,7 @@
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <segue destination="weE-N5-h1n" kind="show" identifier="Cooking" id="C7N-xB-dyM"/>
+                                        <segue destination="5HC-4b-CaJ" kind="show" identifier="Cooking" id="6kb-wa-U08"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -628,79 +699,6 @@
             </objects>
             <point key="canvasLocation" x="1973.5999999999999" y="793.8530734632684"/>
         </scene>
-        <!--요리하기-->
-        <scene sceneID="inC-fY-bzg">
-            <objects>
-                <viewController id="weE-N5-h1n" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="roV-L6-W0z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WcO-aK-yJR">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CookingListCell" rowHeight="269" id="Qan-o2-KXA" customClass="CookingListCell">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="269"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qan-o2-KXA" id="M5B-98-Pcp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="269"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ivd-zt-t1B">
-                                                    <rect key="frame" x="9" y="18" width="43" height="19"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="19"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Hs-Ja-dnh">
-                                                    <rect key="frame" x="0.0" y="45" width="375" height="181"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4lT-m9-HZg">
-                                                    <rect key="frame" x="246" y="223" width="118" height="50"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="todayMeal" translatesAutoresizingMaskIntoConstraints="NO" id="QXo-gA-KCM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="81s-TO-GB8"/>
-                                                                <constraint firstAttribute="width" constant="50" id="WOl-PJ-gG4"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcR-v4-3FZ">
-                                                            <rect key="frame" x="50" y="0.0" width="68" height="50"/>
-                                                            <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="18"/>
-                                                            <state key="normal" title="오늘 식사"/>
-                                                            <connections>
-                                                                <segue destination="koJ-Z1-Fzj" kind="show" id="xrs-Km-v7z"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bookmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bye-4H-E6D">
-                                                    <rect key="frame" x="344" y="51" width="26" height="26"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="kbr-9J-Kx5" kind="show" id="w1F-8J-kb6"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="4xz-9T-2Cq"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="요리하기" id="nji-gR-RFp"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fLf-8x-dj5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2909.5999999999999" y="1124.8875562218891"/>
-        </scene>
         <!--Cooking Course Controller-->
         <scene sceneID="dM1-ov-C6R">
             <objects>
@@ -721,7 +719,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i5y-sx-mOK">
-                                <rect key="frame" x="243" y="263" width="118" height="50"/>
+                                <rect key="frame" x="243" y="263" width="121" height="50"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="todayMeal" translatesAutoresizingMaskIntoConstraints="NO" id="llA-ni-dxs">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -731,9 +729,11 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uI8-YX-SOd">
-                                        <rect key="frame" x="50" y="0.0" width="68" height="50"/>
+                                        <rect key="frame" x="50" y="0.0" width="71" height="50"/>
                                         <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="18"/>
-                                        <state key="normal" title="오늘 식사"/>
+                                        <state key="normal" title="오늘 식사">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <segue destination="koJ-Z1-Fzj" kind="show" id="7db-dA-5Iy"/>
                                         </connections>
@@ -752,29 +752,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jfR-6R-na9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3860" y="1129.385307346327"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="VzX-V1-p5K">
-            <objects>
-                <viewController id="kxh-KC-vGP" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Kpx-MX-cgJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JEm-SM-Tx7">
-                                <rect key="frame" x="208" y="263" width="115" height="103"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="RdH-EW-dHf"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ox2-bf-Bne" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5629.6000000000004" y="1278.7106446776613"/>
+            <point key="canvasLocation" x="3852" y="1235"/>
         </scene>
         <!--북마크-->
         <scene sceneID="Ju4-cf-YEY">
@@ -1147,7 +1125,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7db-dA-5Iy"/>
+        <segue reference="FKN-k3-G7N"/>
         <segue reference="CxJ-fn-yKM"/>
         <segue reference="Buy-PT-RwW"/>
     </inferredMetricsTieBreakers>

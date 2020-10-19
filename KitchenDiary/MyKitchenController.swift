@@ -14,6 +14,7 @@ class MyKitchenController: UITableViewController {
     @IBOutlet weak var cookingButton: UIButton!
     
     var ingredients = [Ingredients]()
+    var ingredientsArr = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,13 @@ class MyKitchenController: UITableViewController {
         if let savedIngredients = loadIngredients() {
             ingredients += savedIngredients
         }
+        
+        //CookingController로 보낼 재료 배열
+        for i in 0..<ingredients.count {
+            ingredientsArr.append(ingredients[i].name)
+            print(" ingredientsArr: \(ingredientsArr[i])")
+        }
+        
     }
 
     //섹션표시 - Table view 1개만 필요
@@ -51,7 +59,7 @@ class MyKitchenController: UITableViewController {
        cell.storageMethod.text = ingredient.storageMethod
        cell.expirationDate.text = ingredient.expirationDate
        cell.ingredientsMemo.text = ingredient.memo
-       
+
         cell.warning.isHidden = true
     
         //날짜 차이 구하기
@@ -123,7 +131,10 @@ class MyKitchenController: UITableViewController {
             os_log("Adding a new ingredient.", log: OSLog.default, type: .debug)
 
         case "Cooking":
-            os_log("Cooking.", log: OSLog.default, type: .debug)
+            guard let cookingRecipeController = segue.destination as? CookingRecipeController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            cookingRecipeController.ingredientsArr = ingredientsArr
             
         case "ShowDetail":
             guard let fillInIngredientsController = segue.destination as? FillInIngredientsController else {

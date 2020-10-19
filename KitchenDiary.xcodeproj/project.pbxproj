@@ -13,6 +13,7 @@
 		9B2715B12537FC72003CA18D /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2715B02537FC72003CA18D /* IngredientTableViewCell.swift */; };
 		9B5413E42519FB5A00071544 /* DiaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5413E32519FB5A00071544 /* DiaryController.swift */; };
 		9B5889B1253611DA008AFB2A /* Ingredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5889B0253611DA008AFB2A /* Ingredients.swift */; };
+		9B96C3F5253B5FC000F1CB1C /* CookingRecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96C3F4253B5FC000F1CB1C /* CookingRecipeController.swift */; };
 		9B98930F2512498B00589B5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B98930E2512498B00589B5B /* AppDelegate.swift */; };
 		9B9893112512498B00589B5B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9893102512498B00589B5B /* SceneDelegate.swift */; };
 		9B9893132512498B00589B5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9893122512498B00589B5B /* ViewController.swift */; };
@@ -44,6 +45,7 @@
 		9B2715B02537FC72003CA18D /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B5413E32519FB5A00071544 /* DiaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryController.swift; sourceTree = "<group>"; };
 		9B5889B0253611DA008AFB2A /* Ingredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredients.swift; sourceTree = "<group>"; };
+		9B96C3F4253B5FC000F1CB1C /* CookingRecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingRecipeController.swift; sourceTree = "<group>"; };
 		9B98930B2512498B00589B5B /* KitchenDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KitchenDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B98930E2512498B00589B5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B9893102512498B00589B5B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				9B98930E2512498B00589B5B /* AppDelegate.swift */,
+				9B96C3F4253B5FC000F1CB1C /* CookingRecipeController.swift */,
 				9B9893102512498B00589B5B /* SceneDelegate.swift */,
 				9B9893122512498B00589B5B /* ViewController.swift */,
 				9B9893142512498B00589B5B /* Main.storyboard */,
@@ -335,6 +338,7 @@
 			files = (
 				9B1F1FD02514A481002487F7 /* MyKitchenController.swift in Sources */,
 				9BA29EFF251C4AC70075703D /* DiaryDetailController.swift in Sources */,
+				9B96C3F5253B5FC000F1CB1C /* CookingRecipeController.swift in Sources */,
 				9B5413E42519FB5A00071544 /* DiaryController.swift in Sources */,
 				9B9893132512498B00589B5B /* ViewController.swift in Sources */,
 				9B98930F2512498B00589B5B /* AppDelegate.swift in Sources */,
