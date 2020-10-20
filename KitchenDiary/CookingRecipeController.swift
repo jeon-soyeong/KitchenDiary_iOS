@@ -19,6 +19,7 @@ class CookingRecipeController: UITableViewController {
     var countNum = 0
     var LastrecipeIdArr = [Int]()
     let myGroup = DispatchGroup()
+    var irdntArr = [String]()
     
     struct  IngredientsInfo: Codable {
         let Grid_20150827000000000227_1: IngredientsDetailInfo
@@ -41,31 +42,6 @@ class CookingRecipeController: UITableViewController {
         super.viewDidLoad()
       
         self.getRecipeIdFromIngredients()
-        
-        
-//        ingredientQueue.sync {
-//
-//            getRecipeIdFromIngredients()
-//        }
-//
-//        ingredientQueue.async(group: myGroup) {
-//            print("123")
-//            self.getRecipeIdFromIngredients()
-//        }
-//
-//        myGroup.notify(queue: ingredientQueue) {
-//            print("456")
-//            self.compareRecipe()
-//        }
-        
-//        ingredientQueue.sync {
-//
-//            compareRecipe()
-//        }
-        
-//        ingredientQueue.sync {
-//            print("789")
-//        }
 
         
     }
@@ -83,22 +59,19 @@ class CookingRecipeController: UITableViewController {
             let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             guard let url = URL(string: encoded) else {return }
                 print("getRecipe 0")
-                
-                
+                         
                // let getRecipe = DispatchWorkItem {
                 myGroup.enter()
                 URLSession.shared.dataTask(with: url) { [self] data, response, err in
                     print("getRecipe 1")
-                    
-                
                     let task = DispatchWorkItem {
-                        
                         print("getRecipe 2")
                         guard let data = data else {return}
                         do {
                             print("getRecipe 3")
                             let decoder = JSONDecoder()
                             let detailInfo = try? decoder.decode(IngredientsInfo.self, from: data)
+                            print("detailInfo: \(detailInfo)")
                             let recipeCount = detailInfo?.Grid_20150827000000000227_1.row.count ?? 0
                             
                             for j in 0 ..< recipeCount {
@@ -108,7 +81,6 @@ class CookingRecipeController: UITableViewController {
                                 print("recipeId: \(recipeId), irdntName: \(irdntName)")
                                 print("recipeIdArr: \(recipeIdArr)")
                             }
-                         
                             for a in 0 ..< self.recipeIdArr.count-1 {
                                 for b in a+1 ..< self.recipeIdArr.count {
                                     if self.recipeIdArr[a] == recipeIdArr[b] {
@@ -116,7 +88,6 @@ class CookingRecipeController: UITableViewController {
                                     }
                                 }
                             }
-                            
                            compareSet = (Set(compareArr))
                             
                            print("compareSet: \(compareSet)")
@@ -129,10 +100,8 @@ class CookingRecipeController: UITableViewController {
                     self.ingredientQueue.sync(execute: task)
                 }
                 .resume()
-                
-               // }
-            //}
        }
+        
         myGroup.wait(timeout: .distantFuture)
 
         let ingredientCount = self.ingredientsArr.count
@@ -141,37 +110,51 @@ class CookingRecipeController: UITableViewController {
             
             let compareArrs = (Array(compareSet))
             
-            let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?RECIPE_ID=\(compareArrs[r]))"
+            let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?RECIPE_ID=\(compareArrs[r])"
             let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             guard let url = URL(string: encoded) else {return}
             print("url: \(url)")
             
             URLSession.shared.dataTask(with: url) { data, response, err in
-                print("444")
                 let task = DispatchWorkItem {
                     guard let data = data else {return}
                     do {
-                        print("555")
                         let decoder = JSONDecoder()
-                        let detailInfo = try? decoder.decode(IngredientsInfo.self, from: data)
-                        guard let totalCnt = detailInfo?.Grid_20150827000000000227_1.totalCnt else { return }
+                        let countInfo = try? decoder.decode(IngredientsInfo.self, from: data)
                         
-                        if totalCnt <= ingredientCount {
-                            print("666")
-                            let recipeId = Array(self.compareSet)
-                            self.LastrecipeIdArr.append(recipeId[r])
-                            print("LastrecipeIdArr: \(self.LastrecipeIdArr)")
+                        let recipeCount = countInfo?.Grid_20150827000000000227_1.row.count ?? 0
+                        print("compareArrs[r]: \(compareArrs[r])")
+                        print("recipeCount: \(recipeCount)")
+                        self.irdntArr = []
+                        
+                        for n in 0 ..< recipeCount {
+                            let irdntName = countInfo?.Grid_20150827000000000227_1.row[n].IRDNT_NM
+                            self.irdntArr.append(irdntName ?? "")
+            
+                            var cnt = 0
+                            if n == recipeCount-1 {
+                                for m in 0 ..< self.irdntArr.count {
+                                    if self.ingredientsArr.contains(self.irdntArr[m]) == true {
+                                        print("self.ingredientsArr: \(self.ingredientsArr)")
+                                        print("self.irdntArr: \(self.irdntArr)")
+                                        cnt += 1
+                                        print("cnt: \(cnt)")
+                                    }
+                                }
+                                if cnt == recipeCount {
+                                    self.LastrecipeIdArr.append(compareArrs[r] )
+                                    print("LastrecipeIdArr: \(self.LastrecipeIdArr)")
+                                }
+                            }
                         }
                     } catch {
                     }
                 }
                 self.ingredientQueue.sync(execute: task)
-            }
+            }.resume()
         }
-
     }
     
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
