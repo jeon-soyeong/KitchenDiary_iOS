@@ -12,8 +12,11 @@ class CookingRecipeController: UITableViewController {
 
     //받음
     var ingredientsArr = [String]()
+    var recipeIdArr = Set<Int>()
     var compareArr = Set<Int>()
-        
+    let ingredientQueue = DispatchQueue(label: "ingredient")
+    var countNum = 0
+    
     struct  IngredientsInfo: Codable {
         let Grid_20150827000000000227_1: IngredientsDetailInfo
     }
@@ -44,34 +47,44 @@ class CookingRecipeController: UITableViewController {
             print("url: \(url)")
             print("333")
             
-            URLSession.shared.dataTask(with: url) { (data, respnose, err) in
-                print("444")
-                guard let data = data else {return}
-                print("555")
-                do {
-                    print("666")
-                    let decoder = JSONDecoder()
-                    let detailInfo = try? decoder.decode(IngredientsInfo.self, from: data)
-                    let recipeCount = detailInfo?.Grid_20150827000000000227_1.row.count ?? 0
-                    print("recipeCount: \(recipeCount)")
-                    print("recipeRow: \(detailInfo?.Grid_20150827000000000227_1.row)")
-
-                    var recipeIdArr = Set<Int>()
-                    
-                    for j in 0 ..< recipeCount {
-                        let recipeId = detailInfo?.Grid_20150827000000000227_1.row[j].RECIPE_ID
-                        let irdntName = detailInfo?.Grid_20150827000000000227_1.row[j].IRDNT_NM
-                        recipeIdArr.insert(recipeId ?? -1)
+            URLSession.shared.dataTask(with: url) { data, respnose, err in
+                let task = DispatchWorkItem {
+                    print("444")
+                    guard let data = data else {return}
+                    print("555")
+                    do {
+                        print("666")
+       
+                        let decoder = JSONDecoder()
+                        let detailInfo = try? decoder.decode(IngredientsInfo.self, from: data)
+                        let recipeCount = detailInfo?.Grid_20150827000000000227_1.row.count ?? 0
+                        print("recipeCount: \(recipeCount)")
+                        print("recipeRow: \(detailInfo?.Grid_20150827000000000227_1.row)")
+ 
+                        self.recipeIdArr = []
+                        for j in 0 ..< recipeCount {
+                            let recipeId = detailInfo?.Grid_20150827000000000227_1.row[j].RECIPE_ID
+                            let irdntName = detailInfo?.Grid_20150827000000000227_1.row[j].IRDNT_NM
+                            self.recipeIdArr.insert(recipeId ?? -1)
+                            if self.countNum == 0 {
+                                self.compareArr = self.recipeIdArr
+                            }
+                            print("recipeIdArr: \(self.recipeIdArr)")
+                        }
+                        self.countNum+=1
+                        print("countNum: \(self.countNum)")
+                        self.compareArr = self.compareArr.intersection(self.recipeIdArr)
+                        print("compareArr: \(self.compareArr)")
+                    } catch let jsonArr {
+                        print("Error \(jsonArr)")
                     }
-                    self.compareArr = self.compareArr.intersection(recipeIdArr)
-                } catch let jsonArr {
-                    print("Error \(jsonArr)")
                 }
+                self.ingredientQueue.sync(execute: task)
             }.resume()
         }
         
+     
         
-  
         
     }
 
