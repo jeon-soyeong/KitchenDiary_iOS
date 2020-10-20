@@ -12,8 +12,9 @@ class CookingRecipeController: UITableViewController {
 
     //받음
     var ingredientsArr = [String]()
-    var recipeIdArr = Set<Int>()
-    var compareArr = Set<Int>()
+    var recipeIdArr = [Int]()
+    var compareArr = [Int]()
+    var compareSet = Set<Int>()
     let ingredientQueue = DispatchQueue(label: "ingredient")
     var countNum = 0
     
@@ -23,6 +24,7 @@ class CookingRecipeController: UITableViewController {
     
     struct IngredientsDetailInfo: Codable {
         let endRow: Int
+        let totalCnt: Int
         let row: [RecipeInfo]
     }
     
@@ -33,63 +35,90 @@ class CookingRecipeController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        for i in 0..<ingredientsArr.count {
-            print("111")
-            let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?IRDNT_NM=\(ingredientsArr[i])"
-            print("ingredientsArr[i]: \(ingredientsArr[i])")
-            print("jsonString: \(jsonString)")
-            print("222")
-
-            let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            
-            guard let url = URL(string: encoded) else { return print("안됨")}
-            print("url: \(url)")
-            print("333")
-            
-            URLSession.shared.dataTask(with: url) { data, respnose, err in
-                let task = DispatchWorkItem {
-                    print("444")
-                    guard let data = data else {return}
-                    print("555")
-                    do {
-                        print("666")
-       
-                        let decoder = JSONDecoder()
-                        let detailInfo = try? decoder.decode(IngredientsInfo.self, from: data)
-                        let recipeCount = detailInfo?.Grid_20150827000000000227_1.row.count ?? 0
-                        print("recipeCount: \(recipeCount)")
-                        print("recipeRow: \(detailInfo?.Grid_20150827000000000227_1.row)")
- 
-                        self.recipeIdArr = []
-                        for j in 0 ..< recipeCount {
-                            let recipeId = detailInfo?.Grid_20150827000000000227_1.row[j].RECIPE_ID
-                            let irdntName = detailInfo?.Grid_20150827000000000227_1.row[j].IRDNT_NM
-                            self.recipeIdArr.insert(recipeId ?? -1)
-                            if self.countNum == 0 {
-                                self.compareArr = self.recipeIdArr
-                            }
-                            print("recipeIdArr: \(self.recipeIdArr)")
-                        }
-                        self.countNum+=1
-                        print("countNum: \(self.countNum)")
-                        self.compareArr = self.compareArr.intersection(self.recipeIdArr)
-                        print("compareArr: \(self.compareArr)")
-                    } catch let jsonArr {
-                        print("Error \(jsonArr)")
-                    }
-                }
-                self.ingredientQueue.sync(execute: task)
-            }.resume()
-        }
         
-     
+        getRecipeIdFromIngredients()
         
+    
+
         
     }
 
     // MARK: - Table view data source
 
+    func getRecipeIdFromIngredients() {
+        
+        ingredientQueue.sync { [self] in
+                for i in 0..<ingredientsArr.count {
+                let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?IRDNT_NM=\(ingredientsArr[i])"
+                let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                guard let url = URL(string: encoded) else {return }
+
+                URLSession.shared.dataTask(with: url) { [self] data, response, err in
+                    //let task = DispatchWorkItem { [self] in
+                        guard let data = data else {return}
+                        do {
+                            let decoder = JSONDecoder()
+                            let detailInfo = try? decoder.decode(IngredientsInfo.self, from: data)
+                            let recipeCount = detailInfo?.Grid_20150827000000000227_1.row.count ?? 0
+                            
+                            for j in 0 ..< recipeCount {
+                                let recipeId = detailInfo?.Grid_20150827000000000227_1.row[j].RECIPE_ID
+                                let irdntName = detailInfo?.Grid_20150827000000000227_1.row[j].IRDNT_NM
+                                self.recipeIdArr.append(recipeId ?? -1)
+                            }
+                         
+                            for a in 0 ..< self.recipeIdArr.count-1 {
+                                for b in a+1 ..< self.recipeIdArr.count {
+                                    if self.recipeIdArr[a] == recipeIdArr[b] {
+                                        self.compareArr.append(recipeIdArr[a])
+                                    }
+                                }
+                            }
+                            
+                            let compareSet = Array(Set(compareArr))
+                            print("compareSet: \(compareSet)")
+                           print(" compareSet.count : \(compareSet.count)")
+                        } catch let jsonArr {
+                            print("Error \(jsonArr)")
+                        }
+                    //}
+                    //self.ingredientQueue.sync(execute: task)
+                }.resume()
+            }
+        }
+        
+        ingredientQueue.sync { [self] in
+            
+            let ingredientCount = self.ingredientsArr.count
+            let recipeIds = self.compareSet
+            print("recipeIds: \(recipeIds)")
+            var LastrecipeIdArr = [Int]()
+            
+            for r in 0 ..< recipeIds.count {
+                let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?RECIPE_ID=\(recipeIds.firstIndex(of: r))"
+                let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                guard let url = URL(string: encoded) else {return}
+                
+                URLSession.shared.dataTask(with: url) { data, response, err in
+                    guard let data = data else {return}
+                    do {
+                        let decoder = JSONDecoder()
+                        let detailInfo = try? decoder.decode(IngredientsInfo.self, from: data)
+                        guard let totalCnt = detailInfo?.Grid_20150827000000000227_1.totalCnt else { return }
+                        
+                        if totalCnt <= ingredientCount {
+                            let recipeId = Array(recipeIds)
+                            LastrecipeIdArr.append(recipeId[r])
+                            print("LastrecipeIdArr: \(LastrecipeIdArr)")
+                        }
+                    } catch {
+                    }
+                }
+            }
+        }
+    }
+    
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
