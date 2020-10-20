@@ -17,6 +17,8 @@ class CookingRecipeController: UITableViewController {
     var compareSet = Set<Int>()
     let ingredientQueue = DispatchQueue(label: "ingredient")
     var countNum = 0
+    var LastrecipeIdArr = [Int]()
+    let myGroup = DispatchGroup()
     
     struct  IngredientsInfo: Codable {
         let Grid_20150827000000000227_1: IngredientsDetailInfo
@@ -28,17 +30,42 @@ class CookingRecipeController: UITableViewController {
         let row: [RecipeInfo]
     }
     
-    struct RecipeInfo: Codable  {
+    struct RecipeInfo: Codable {
         let RECIPE_ID: Int
         let IRDNT_NM: String
     }
     
+    let semaphore = DispatchSemaphore(value: 0)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+        self.getRecipeIdFromIngredients()
         
-        getRecipeIdFromIngredients()
         
-    
+//        ingredientQueue.sync {
+//
+//            getRecipeIdFromIngredients()
+//        }
+//
+//        ingredientQueue.async(group: myGroup) {
+//            print("123")
+//            self.getRecipeIdFromIngredients()
+//        }
+//
+//        myGroup.notify(queue: ingredientQueue) {
+//            print("456")
+//            self.compareRecipe()
+//        }
+        
+//        ingredientQueue.sync {
+//
+//            compareRecipe()
+//        }
+        
+//        ingredientQueue.sync {
+//            print("789")
+//        }
 
         
     }
@@ -47,16 +74,29 @@ class CookingRecipeController: UITableViewController {
 
     func getRecipeIdFromIngredients() {
         
-        ingredientQueue.sync { [self] in
-                for i in 0..<ingredientsArr.count {
-                let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?IRDNT_NM=\(ingredientsArr[i])"
-                let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                guard let url = URL(string: encoded) else {return }
-
+//        let getRecipe = DispatchWorkItem {
+//       ingredientQueue.async(group: myGroup) {
+            for i in 0..<self.ingredientsArr.count {
+                print("getRecipe 00")
+                
+                let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?IRDNT_NM=\(self.ingredientsArr[i])"
+            let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            guard let url = URL(string: encoded) else {return }
+                print("getRecipe 0")
+                
+                
+               // let getRecipe = DispatchWorkItem {
+                myGroup.enter()
                 URLSession.shared.dataTask(with: url) { [self] data, response, err in
-                    //let task = DispatchWorkItem { [self] in
+                    print("getRecipe 1")
+                    
+                
+                    let task = DispatchWorkItem {
+                        
+                        print("getRecipe 2")
                         guard let data = data else {return}
                         do {
+                            print("getRecipe 3")
                             let decoder = JSONDecoder()
                             let detailInfo = try? decoder.decode(IngredientsInfo.self, from: data)
                             let recipeCount = detailInfo?.Grid_20150827000000000227_1.row.count ?? 0
@@ -65,6 +105,8 @@ class CookingRecipeController: UITableViewController {
                                 let recipeId = detailInfo?.Grid_20150827000000000227_1.row[j].RECIPE_ID
                                 let irdntName = detailInfo?.Grid_20150827000000000227_1.row[j].IRDNT_NM
                                 self.recipeIdArr.append(recipeId ?? -1)
+                                print("recipeId: \(recipeId), irdntName: \(irdntName)")
+                                print("recipeIdArr: \(recipeIdArr)")
                             }
                          
                             for a in 0 ..< self.recipeIdArr.count-1 {
@@ -75,50 +117,61 @@ class CookingRecipeController: UITableViewController {
                                 }
                             }
                             
-                            let compareSet = Array(Set(compareArr))
-                            print("compareSet: \(compareSet)")
+                           compareSet = (Set(compareArr))
+                            
+                           print("compareSet: \(compareSet)")
                            print(" compareSet.count : \(compareSet.count)")
                         } catch let jsonArr {
                             print("Error \(jsonArr)")
                         }
-                    //}
-                    //self.ingredientQueue.sync(execute: task)
-                }.resume()
-            }
-        }
-        
-        ingredientQueue.sync { [self] in
-            
-            let ingredientCount = self.ingredientsArr.count
-            let recipeIds = self.compareSet
-            print("recipeIds: \(recipeIds)")
-            var LastrecipeIdArr = [Int]()
-            
-            for r in 0 ..< recipeIds.count {
-                let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?RECIPE_ID=\(recipeIds.firstIndex(of: r))"
-                let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                guard let url = URL(string: encoded) else {return}
+                        myGroup.leave()
+                    }
+                    self.ingredientQueue.sync(execute: task)
+                }
+                .resume()
                 
-                URLSession.shared.dataTask(with: url) { data, response, err in
+               // }
+            //}
+       }
+        myGroup.wait(timeout: .distantFuture)
+
+        let ingredientCount = self.ingredientsArr.count
+        
+        for r in 0 ..< self.compareSet.count {
+            
+            let compareArrs = (Array(compareSet))
+            
+            let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?RECIPE_ID=\(compareArrs[r]))"
+            let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            guard let url = URL(string: encoded) else {return}
+            print("url: \(url)")
+            
+            URLSession.shared.dataTask(with: url) { data, response, err in
+                print("444")
+                let task = DispatchWorkItem {
                     guard let data = data else {return}
                     do {
+                        print("555")
                         let decoder = JSONDecoder()
                         let detailInfo = try? decoder.decode(IngredientsInfo.self, from: data)
                         guard let totalCnt = detailInfo?.Grid_20150827000000000227_1.totalCnt else { return }
                         
                         if totalCnt <= ingredientCount {
-                            let recipeId = Array(recipeIds)
-                            LastrecipeIdArr.append(recipeId[r])
-                            print("LastrecipeIdArr: \(LastrecipeIdArr)")
+                            print("666")
+                            let recipeId = Array(self.compareSet)
+                            self.LastrecipeIdArr.append(recipeId[r])
+                            print("LastrecipeIdArr: \(self.LastrecipeIdArr)")
                         }
                     } catch {
                     }
                 }
+                self.ingredientQueue.sync(execute: task)
             }
         }
+
     }
     
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
