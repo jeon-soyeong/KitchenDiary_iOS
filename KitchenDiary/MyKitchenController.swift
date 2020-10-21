@@ -15,6 +15,30 @@ class MyKitchenController: UITableViewController {
     
     var ingredients = [Ingredients]()
     var ingredientsArr = [String]()
+
+    var recipeIdArr = [Int]()
+    var overlapValueArr = [Int]()
+    var overlapValueSet = Set<Int>()
+    let ingredientQueue = DispatchQueue(label: "ingredient")
+    var lastrecipeIdArr = [Int]()
+    let myGroup = DispatchGroup()
+    var essentialIrdntArr = [String]()
+
+    struct IngredientsInfo: Codable {
+        let Grid_20150827000000000227_1: IngredientsDetailInfo
+    }
+
+    struct IngredientsDetailInfo: Codable {
+        let endRow: Int
+        let totalCnt: Int
+        let row: [RecipeInfo]
+    }
+
+    struct RecipeInfo: Codable {
+        let RECIPE_ID: Int
+        let IRDNT_NM: String
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +56,8 @@ class MyKitchenController: UITableViewController {
             ingredientsArr.append(ingredients[i].name)
             print(" ingredientsArr: \(ingredientsArr[i])")
         }
-        
+
+        self.getRecipeIdFromIngredients()
     }
 
     //섹션표시 - Table view 1개만 필요
@@ -134,7 +159,7 @@ class MyKitchenController: UITableViewController {
             guard let cookingRecipeController = segue.destination as? CookingRecipeController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            cookingRecipeController.ingredientsArr = ingredientsArr
+            cookingRecipeController.lastrecipeIdArr = lastrecipeIdArr
             
         case "ShowDetail":
             guard let fillInIngredientsController = segue.destination as? FillInIngredientsController else {
@@ -196,4 +221,86 @@ class MyKitchenController: UITableViewController {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Ingredients.ArchiveURL.path) as? [Ingredients]
     }
 
+    func getRecipeIdFromIngredients() {
+        
+            for i in 0..<self.ingredientsArr.count {
+                let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?IRDNT_NM=\(self.ingredientsArr[i])"
+                let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                guard let url = URL(string: encoded) else {return }
+                        
+                    myGroup.enter()
+                    URLSession.shared.dataTask(with: url) { [self] data, response, err in
+                        let task = DispatchWorkItem {
+                            guard let data = data else {return}
+                            do {
+                                let decoder = JSONDecoder()
+                                let recipeInfo = try? decoder.decode(IngredientsInfo.self, from: data)
+                                guard let recipeCount = recipeInfo?.Grid_20150827000000000227_1.row.count else {return}
+                                
+                                for j in 0 ..< recipeCount {
+                                    let recipeId = recipeInfo?.Grid_20150827000000000227_1.row[j].RECIPE_ID
+                                    let irdntName = recipeInfo?.Grid_20150827000000000227_1.row[j].IRDNT_NM
+                                    self.recipeIdArr.append(recipeId ?? -1)
+                                }
+                                for a in 0 ..< self.recipeIdArr.count-1 {
+                                    for b in a+1 ..< self.recipeIdArr.count {
+                                        if self.recipeIdArr[a] == recipeIdArr[b] {
+                                            self.overlapValueArr.append(recipeIdArr[a])
+                                        }
+                                    }
+                                }
+                                overlapValueSet = (Set(overlapValueArr))
+                            } catch let jsonArr {
+                                print("Error \(jsonArr)")
+                            }
+                            myGroup.leave()
+                        }
+                        self.ingredientQueue.sync(execute: task)
+                    }
+                    .resume()
+       }
+        
+        myGroup.wait(timeout: .distantFuture)
+
+        for r in 0 ..< self.overlapValueSet.count {
+            
+            let overlapValueSetToArr = (Array(overlapValueSet))
+            let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?RECIPE_ID=\(overlapValueSetToArr[r])"
+            let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            guard let url = URL(string: encoded) else {return}
+            
+            URLSession.shared.dataTask(with: url) { data, response, err in
+                let task = DispatchWorkItem {
+                    guard let data = data else {return}
+                    do {
+                        let decoder = JSONDecoder()
+                        let recipeInfo = try? decoder.decode(IngredientsInfo.self, from: data)
+                        guard let recipeCount = recipeInfo?.Grid_20150827000000000227_1.row.count else {return}
+                        self.essentialIrdntArr = []
+                        
+                        for n in 0 ..< recipeCount {
+                            let irdntName = recipeInfo?.Grid_20150827000000000227_1.row[n].IRDNT_NM
+                            let recipeIdNum = recipeInfo?.Grid_20150827000000000227_1.row[n].RECIPE_ID
+                            self.essentialIrdntArr.append(irdntName ?? "")
+            
+                            var cnt = 0
+                            if n == recipeCount-1 {
+                                for m in 0 ..< self.essentialIrdntArr.count {
+                                    if self.ingredientsArr.contains(self.essentialIrdntArr[m]) == true {
+                                        cnt += 1
+                                    }
+                                }
+                                if cnt == recipeCount {
+                                    self.lastrecipeIdArr.append(recipeIdNum ?? 0)
+                                }
+                            }
+                        }
+                    } catch {
+                    }
+                }
+                self.ingredientQueue.sync(execute: task)
+            }.resume()
+        }
+    }
+    
 }

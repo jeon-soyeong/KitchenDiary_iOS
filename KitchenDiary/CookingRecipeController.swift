@@ -11,140 +11,74 @@ import UIKit
 class CookingRecipeController: UITableViewController {
 
     //받음
-    var ingredientsArr = [String]()
-    var recipeIdArr = [Int]()
-    var overlapValueArr = [Int]()
-    var overlapValueSet = Set<Int>()
+    var lastrecipeIdArr = [Int]()
     let ingredientQueue = DispatchQueue(label: "ingredient")
-    var LastrecipeIdArr = [Int]()
-    let myGroup = DispatchGroup()
-    var essentialIrdntArr = [String]()
+    var cooking: Cooking?
     
-    struct IngredientsInfo: Codable {
-        let Grid_20150827000000000227_1: IngredientsDetailInfo
+    struct CookingInfo: Codable {
+        let Grid_20150827000000000226_1: CookingDetailInfo
     }
-    
-    struct IngredientsDetailInfo: Codable {
+
+    struct CookingDetailInfo: Codable {
         let endRow: Int
         let totalCnt: Int
         let row: [RecipeInfo]
     }
-    
+
     struct RecipeInfo: Codable {
         let RECIPE_ID: Int
-        let IRDNT_NM: String
+        let RECIPE_NM_KO: String
+        let IMG_URL: String
     }
-    
-    let semaphore = DispatchSemaphore(value: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("lastrecipeIdArr: \(lastrecipeIdArr)")
         
-        self.getRecipeIdFromIngredients()
+        getCookingRecipe()
     }
 
     // MARK: - Table view data source
 
-    func getRecipeIdFromIngredients() {
+    func getCookingRecipe() {
         
-            for i in 0..<self.ingredientsArr.count {
-                print("getRecipe 00")
-                
-            let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?IRDNT_NM=\(self.ingredientsArr[i])"
-            let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            guard let url = URL(string: encoded) else {return }
-                print("getRecipe 0")
-                         
-                myGroup.enter()
-                URLSession.shared.dataTask(with: url) { [self] data, response, err in
-                    print("getRecipe 1")
-                    let task = DispatchWorkItem {
-                        print("getRecipe 2")
-                        guard let data = data else {return}
-                        do {
-                            print("getRecipe 3")
-                            let decoder = JSONDecoder()
-                            let recipeInfo = try? decoder.decode(IngredientsInfo.self, from: data)
-                            print("recipeInfo: \(recipeInfo)")
-                            guard let recipeCount = recipeInfo?.Grid_20150827000000000227_1.row.count else {return}
-                            
-                            for j in 0 ..< recipeCount {
-                                let recipeId = recipeInfo?.Grid_20150827000000000227_1.row[j].RECIPE_ID
-                                let irdntName = recipeInfo?.Grid_20150827000000000227_1.row[j].IRDNT_NM
-                                self.recipeIdArr.append(recipeId ?? -1)
-                                
-                                print("recipeId: \(recipeId), irdntName: \(irdntName)")
-                                print("recipeIdArr: \(recipeIdArr)")
-                            }
-                            for a in 0 ..< self.recipeIdArr.count-1 {
-                                for b in a+1 ..< self.recipeIdArr.count {
-                                    if self.recipeIdArr[a] == recipeIdArr[b] {
-                                        self.overlapValueArr.append(recipeIdArr[a])
-                                    }
-                                }
-                            }
-                            overlapValueSet = (Set(overlapValueArr))
-                            
-                           print("compareSet: \(overlapValueSet)")
-                           print(" compareSet.count : \(overlapValueSet.count)")
-                        } catch let jsonArr {
-                            print("Error \(jsonArr)")
-                        }
-                        myGroup.leave()
-                    }
-                    self.ingredientQueue.sync(execute: task)
-                }
-                .resume()
-       }
-        
-        myGroup.wait(timeout: .distantFuture)
-
-        for r in 0 ..< self.overlapValueSet.count {
-            
-            let overlapValueSetToArr = (Array(overlapValueSet))
-            let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?RECIPE_ID=\(overlapValueSetToArr[r])"
-            let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            guard let url = URL(string: encoded) else {return}
-            print("url: \(url)")
-            
-            URLSession.shared.dataTask(with: url) { data, response, err in
+        let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000226_1//1/1000"
+        let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        guard let url = URL(string: encoded) else {return }
+           
+            URLSession.shared.dataTask(with: url) { [self] data, response, err in
+                print("getRecipe 1")
                 let task = DispatchWorkItem {
+                    print("getRecipe 2")
                     guard let data = data else {return}
                     do {
+                        print("getRecipe 3")
                         let decoder = JSONDecoder()
-                        let recipeInfo = try? decoder.decode(IngredientsInfo.self, from: data)
-                        guard let recipeCount = recipeInfo?.Grid_20150827000000000227_1.row.count else {return}
-                        print("compareArrs[r]: \(overlapValueSetToArr[r])")
-                        print("recipeCount: \(recipeCount)")
-                        self.essentialIrdntArr = []
+                        let cookingInfo = try? decoder.decode(CookingInfo.self, from: data)
+                        print("cookingInfo: \(cookingInfo)")
+                        guard let recipeCount = cookingInfo?.Grid_20150827000000000226_1.row.count else {return}
                         
-                        for n in 0 ..< recipeCount {
-                            let irdntName = recipeInfo?.Grid_20150827000000000227_1.row[n].IRDNT_NM
-                            let recipeIdNum = recipeInfo?.Grid_20150827000000000227_1.row[n].RECIPE_ID
-                            self.essentialIrdntArr.append(irdntName ?? "")
-            
-                            var cnt = 0
-                            if n == recipeCount-1 {
-                                for m in 0 ..< self.essentialIrdntArr.count {
-                                    if self.ingredientsArr.contains(self.essentialIrdntArr[m]) == true {
-                                        print("self.ingredientsArr: \(self.ingredientsArr)")
-                                        print("self.irdntArr: \(self.essentialIrdntArr)")
-                                        cnt += 1
-                                        print("cnt: \(cnt)")
-                                    }
-                                }
-                                if cnt == recipeCount {
-                                    self.LastrecipeIdArr.append(recipeIdNum ?? 0)
-                                    print("LastrecipeIdArr: \(self.LastrecipeIdArr)")
+                        
+                        for i in 0 ..< lastrecipeIdArr.count {
+                            for j in 0 ..< recipeCount {
+                                guard let recipeId = cookingInfo?.Grid_20150827000000000226_1.row[j].RECIPE_ID else {return}
+                                guard let recipeName = cookingInfo?.Grid_20150827000000000226_1.row[j].RECIPE_NM_KO else {return}
+                                guard let imageUrl = cookingInfo?.Grid_20150827000000000226_1.row[j].IMG_URL else {return}
+                                
+                                
+                                if lastrecipeIdArr[i] == recipeId {
+                                     cooking = Cooking(recipeId: recipeId, recipeName: recipeName, imageUrl: imageUrl)
+                                    print("cooking: \(cooking?.recipeId) \(cooking?.recipeName) \(cooking?.imageUrl)")
                                 }
                             }
                         }
-                    } catch {
+                    } catch let jsonArr {
+                        print("Error \(jsonArr)")
                     }
                 }
                 self.ingredientQueue.sync(execute: task)
-            }.resume()
-        }
+            }
+            .resume()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -157,15 +91,27 @@ class CookingRecipeController: UITableViewController {
         return 0
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+//        let cellIdentifier = "IngredientTableViewCell"
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? IngredientTableViewCell else {
+//                fatalError ("The dequeued cell is not an instance of IngredientTableViewCell.")
+//        }
+//
+//       let ingredient = ingredients[indexPath.row ]
+//
+//       cell.ingredientsName.text = ingredient.name
+//       cell.storageMethod.text = ingredient.storageMethod
+//       cell.expirationDate.text = ingredient.expirationDate
+//       cell.ingredientsMemo.text = ingredient.memo
+
+  
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
