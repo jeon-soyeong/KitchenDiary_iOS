@@ -13,15 +13,14 @@ class CookingRecipeController: UITableViewController {
     //받음
     var ingredientsArr = [String]()
     var recipeIdArr = [Int]()
-    var compareArr = [Int]()
-    var compareSet = Set<Int>()
+    var overlapValueArr = [Int]()
+    var overlapValueSet = Set<Int>()
     let ingredientQueue = DispatchQueue(label: "ingredient")
-    var countNum = 0
     var LastrecipeIdArr = [Int]()
     let myGroup = DispatchGroup()
-    var irdntArr = [String]()
+    var essentialIrdntArr = [String]()
     
-    struct  IngredientsInfo: Codable {
+    struct IngredientsInfo: Codable {
         let Grid_20150827000000000227_1: IngredientsDetailInfo
     }
     
@@ -40,27 +39,22 @@ class CookingRecipeController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-        self.getRecipeIdFromIngredients()
-
         
+        self.getRecipeIdFromIngredients()
     }
 
     // MARK: - Table view data source
 
     func getRecipeIdFromIngredients() {
         
-//        let getRecipe = DispatchWorkItem {
-//       ingredientQueue.async(group: myGroup) {
             for i in 0..<self.ingredientsArr.count {
                 print("getRecipe 00")
                 
-                let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?IRDNT_NM=\(self.ingredientsArr[i])"
+            let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?IRDNT_NM=\(self.ingredientsArr[i])"
             let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             guard let url = URL(string: encoded) else {return }
                 print("getRecipe 0")
                          
-               // let getRecipe = DispatchWorkItem {
                 myGroup.enter()
                 URLSession.shared.dataTask(with: url) { [self] data, response, err in
                     print("getRecipe 1")
@@ -70,28 +64,29 @@ class CookingRecipeController: UITableViewController {
                         do {
                             print("getRecipe 3")
                             let decoder = JSONDecoder()
-                            let detailInfo = try? decoder.decode(IngredientsInfo.self, from: data)
-                            print("detailInfo: \(detailInfo)")
-                            let recipeCount = detailInfo?.Grid_20150827000000000227_1.row.count ?? 0
+                            let recipeInfo = try? decoder.decode(IngredientsInfo.self, from: data)
+                            print("recipeInfo: \(recipeInfo)")
+                            guard let recipeCount = recipeInfo?.Grid_20150827000000000227_1.row.count else {return}
                             
                             for j in 0 ..< recipeCount {
-                                let recipeId = detailInfo?.Grid_20150827000000000227_1.row[j].RECIPE_ID
-                                let irdntName = detailInfo?.Grid_20150827000000000227_1.row[j].IRDNT_NM
+                                let recipeId = recipeInfo?.Grid_20150827000000000227_1.row[j].RECIPE_ID
+                                let irdntName = recipeInfo?.Grid_20150827000000000227_1.row[j].IRDNT_NM
                                 self.recipeIdArr.append(recipeId ?? -1)
+                                
                                 print("recipeId: \(recipeId), irdntName: \(irdntName)")
                                 print("recipeIdArr: \(recipeIdArr)")
                             }
                             for a in 0 ..< self.recipeIdArr.count-1 {
                                 for b in a+1 ..< self.recipeIdArr.count {
                                     if self.recipeIdArr[a] == recipeIdArr[b] {
-                                        self.compareArr.append(recipeIdArr[a])
+                                        self.overlapValueArr.append(recipeIdArr[a])
                                     }
                                 }
                             }
-                           compareSet = (Set(compareArr))
+                            overlapValueSet = (Set(overlapValueArr))
                             
-                           print("compareSet: \(compareSet)")
-                           print(" compareSet.count : \(compareSet.count)")
+                           print("compareSet: \(overlapValueSet)")
+                           print(" compareSet.count : \(overlapValueSet.count)")
                         } catch let jsonArr {
                             print("Error \(jsonArr)")
                         }
@@ -104,13 +99,10 @@ class CookingRecipeController: UITableViewController {
         
         myGroup.wait(timeout: .distantFuture)
 
-        let ingredientCount = self.ingredientsArr.count
-        
-        for r in 0 ..< self.compareSet.count {
+        for r in 0 ..< self.overlapValueSet.count {
             
-            let compareArrs = (Array(compareSet))
-            
-            let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?RECIPE_ID=\(compareArrs[r])"
+            let overlapValueSetToArr = (Array(overlapValueSet))
+            let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?RECIPE_ID=\(overlapValueSetToArr[r])"
             let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             guard let url = URL(string: encoded) else {return}
             print("url: \(url)")
@@ -120,29 +112,29 @@ class CookingRecipeController: UITableViewController {
                     guard let data = data else {return}
                     do {
                         let decoder = JSONDecoder()
-                        let countInfo = try? decoder.decode(IngredientsInfo.self, from: data)
-                        
-                        let recipeCount = countInfo?.Grid_20150827000000000227_1.row.count ?? 0
-                        print("compareArrs[r]: \(compareArrs[r])")
+                        let recipeInfo = try? decoder.decode(IngredientsInfo.self, from: data)
+                        guard let recipeCount = recipeInfo?.Grid_20150827000000000227_1.row.count else {return}
+                        print("compareArrs[r]: \(overlapValueSetToArr[r])")
                         print("recipeCount: \(recipeCount)")
-                        self.irdntArr = []
+                        self.essentialIrdntArr = []
                         
                         for n in 0 ..< recipeCount {
-                            let irdntName = countInfo?.Grid_20150827000000000227_1.row[n].IRDNT_NM
-                            self.irdntArr.append(irdntName ?? "")
+                            let irdntName = recipeInfo?.Grid_20150827000000000227_1.row[n].IRDNT_NM
+                            let recipeIdNum = recipeInfo?.Grid_20150827000000000227_1.row[n].RECIPE_ID
+                            self.essentialIrdntArr.append(irdntName ?? "")
             
                             var cnt = 0
                             if n == recipeCount-1 {
-                                for m in 0 ..< self.irdntArr.count {
-                                    if self.ingredientsArr.contains(self.irdntArr[m]) == true {
+                                for m in 0 ..< self.essentialIrdntArr.count {
+                                    if self.ingredientsArr.contains(self.essentialIrdntArr[m]) == true {
                                         print("self.ingredientsArr: \(self.ingredientsArr)")
-                                        print("self.irdntArr: \(self.irdntArr)")
+                                        print("self.irdntArr: \(self.essentialIrdntArr)")
                                         cnt += 1
                                         print("cnt: \(cnt)")
                                     }
                                 }
                                 if cnt == recipeCount {
-                                    self.LastrecipeIdArr.append(compareArrs[r] )
+                                    self.LastrecipeIdArr.append(recipeIdNum ?? 0)
                                     print("LastrecipeIdArr: \(self.LastrecipeIdArr)")
                                 }
                             }
