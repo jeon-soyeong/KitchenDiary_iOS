@@ -23,6 +23,9 @@ class MyKitchenController: UITableViewController {
     var lastrecipeIdArr = [Int]()
     let myGroup = DispatchGroup()
     var essentialIrdntArr = [String]()
+    
+    var cooking: Cooking?
+
 
     struct IngredientsInfo: Codable {
         let Grid_20150827000000000227_1: IngredientsDetailInfo
@@ -39,6 +42,21 @@ class MyKitchenController: UITableViewController {
         let IRDNT_NM: String
     }
 
+    struct CookingInfo: Codable {
+        let Grid_20150827000000000226_1: CookingDetailInfo
+    }
+
+    struct CookingDetailInfo: Codable {
+        let endRow: Int
+        let totalCnt: Int
+        let row: [CookingRecipeInfo]
+    }
+
+    struct CookingRecipeInfo: Codable {
+        let RECIPE_ID: Int
+        let RECIPE_NM_KO: String
+        let IMG_URL: String
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,7 +177,7 @@ class MyKitchenController: UITableViewController {
             guard let cookingRecipeController = segue.destination as? CookingRecipeController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            cookingRecipeController.lastrecipeIdArr = lastrecipeIdArr
+            //cookingRecipeController.lastrecipeIdArr = lastrecipeIdArr
             
         case "ShowDetail":
             guard let fillInIngredientsController = segue.destination as? FillInIngredientsController else {
@@ -269,6 +287,7 @@ class MyKitchenController: UITableViewController {
             let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             guard let url = URL(string: encoded) else {return}
             
+            myGroup.enter()
             URLSession.shared.dataTask(with: url) { data, response, err in
                 let task = DispatchWorkItem {
                     guard let data = data else {return}
@@ -297,10 +316,52 @@ class MyKitchenController: UITableViewController {
                         }
                     } catch {
                     }
+                    self.myGroup.leave()
                 }
                 self.ingredientQueue.sync(execute: task)
             }.resume()
         }
+        
+        myGroup.wait(timeout: .distantFuture)
+        
+        let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000226_1//1/1000"
+        let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        guard let url = URL(string: encoded) else {return }
+           
+            URLSession.shared.dataTask(with: url) { [self] data, response, err in
+                print("getRecipe 1")
+                let task = DispatchWorkItem {
+                    print("getRecipe 2")
+                    guard let data = data else {return}
+                    do {
+                        print("getRecipe 3")
+                        let decoder = JSONDecoder()
+                        let cookingInfo = try? decoder.decode(CookingInfo.self, from: data)
+                        print("cookingInfo: \(cookingInfo)")
+                        guard let recipeCount = cookingInfo?.Grid_20150827000000000226_1.row.count else {return}
+                        
+                        
+                        for i in 0 ..< lastrecipeIdArr.count {
+                            for j in 0 ..< recipeCount {
+                                guard let recipeId = cookingInfo?.Grid_20150827000000000226_1.row[j].RECIPE_ID else {return}
+                                guard let recipeName = cookingInfo?.Grid_20150827000000000226_1.row[j].RECIPE_NM_KO else {return}
+                                guard let imageUrl = cookingInfo?.Grid_20150827000000000226_1.row[j].IMG_URL else {return}
+                                
+                                
+                                if lastrecipeIdArr[i] == recipeId {
+                                     cooking = Cooking(recipeId: recipeId, recipeName: recipeName, imageUrl: imageUrl)
+                                    print("cooking: \(cooking?.recipeId) \(cooking?.recipeName) \(cooking?.imageUrl)")
+                                }
+                            }
+                        }
+                    } catch let jsonArr {
+                        print("Error \(jsonArr)")
+                    }
+                }
+                self.ingredientQueue.sync(execute: task)
+            }
+            .resume()
+        
     }
     
 }
