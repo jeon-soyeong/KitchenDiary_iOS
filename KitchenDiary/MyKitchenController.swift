@@ -24,8 +24,7 @@ class MyKitchenController: UITableViewController {
     let myGroup = DispatchGroup()
     var essentialIrdntArr = [String]()
     
-    var cooking: Cooking?
-
+    var cookings: [Cooking] = []
 
     struct IngredientsInfo: Codable {
         let Grid_20150827000000000227_1: IngredientsDetailInfo
@@ -102,7 +101,10 @@ class MyKitchenController: UITableViewController {
        cell.storageMethod.text = ingredient.storageMethod
        cell.expirationDate.text = ingredient.expirationDate
        cell.ingredientsMemo.text = ingredient.memo
-
+        
+        print("cell.ingredientsName.text : \(cell.ingredientsName.text)")
+        print("ingredient.name : \(ingredient.name)")
+        
         cell.warning.isHidden = true
     
         //날짜 차이 구하기
@@ -177,7 +179,7 @@ class MyKitchenController: UITableViewController {
             guard let cookingRecipeController = segue.destination as? CookingRecipeController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            //cookingRecipeController.lastrecipeIdArr = lastrecipeIdArr
+            cookingRecipeController.cookings = cookings
             
         case "ShowDetail":
             guard let fillInIngredientsController = segue.destination as? FillInIngredientsController else {
@@ -349,8 +351,13 @@ class MyKitchenController: UITableViewController {
                                 
                                 
                                 if lastrecipeIdArr[i] == recipeId {
-                                     cooking = Cooking(recipeId: recipeId, recipeName: recipeName, imageUrl: imageUrl)
-                                    print("cooking: \(cooking?.recipeId) \(cooking?.recipeName) \(cooking?.imageUrl)")
+                                    guard let cooking = Cooking(recipeId: recipeId, recipeName: recipeName, imageUrl: imageUrl) else {
+                                        return
+                                    }
+                                    
+                                    print("cooking: \(cooking.recipeId) \(cooking.recipeName) \(cooking.imageUrl)")
+                                    cookings.append(cooking)
+                                    print("cookingsArr:\(cookings) ")
                                 }
                             }
                         }

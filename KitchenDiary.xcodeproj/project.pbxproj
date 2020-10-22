@@ -13,6 +13,7 @@
 		9B2715B12537FC72003CA18D /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2715B02537FC72003CA18D /* IngredientTableViewCell.swift */; };
 		9B3540B625405D0300343FEB /* GetRecipeId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3540B525405D0300343FEB /* GetRecipeId.swift */; };
 		9B3540B825406A2300343FEB /* Cooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3540B725406A2300343FEB /* Cooking.swift */; };
+		9B481F5F25413B31001FAFC8 /* CookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B481F5E25413B31001FAFC8 /* CookingTableViewCell.swift */; };
 		9B5413E42519FB5A00071544 /* DiaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5413E32519FB5A00071544 /* DiaryController.swift */; };
 		9B5889B1253611DA008AFB2A /* Ingredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5889B0253611DA008AFB2A /* Ingredients.swift */; };
 		9B96C3F5253B5FC000F1CB1C /* CookingRecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96C3F4253B5FC000F1CB1C /* CookingRecipeController.swift */; };
@@ -47,6 +48,7 @@
 		9B2715B02537FC72003CA18D /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B3540B525405D0300343FEB /* GetRecipeId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecipeId.swift; sourceTree = "<group>"; };
 		9B3540B725406A2300343FEB /* Cooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cooking.swift; sourceTree = "<group>"; };
+		9B481F5E25413B31001FAFC8 /* CookingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingTableViewCell.swift; sourceTree = "<group>"; };
 		9B5413E32519FB5A00071544 /* DiaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryController.swift; sourceTree = "<group>"; };
 		9B5889B0253611DA008AFB2A /* Ingredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredients.swift; sourceTree = "<group>"; };
 		9B96C3F4253B5FC000F1CB1C /* CookingRecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingRecipeController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				9B3540B525405D0300343FEB /* GetRecipeId.swift */,
 				9B98930E2512498B00589B5B /* AppDelegate.swift */,
 				9B96C3F4253B5FC000F1CB1C /* CookingRecipeController.swift */,
+				9B481F5E25413B31001FAFC8 /* CookingTableViewCell.swift */,
 				9B9893102512498B00589B5B /* SceneDelegate.swift */,
 				9B9893122512498B00589B5B /* ViewController.swift */,
 				9B9893142512498B00589B5B /* Main.storyboard */,
@@ -348,6 +351,7 @@
 				9B96C3F5253B5FC000F1CB1C /* CookingRecipeController.swift in Sources */,
 				9B5413E42519FB5A00071544 /* DiaryController.swift in Sources */,
 				9B3540B825406A2300343FEB /* Cooking.swift in Sources */,
+				9B481F5F25413B31001FAFC8 /* CookingTableViewCell.swift in Sources */,
 				9B9893132512498B00589B5B /* ViewController.swift in Sources */,
 				9B98930F2512498B00589B5B /* AppDelegate.swift in Sources */,
 				9BA29EFB251B32C30075703D /* RatingControl.swift in Sources */,
