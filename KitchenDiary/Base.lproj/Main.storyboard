@@ -788,7 +788,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="58" id="onh-do-xfn">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CookingCourseTableViewCell" rowHeight="58" id="onh-do-xfn" customClass="CookingCourseTableViewCell" customModule="KitchenDiary" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="317" width="375" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="onh-do-xfn" id="JNE-Na-QoZ">
@@ -808,6 +808,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cookingDescription" destination="Jyw-q4-BBy" id="pel-KU-drw"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

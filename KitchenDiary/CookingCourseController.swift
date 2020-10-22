@@ -33,7 +33,12 @@ class CookingCourseController: UITableViewController {
         super.viewDidLoad()
         
        print("CookingCourseController, cooking: \(cooking)")
+        print("cookingDescriptionArr: \(cookingDescriptionArr)")
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         self.getCookingCourse()
+      
         
     }
 
@@ -61,6 +66,7 @@ class CookingCourseController: UITableViewController {
                                 guard let cookingDescription = cookingCourseInfo?.Grid_20150827000000000228_1.row[j].COOKING_DC else {return}
                                 cookingDescriptionArr.append(cookingDescription)
                                 print("cookingDescriptionArr: \(cookingDescriptionArr)")
+                              
                             }
                         } catch let jsonArr {
                             print("Error \(jsonArr)")
@@ -68,6 +74,7 @@ class CookingCourseController: UITableViewController {
 //                        myGroup.leave()
                     }
                     self.cookingCourseQueue.sync(execute: task)
+                    self.tableView.reloadData()
                 }
                 .resume()
    
@@ -91,9 +98,14 @@ class CookingCourseController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+      
+        let cellIdentifier = "CookingCourseTableViewCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? CookingCourseTableViewCell else {
+                fatalError ("The dequeued cell is not an instance of IngredientTableViewCell.")
+        }
+        
+        cell.cookingDescription.text = cookingDescriptionArr[indexPath.row ]
+        print("cell.cookingDescription.text: \(cell.cookingDescription.text)")
 
         return cell
     }

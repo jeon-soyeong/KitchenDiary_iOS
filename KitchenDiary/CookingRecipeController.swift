@@ -75,6 +75,7 @@ class CookingRecipeController: UITableViewController {
                 
                 let selectedCooking = cookings[indexPath.row]
                 cookingCourseController.cooking = selectedCooking
+                
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
