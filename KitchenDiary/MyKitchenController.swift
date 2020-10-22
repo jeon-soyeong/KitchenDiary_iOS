@@ -31,8 +31,6 @@ class MyKitchenController: UITableViewController {
     }
 
     struct IngredientsDetailInfo: Codable {
-        let endRow: Int
-        let totalCnt: Int
         let row: [RecipeInfo]
     }
 
@@ -46,8 +44,6 @@ class MyKitchenController: UITableViewController {
     }
 
     struct CookingDetailInfo: Codable {
-        let endRow: Int
-        let totalCnt: Int
         let row: [CookingRecipeInfo]
     }
 

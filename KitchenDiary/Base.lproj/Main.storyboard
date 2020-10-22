@@ -35,6 +35,7 @@
                                     <color key="titleColor" systemColor="darkTextColor"/>
                                 </state>
                                 <connections>
+                                    <action selector="goToMyKitchen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zW7-V8-7Ul"/>
                                     <segue destination="8yG-kb-EZz" kind="show" id="CxJ-fn-yKM"/>
                                 </connections>
                             </button>
@@ -116,8 +117,12 @@
                                             </constraints>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="a8W-ie-dnV">
-                                            <rect key="frame" x="344" y="55" width="26" height="20"/>
+                                            <rect key="frame" x="344" y="55" width="26" height="30"/>
                                             <color key="tintColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="36" id="I16-3k-W0C"/>
+                                                <constraint firstAttribute="height" constant="30" id="hsz-FQ-h0A"/>
+                                            </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oTj-fO-hcX">
                                             <rect key="frame" x="239" y="226" width="117" height="50"/>
@@ -136,13 +141,14 @@
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
+                                                        <action selector="goToKitchenDiary:" destination="5HC-4b-CaJ" eventType="touchUpInside" id="4wy-j9-Lx5"/>
                                                         <segue destination="koJ-Z1-Fzj" kind="show" id="FKN-k3-G7N"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Len-hP-oLd">
-                                            <rect key="frame" x="25" y="13" width="59" height="22"/>
+                                            <rect key="frame" x="15" y="13" width="59" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="20"/>
                                             <nil key="textColor"/>
@@ -165,7 +171,7 @@
                                 <connections>
                                     <outlet property="cookingImage" destination="2CD-2s-lB6" id="ITs-Pi-jYP"/>
                                     <outlet property="cookingName" destination="Len-hP-oLd" id="pHC-iZ-2kC"/>
-                                    <segue destination="kbr-9J-Kx5" kind="show" id="yLr-dc-Y3a"/>
+                                    <segue destination="bdx-jd-yUr" kind="show" identifier="CookingCourse" id="1ie-PP-cGM"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -558,7 +564,7 @@
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWF-SE-4NQ">
-                                    <rect key="frame" x="291" y="360" width="69" height="30"/>
+                                    <rect key="frame" x="291" y="360" width="69" height="33"/>
                                     <color key="backgroundColor" systemColor="systemYellowColor"/>
                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="18"/>
                                     <state key="normal" title="요리하기">
@@ -594,13 +600,13 @@
                                             <rect key="frame" x="31" y="39.5" width="84" height="18"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="보관 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rP-id-Qvb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="47.5" height="18"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="50.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemOrangeColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="보관" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVC-WD-Sro">
-                                                    <rect key="frame" x="51.5" y="0.0" width="32.5" height="18"/>
+                                                    <rect key="frame" x="54.5" y="0.0" width="29.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -614,13 +620,13 @@
                                             <rect key="frame" x="29" y="66.5" width="178.5" height="18"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="유통기한 :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTu-No-FXq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="71.5" height="18"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="17"/>
                                                     <color key="textColor" red="1" green="0.52762569059999997" blue="0.1529166981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="유통기한 날짜" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZo-NE-jdD">
-                                                    <rect key="frame" x="81.5" y="0.0" width="97" height="18"/>
+                                                    <rect key="frame" x="85.5" y="0.0" width="93" height="18"/>
                                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -640,7 +646,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="메모 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ye-fX-rfE">
-                                            <rect key="frame" x="30" y="95" width="53" height="17"/>
+                                            <rect key="frame" x="30" y="95" width="53" height="19"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="53" id="2jJ-yM-baE"/>
                                             </constraints>
@@ -717,59 +723,103 @@
             <point key="canvasLocation" x="1973.5999999999999" y="793.8530734632684"/>
         </scene>
         <!--Cooking Course Controller-->
-        <scene sceneID="dM1-ov-C6R">
+        <scene sceneID="Ein-NW-ivi">
             <objects>
-                <viewController id="kbr-9J-Kx5" customClass="CookingCourseController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6lD-7B-IZu">
+                <tableViewController id="bdx-jd-yUr" customClass="CookingCourseController" customModule="KitchenDiary" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="O44-cw-Uqg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESm-XA-OCd">
-                                <rect key="frame" x="11" y="55" width="54" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="21"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wSs-kk-Iqn">
-                                <rect key="frame" x="0.0" y="87" width="375" height="181"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i5y-sx-mOK">
-                                <rect key="frame" x="243" y="263" width="121" height="50"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="todayMeal" translatesAutoresizingMaskIntoConstraints="NO" id="llA-ni-dxs">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="266-4C-yfo"/>
-                                            <constraint firstAttribute="width" constant="50" id="iIw-Vi-hdf"/>
-                                        </constraints>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uI8-YX-SOd">
-                                        <rect key="frame" x="50" y="0.0" width="71" height="50"/>
-                                        <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="18"/>
-                                        <state key="normal" title="오늘 식사">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="koJ-Z1-Fzj" kind="show" id="7db-dA-5Iy"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bookmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dhA-tU-537">
-                                <rect key="frame" x="344" y="94" width="25" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="4mh-n9-nY9"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Zjx-K9-QkY"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jfR-6R-na9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="zwt-b3-bfD">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="289"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Kw-pv-k6y">
+                                    <rect key="frame" x="21" y="21" width="59" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="20"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VXk-jx-idY">
+                                    <rect key="frame" x="-2" y="54" width="375" height="181"/>
+                                </imageView>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t0n-kM-aQ0">
+                                    <rect key="frame" x="238" y="234" width="121" height="50"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="todayMeal" translatesAutoresizingMaskIntoConstraints="NO" id="NJI-P7-JAj">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="Cw0-7C-cdd"/>
+                                                <constraint firstAttribute="height" constant="50" id="rbX-VO-BeD"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oqs-hO-7mO">
+                                            <rect key="frame" x="50" y="0.0" width="71" height="50"/>
+                                            <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="18"/>
+                                            <state key="normal" title="오늘 식사">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="R8H-xW-hbn">
+                                    <rect key="frame" x="341" y="65" width="36" height="30"/>
+                                    <color key="tintColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="0FL-oM-8mj"/>
+                                        <constraint firstAttribute="width" constant="36" id="gga-9d-5ib"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="VXk-jx-idY" firstAttribute="leading" secondItem="zwt-b3-bfD" secondAttribute="leading" constant="-2" id="09e-AM-1tP"/>
+                                <constraint firstAttribute="trailing" secondItem="t0n-kM-aQ0" secondAttribute="trailing" constant="16" id="6MO-wW-lNf"/>
+                                <constraint firstItem="t0n-kM-aQ0" firstAttribute="top" secondItem="VXk-jx-idY" secondAttribute="bottom" constant="-1" id="9aC-00-1pB"/>
+                                <constraint firstItem="R8H-xW-hbn" firstAttribute="top" secondItem="zwt-b3-bfD" secondAttribute="top" constant="65" id="aBY-eF-0fH"/>
+                                <constraint firstAttribute="trailing" secondItem="R8H-xW-hbn" secondAttribute="trailing" constant="-2" id="bam-qK-cak"/>
+                                <constraint firstItem="VXk-jx-idY" firstAttribute="top" secondItem="7Kw-pv-k6y" secondAttribute="bottom" constant="11" id="h5W-KM-nho"/>
+                                <constraint firstItem="t0n-kM-aQ0" firstAttribute="leading" secondItem="zwt-b3-bfD" secondAttribute="leading" constant="238" id="l4H-6x-88U"/>
+                                <constraint firstAttribute="bottom" secondItem="t0n-kM-aQ0" secondAttribute="bottom" constant="5" id="pdy-6M-lSh"/>
+                                <constraint firstItem="VXk-jx-idY" firstAttribute="top" secondItem="R8H-xW-hbn" secondAttribute="bottom" constant="-41" id="rbx-m1-Jpj"/>
+                                <constraint firstItem="R8H-xW-hbn" firstAttribute="leading" secondItem="zwt-b3-bfD" secondAttribute="leading" constant="341" id="tUg-jF-Y1R"/>
+                                <constraint firstAttribute="trailing" secondItem="VXk-jx-idY" secondAttribute="trailing" constant="2" id="uak-o3-fpu"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="58" id="onh-do-xfn">
+                                <rect key="frame" x="0.0" y="317" width="375" height="58"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="onh-do-xfn" id="JNE-Na-QoZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkMark" translatesAutoresizingMaskIntoConstraints="NO" id="IMB-u5-HzE">
+                                            <rect key="frame" x="16" y="10" width="39" height="39"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jyw-q4-BBy">
+                                            <rect key="frame" x="61" y="21" width="38" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bdx-jd-yUr" id="4WC-9w-aom"/>
+                            <outlet property="delegate" destination="bdx-jd-yUr" id="zQD-R7-5LT"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="17v-fB-44l"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="erL-r6-Q0V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3852" y="1235"/>
+            <point key="canvasLocation" x="3997.5999999999999" y="1225.6371814092954"/>
         </scene>
         <!--북마크-->
         <scene sceneID="Ju4-cf-YEY">
@@ -815,12 +865,7 @@
                         <viewLayoutGuide key="safeArea" id="t8V-cg-QgN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="북마크" id="XZN-27-UC6">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="back" id="sOe-QG-fLS">
-                            <inset key="imageInsets" minX="-13" minY="2" maxX="0.0" maxY="-10"/>
-                            <inset key="largeContentSizeImageInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="북마크" id="XZN-27-UC6"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DtZ-X0-66i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -870,12 +915,7 @@
                             <constraint firstItem="gme-Q2-S9O" firstAttribute="top" secondItem="vaw-Bq-ebS" secondAttribute="bottom" constant="-15" id="xxz-Yi-Vkd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="나의 식사일기" id="cHB-Vn-8Gq">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="back" id="lG9-el-xjY">
-                            <inset key="imageInsets" minX="-13" minY="2" maxX="0.0" maxY="-10"/>
-                            <inset key="largeContentSizeImageInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="나의 식사일기" id="cHB-Vn-8Gq"/>
                     <connections>
                         <outlet property="calendar" destination="gme-Q2-S9O" id="zbT-9u-Yxz"/>
                     </connections>
@@ -1147,10 +1187,10 @@
         <segue reference="eHf-BD-2a8"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="back" width="64" height="64"/>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="category" width="94" height="94"/>
+        <image name="checkMark" width="256" height="256"/>
         <image name="garden" width="357" height="337"/>
         <image name="highlighterPen" width="256" height="256"/>
         <image name="home" width="322" height="293.5"/>
