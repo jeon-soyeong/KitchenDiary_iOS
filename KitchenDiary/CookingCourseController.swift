@@ -10,79 +10,30 @@ import UIKit
 
 class CookingCourseController: UITableViewController {
 
+    @IBOutlet weak var cookingName: UILabel!
+    @IBOutlet weak var cookingImage: UIImageView!
+    
     var cooking: Cooking?
-    var cookingDescriptionArr = [String]()
-    let myGroup = DispatchGroup()
-    let cookingCourseQueue = DispatchQueue(label: "cookingCourse")
-    
-    struct CookingCourseInfo: Codable {
-        let Grid_20150827000000000228_1: CookingCourseDetailInfo
-    }
-
-    struct CookingCourseDetailInfo: Codable {
-        let row: [CourseInfo]
-    }
-
-    struct CourseInfo: Codable {
-        let RECIPE_ID: Int
-        let COOKING_DC: String
-        let COOKING_NO: Int
-    }
-    
+    var cookingDescriptionArray = [String]()
+  
     override func viewDidLoad() {
         super.viewDidLoad()
+     
+        cookingName.text = cooking?.recipeName
+        guard let cookingImageUrl = cooking?.imageUrl else {
+            return
+        }
+        guard let url = URL(string: cookingImageUrl) else {
+             fatalError ("no url")
+         }
+         if let data = try? Data(contentsOf: url) {
+             cookingImage.image = UIImage(data: data)
+         }
         
-       print("CookingCourseController, cooking: \(cooking)")
-        print("cookingDescriptionArr: \(cookingDescriptionArr)")
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        self.getCookingCourse()
-      
-        
+        // tableViewCell Height AutoSizing
+         tableView.rowHeight = UITableView.automaticDimension
     }
 
-    func getCookingCourse() {
-      print("aaa")
-        let selectRecipeId = cooking?.recipeId
-        let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000228_1//1/1000?RECIPE_ID=\(selectRecipeId!)"
-            let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            guard let url = URL(string: encoded) else {return }
-        print("url: \(url)")
-        print("bbb")
-//                myGroup.enter()
-                URLSession.shared.dataTask(with: url) { [self] data, response, err in
-                    let task = DispatchWorkItem {
-                        print("ccc")
-                        guard let data = data else {return}
-                        print("ddd")
-                        do {
-                            print("eee")
-                            let decoder = JSONDecoder()
-                            let cookingCourseInfo = try? decoder.decode(CookingCourseInfo.self, from: data)
-                            guard let cookingCourseCount = cookingCourseInfo?.Grid_20150827000000000228_1.row.count else {return}
-                            
-                            for j in 0 ..< cookingCourseCount {
-                                guard let cookingDescription = cookingCourseInfo?.Grid_20150827000000000228_1.row[j].COOKING_DC else {return}
-                                cookingDescriptionArr.append(cookingDescription)
-                                print("cookingDescriptionArr: \(cookingDescriptionArr)")
-                              
-                            }
-                        } catch let jsonArr {
-                            print("Error \(jsonArr)")
-                        }
-//                        myGroup.leave()
-                    }
-                    self.cookingCourseQueue.sync(execute: task)
-                    self.tableView.reloadData()
-                }
-                .resume()
-   
-    }
-    
-    
-    
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -92,21 +43,25 @@ class CookingCourseController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return cookingDescriptionArr.count
+        return cookingDescriptionArray.count
     }
 
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      
+
         let cellIdentifier = "CookingCourseTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? CookingCourseTableViewCell else {
                 fatalError ("The dequeued cell is not an instance of IngredientTableViewCell.")
         }
-        
-        cell.cookingDescription.text = cookingDescriptionArr[indexPath.row ]
+
+        cell.cookingDescription.text = cookingDescriptionArray[indexPath.row ]
         print("cell.cookingDescription.text: \(cell.cookingDescription.text)")
 
+        
+        //label 줄바꿈
+        cell.cookingDescription.preferredMaxLayoutWidth = (tableView.bounds.width - 70)
+        cell.cookingDescription.numberOfLines = 0
+        
         return cell
     }
     
