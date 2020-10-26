@@ -49,20 +49,18 @@ public class SQLDataManager {
     }
         
     
-    func insertCookings(_ RecipeId : Int, _ RecipeName: String, _ ImageUrl: String) {
+    func insertCookings(_ recipeId : Int, _ recipeName: String, _ imageUrl: String) {
            //(1) insert sql문
            let insertStatementString = "INSERT INTO Cooking (recipeId, recipeName, imageUrl) VALUES (?, ?, ?);"
            //(2) 쿼리 저장 변수
            var stmt: OpaquePointer? //query를 가리키는 포인터
-           let RecipeId = Int32(RecipeId)
-        print("insertStatementString 1: \(insertStatementString)")
+           let recipeId = Int32(recipeId)
        
            if sqlite3_prepare_v2(db, insertStatementString, -1, &stmt, nil) == SQLITE_OK{
            
-            print("insertStatementString 2: \(insertStatementString)")
-            sqlite3_bind_int(stmt, 1, RecipeId)
-            sqlite3_bind_text(stmt, 2, RecipeName, -1, nil)
-            sqlite3_bind_text(stmt, 3, ImageUrl, -1, nil)
+            sqlite3_bind_int(stmt, 1, recipeId)
+            sqlite3_bind_text(stmt, 2, recipeName, -1, nil)
+            sqlite3_bind_text(stmt, 3, imageUrl, -1, nil)
              
                if sqlite3_step(stmt) == SQLITE_DONE{
                    print("\nInsert row Success")

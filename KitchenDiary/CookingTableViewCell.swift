@@ -15,6 +15,20 @@ class CookingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var bookMarkButton: UIButton!
     
+    var cooking: Cooking? {
+        didSet {
+            updateUI()
+        }
+    }
+    
+    func updateUI() {
+        guard let cooking = cooking else {
+            return
+        }
+        cookingName.text = cooking.recipeName
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

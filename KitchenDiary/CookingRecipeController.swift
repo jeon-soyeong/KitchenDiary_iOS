@@ -31,7 +31,7 @@ class CookingRecipeController: UITableViewController {
     var cookingDescriptionArr = [String]()
     var cookingDictionary = [Int : [String]]()
     let sqlDataManager = SQLDataManager.init()
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad!!")
@@ -53,37 +53,47 @@ class CookingRecipeController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        super.tableView(tableView, numberOfRowsInSection: section)
         // #warning Incomplete implementation, return the number of rows
         return cookings.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        super.tableView(tableView, cellForRowAt: indexPath)
+        
         let cellIdentifier = "CookingTableViewCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? CookingTableViewCell else {
-            fatalError ("The dequeued cell is not an instance of CookingTableViewCell.")
-        }
-
-       let cooking = cookings[indexPath.row]
-        cell.cookingName.text = cooking.recipeName
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let cookingCell =  cell as? CookingTableViewCell
+        
+        let cooking = cookings[indexPath.row]
+        cookingCell?.cookingName.text = cooking.recipeName
+        
+        let bookMarkCookings = sqlDataManager.readCookings()
+        cookingCell?.bookMarkButton.isSelected = bookMarkCookings.contains(where: { (bookMarkCooking) -> Bool in
+            return cooking.recipeId == bookMarkCooking.recipeId
+        })
+        
         guard let url = URL(string: cooking.imageUrl) else {
-            fatalError ("no url")
+            return cell
         }
         if let data = try? Data(contentsOf: url) {
-            cell.cookingImage.image = UIImage(data: data)
+            cookingCell?.cookingImage.image = UIImage(data: data)
         }
+        cookingCell?.bookMarkButton.tag = indexPath.row
+        cookingCell?.bookMarkButton.addTarget(self, action: #selector(bookMarkbuttonPressed(_:)), for: .touchUpInside)
         
-        cell.bookMarkButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-
         return cell
     }
     
-    
-    @objc func buttonPressed(_ sender: AnyObject) {
-            let button = sender as? UIButton
-            let cell = button?.superview?.superview as? UITableViewCell
-        guard let indexPath = tableView.indexPath(for: cell!) else {return}
-            print(indexPath.row)
+    @objc func bookMarkbuttonPressed(_ sender: AnyObject) {
+        let button = sender as? UIButton
+        guard let cell = button?.superview?.superview as? UITableViewCell else {
+            return
+        }
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+        print(indexPath.row)
         
         let cooking = cookings[indexPath.row]
         if button?.isSelected == true {//delete
@@ -96,12 +106,13 @@ class CookingRecipeController: UITableViewController {
             sqlDataManager.insertCookings(cooking.recipeId, cooking.recipeName, cooking.imageUrl)
         }
         
-        let sqlCookings = sqlDataManager.readCookings()
-        for i in 0 ..< sqlCookings.count {
-            print("sqlCookings[i].recipeId: \(sqlCookings[i].recipeId)")
-            print("sqlCookings[i].recipeName: \(sqlCookings[i].recipeName)")
-            print("sqlCookings[i].imageUrl: \(sqlCookings[i].imageUrl)")
+        let bookMarkCookings = sqlDataManager.readCookings()
+        for i in 0 ..< bookMarkCookings.count {
+            print("bookMarkCookings[i].recipeId: \(bookMarkCookings[i].recipeId)")
+            print("bookMarkCookings[i].recipeName: \(bookMarkCookings[i].recipeName)")
+            print("bookMarkCookings[i].imageUrl: \(bookMarkCookings[i].imageUrl)")
         }
+        
     }
     
     func getCookingCourse() {
@@ -159,11 +170,11 @@ class CookingRecipeController: UITableViewController {
                 
                 let cooking = cookings[indexPath.row]
                 cookingCourseController.cooking = cooking
-        case "goToDetailDiary":
-            break
-            
-        default:
-            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            case "goToDetailDiary":
+                break
+                
+            default:
+                fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
     }
 
