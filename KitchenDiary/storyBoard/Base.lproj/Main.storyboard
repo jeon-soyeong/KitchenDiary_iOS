@@ -846,7 +846,7 @@
         <!--북마크-->
         <scene sceneID="Ju4-cf-YEY">
             <objects>
-                <viewController id="0eL-B5-XTH" sceneMemberID="viewController">
+                <viewController id="0eL-B5-XTH" customClass="BookMarkViewController" customModule="KitchenDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tfc-Df-ap6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -856,26 +856,29 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CookingListCell" rowHeight="232" id="XuA-fA-pGg" customClass="CookingListCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookMarkTableViewCell" rowHeight="232" id="XuA-fA-pGg" customClass="BookMarkTableViewCell" customModule="KitchenDiary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="232"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XuA-fA-pGg" id="59q-RY-crN">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="232"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQ8-Ll-5xI">
-                                                    <rect key="frame" x="9" y="18" width="43" height="19"/>
-                                                    <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="19"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQ8-Ll-5xI">
+                                                    <rect key="frame" x="16" y="10" width="46" height="20"/>
+                                                    <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ls4-th-lkX">
-                                                    <rect key="frame" x="0.0" y="45" width="375" height="181"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ls4-th-lkX">
+                                                    <rect key="frame" x="0.0" y="38" width="375" height="188"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Ls4-th-lkX" secondAttribute="height" multiplier="375:188" id="7Xf-2y-x4G"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xir-Wa-TLw">
-                                                    <rect key="frame" x="347" y="57" width="21.5" height="26"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xir-Wa-TLw">
+                                                    <rect key="frame" x="347" y="50" width="21.5" height="33"/>
                                                     <color key="tintColor" systemColor="tertiarySystemBackgroundColor"/>
                                                     <state key="normal" image="bookmark.fill" catalog="system">
                                                         <color key="titleShadowColor" systemColor="systemGroupedBackgroundColor"/>
@@ -888,24 +891,35 @@
                                                 <constraint firstItem="Ls4-th-lkX" firstAttribute="leading" secondItem="59q-RY-crN" secondAttribute="leading" id="C8z-YF-Mvr"/>
                                                 <constraint firstAttribute="bottom" secondItem="xir-Wa-TLw" secondAttribute="bottom" constant="149" id="CJh-Kz-DKi"/>
                                                 <constraint firstItem="Ls4-th-lkX" firstAttribute="top" secondItem="MQ8-Ll-5xI" secondAttribute="bottom" constant="8" id="D0a-Gm-Y45"/>
-                                                <constraint firstItem="MQ8-Ll-5xI" firstAttribute="top" secondItem="59q-RY-crN" secondAttribute="top" constant="18" id="Ghh-Fx-vLJ"/>
+                                                <constraint firstItem="MQ8-Ll-5xI" firstAttribute="top" secondItem="59q-RY-crN" secondAttribute="top" constant="10" id="Ghh-Fx-vLJ"/>
+                                                <constraint firstItem="MQ8-Ll-5xI" firstAttribute="leading" secondItem="59q-RY-crN" secondAttribute="leading" constant="16" id="Qq3-P2-ZKq"/>
+                                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="MQ8-Ll-5xI" secondAttribute="trailing" constant="313" id="Sr0-FL-AzO"/>
                                                 <constraint firstAttribute="trailing" secondItem="xir-Wa-TLw" secondAttribute="trailing" constant="6.5" id="caA-uC-JIu"/>
                                                 <constraint firstItem="xir-Wa-TLw" firstAttribute="leading" secondItem="59q-RY-crN" secondAttribute="leading" constant="347" id="k8p-cR-YgM"/>
-                                                <constraint firstItem="MQ8-Ll-5xI" firstAttribute="leading" secondItem="59q-RY-crN" secondAttribute="leading" constant="9" id="maH-sW-Jmg"/>
-                                                <constraint firstItem="MQ8-Ll-5xI" firstAttribute="leading" secondItem="59q-RY-crN" secondAttribute="leadingMargin" constant="-7" id="sfk-5v-28w"/>
                                                 <constraint firstAttribute="bottom" secondItem="Ls4-th-lkX" secondAttribute="bottom" constant="6" id="u4k-2K-Fq1"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ls4-th-lkX" secondAttribute="trailing" id="vLy-nD-c8C"/>
-                                                <constraint firstAttribute="trailing" secondItem="MQ8-Ll-5xI" secondAttribute="trailing" constant="323" id="wtc-on-nZo"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bookMarkButton" destination="xir-Wa-TLw" id="zcT-TC-bxZ"/>
+                                            <outlet property="bookMarkCookingImage" destination="Ls4-th-lkX" id="mKs-PC-ZBU"/>
+                                            <outlet property="bookMarkCookingName" destination="MQ8-Ll-5xI" id="l8P-dg-boC"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="0eL-B5-XTH" id="dxt-GU-K4Z"/>
+                                    <outlet property="delegate" destination="0eL-B5-XTH" id="Xzf-OR-rIk"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="t8V-cg-QgN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="북마크" id="XZN-27-UC6"/>
+                    <connections>
+                        <outlet property="tableView" destination="DKn-Ja-HhU" id="D5n-uA-m8o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DtZ-X0-66i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -967,7 +981,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1969" y="2203"/>
+            <point key="canvasLocation" x="1959" y="2203"/>
         </scene>
         <!--Diary Detail Controller-->
         <scene sceneID="7VN-I9-DAA">

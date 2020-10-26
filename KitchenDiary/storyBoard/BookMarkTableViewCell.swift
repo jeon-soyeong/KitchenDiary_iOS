@@ -1,17 +1,18 @@
 //
-//  CookingTableViewCell.swift
+//  BookMarkTableViewCell.swift
 //  KitchenDiary
 //
-//  Created by 전소영 on 2020/10/22.
+//  Created by 전소영 on 2020/10/27.
 //  Copyright © 2020 Soyeong Jeon. All rights reserved.
 //
 
 import UIKit
 
-class CookingTableViewCell: UITableViewCell {
+class BookMarkTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var cookingName: UILabel!
-    @IBOutlet private weak var cookingImage: UIImageView!
+    
+    @IBOutlet weak var bookMarkCookingName: UILabel!
+    @IBOutlet weak var bookMarkCookingImage: UIImageView!
     @IBOutlet weak var bookMarkButton: UIButton!
     
     var cooking: Cooking? {
@@ -19,33 +20,19 @@ class CookingTableViewCell: UITableViewCell {
             updateUI()
         }
     }
-    var loadCooking: [Cooking]? {
-        didSet {
-            updateUI()
-        }
-    }
     
-    private func updateUI() {
+    func updateUI() {
         guard let cooking = cooking else {
             return
         }
-        cookingName.text = cooking.recipeName
+        bookMarkCookingName.text = cooking.recipeName
         
         guard let url = URL(string: cooking.imageUrl) else {
             return
         }
         if let data = try? Data(contentsOf: url) {
-            cookingImage.image = UIImage(data: data)
+            bookMarkCookingImage.image = UIImage(data: data)
         }
-        
-        guard let loadCooking = loadCooking else {
-            return
-        }
-        
-        bookMarkButton.isSelected = loadCooking.contains(where: { (loadCooking) -> Bool in
-            return cooking.recipeId == loadCooking.recipeId
-        })
-        
     }
     
     override func awakeFromNib() {

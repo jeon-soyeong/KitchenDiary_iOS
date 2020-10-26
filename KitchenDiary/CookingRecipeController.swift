@@ -26,19 +26,23 @@ struct CourseInfo: Codable {
 class CookingRecipeController: UITableViewController {
     
     //받음
-    var cookings = [Cooking]()
+    var cookings = [Cooking]() {
+        didSet {
+            loadCooking = sqlDataManager.readCookings()
+            tableView.reloadData()
+        }
+    }
     let cookingCourseQueue = DispatchQueue(label: "cookingCourse")
     var cookingDescriptionArr = [String]()
     var cookingDictionary = [Int : [String]]()
     let sqlDataManager = SQLDataManager.init()
-   
+    var loadCooking = [Cooking]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad!!")
         
         getCookingCourse()
-        
-        sqlDataManager.openDatabase()
     }
     
     // tabBar 이동
@@ -63,56 +67,30 @@ class CookingRecipeController: UITableViewController {
         
         let cellIdentifier = "CookingTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        let cookingCell =  cell as? CookingTableViewCell
-        
-        let cooking = cookings[indexPath.row]
-        cookingCell?.cookingName.text = cooking.recipeName
-        
-        let bookMarkCookings = sqlDataManager.readCookings()
-        cookingCell?.bookMarkButton.isSelected = bookMarkCookings.contains(where: { (bookMarkCooking) -> Bool in
-            return cooking.recipeId == bookMarkCooking.recipeId
-        })
-        
-        guard let url = URL(string: cooking.imageUrl) else {
+        guard let cookingCell = cell as? CookingTableViewCell else {
             return cell
         }
-        if let data = try? Data(contentsOf: url) {
-            cookingCell?.cookingImage.image = UIImage(data: data)
-        }
-        cookingCell?.bookMarkButton.tag = indexPath.row
-        cookingCell?.bookMarkButton.addTarget(self, action: #selector(bookMarkbuttonPressed(_:)), for: .touchUpInside)
+        cookingCell.cooking = cookings[indexPath.row]
+        cookingCell.loadCooking = loadCooking
+     
+        cookingCell.bookMarkButton.tag = indexPath.row
+        cookingCell.bookMarkButton.addTarget(self, action: #selector(bookMarkbuttonPressed(_:)), for: .touchUpInside)
         
         return cell
     }
     
-    @objc func bookMarkbuttonPressed(_ sender: AnyObject) {
-        let button = sender as? UIButton
-        guard let cell = button?.superview?.superview as? UITableViewCell else {
-            return
-        }
-        guard let indexPath = tableView.indexPath(for: cell) else {
-            return
-        }
-        print(indexPath.row)
-        
-        let cooking = cookings[indexPath.row]
-        if button?.isSelected == true {//delete
-            button?.isSelected = false
+    @objc func bookMarkbuttonPressed(_ sender: UIButton) {
+         let indexPath = sender.tag
+
+        let cooking = cookings[indexPath]
+        if sender.isSelected == true {//delete
+            sender.isSelected = false
             sqlDataManager.deleteByRecipeId(recipeId: cooking.recipeId)
         }
         else {// insert
-            button?.isSelected = true
-            print("cooking.recipeId:\(cooking.recipeId),\(cooking.recipeName), \(cooking.imageUrl) ")
+            sender.isSelected = true
             sqlDataManager.insertCookings(cooking.recipeId, cooking.recipeName, cooking.imageUrl)
         }
-        
-        let bookMarkCookings = sqlDataManager.readCookings()
-        for i in 0 ..< bookMarkCookings.count {
-            print("bookMarkCookings[i].recipeId: \(bookMarkCookings[i].recipeId)")
-            print("bookMarkCookings[i].recipeName: \(bookMarkCookings[i].recipeName)")
-            print("bookMarkCookings[i].imageUrl: \(bookMarkCookings[i].imageUrl)")
-        }
-        
     }
     
     func getCookingCourse() {
