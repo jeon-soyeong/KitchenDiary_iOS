@@ -9,6 +9,33 @@
 import UIKit
 import os.log
 
+struct IngredientsInfo: Codable {
+    let Grid_20150827000000000227_1: IngredientsDetailInfo
+}
+
+struct IngredientsDetailInfo: Codable {
+    let row: [RecipeInfo]
+}
+
+struct RecipeInfo: Codable {
+    let RECIPE_ID: Int
+    let IRDNT_NM: String
+}
+
+struct CookingInfo: Codable {
+    let Grid_20150827000000000226_1: CookingDetailInfo
+}
+
+struct CookingDetailInfo: Codable {
+    let row: [CookingRecipeInfo]
+}
+
+struct CookingRecipeInfo: Codable {
+    let RECIPE_ID: Int
+    let RECIPE_NM_KO: String
+    let IMG_URL: String
+}
+
 class MyKitchenController: UITableViewController {
 
     @IBOutlet weak var cookingButton: UIButton!
@@ -26,32 +53,6 @@ class MyKitchenController: UITableViewController {
     
     var cookings: [Cooking] = []
 
-    struct IngredientsInfo: Codable {
-        let Grid_20150827000000000227_1: IngredientsDetailInfo
-    }
-
-    struct IngredientsDetailInfo: Codable {
-        let row: [RecipeInfo]
-    }
-
-    struct RecipeInfo: Codable {
-        let RECIPE_ID: Int
-        let IRDNT_NM: String
-    }
-
-    struct CookingInfo: Codable {
-        let Grid_20150827000000000226_1: CookingDetailInfo
-    }
-
-    struct CookingDetailInfo: Codable {
-        let row: [CookingRecipeInfo]
-    }
-
-    struct CookingRecipeInfo: Codable {
-        let RECIPE_ID: Int
-        let RECIPE_NM_KO: String
-        let IMG_URL: String
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

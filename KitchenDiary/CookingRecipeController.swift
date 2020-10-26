@@ -7,43 +7,46 @@
 //
 
 import UIKit
+import sqlite3
+
+struct CookingCourseInfo: Codable {
+    let Grid_20150827000000000228_1: CookingCourseDetailInfo
+}
+
+struct CookingCourseDetailInfo: Codable {
+    let row: [CourseInfo]
+}
+
+struct CourseInfo: Codable {
+    let RECIPE_ID: Int
+    let COOKING_DC: String
+    let COOKING_NO: Int
+}
 
 class CookingRecipeController: UITableViewController {
-
+    
     //받음
     var cookings = [Cooking]()
     let cookingCourseQueue = DispatchQueue(label: "cookingCourse")
     var cookingDescriptionArr = [String]()
-    
     var cookingDictionary = [Int : [String]]()
-   
-    struct CookingCourseInfo: Codable {
-        let Grid_20150827000000000228_1: CookingCourseDetailInfo
-    }
-
-    struct CookingCourseDetailInfo: Codable {
-        let row: [CourseInfo]
-    }
-
-    struct CourseInfo: Codable {
-        let RECIPE_ID: Int
-        let COOKING_DC: String
-        let COOKING_NO: Int
+    let sqlDataManager = SQLDataManager.init()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("viewDidLoad!!")
+        
+        getCookingCourse()
+        
+        sqlDataManager.openDatabase()
     }
     
     // tabBar 이동
     @IBAction func goToKitchenDiary(_ sender: Any) {
         self.tabBarController?.selectedIndex = 3
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("viewDidLoad!!")
-        
-        getCookingCourse()
-    }
-
+    
     // MARK: - Table view data source
-  
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -61,7 +64,7 @@ class CookingRecipeController: UITableViewController {
             fatalError ("The dequeued cell is not an instance of CookingTableViewCell.")
         }
 
-       let cooking = cookings[indexPath.row ]
+       let cooking = cookings[indexPath.row]
         cell.cookingName.text = cooking.recipeName
         guard let url = URL(string: cooking.imageUrl) else {
             fatalError ("no url")
@@ -69,9 +72,37 @@ class CookingRecipeController: UITableViewController {
         if let data = try? Data(contentsOf: url) {
             cell.cookingImage.image = UIImage(data: data)
         }
+        
+        cell.bookMarkButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+
         return cell
     }
     
+    
+    @objc func buttonPressed(_ sender: AnyObject) {
+            let button = sender as? UIButton
+            let cell = button?.superview?.superview as? UITableViewCell
+        guard let indexPath = tableView.indexPath(for: cell!) else {return}
+            print(indexPath.row)
+        
+        let cooking = cookings[indexPath.row]
+        if button?.isSelected == true {//delete
+            button?.isSelected = false
+            sqlDataManager.deleteByRecipeId(recipeId: cooking.recipeId)
+        }
+        else {// insert
+            button?.isSelected = true
+            print("cooking.recipeId:\(cooking.recipeId),\(cooking.recipeName), \(cooking.imageUrl) ")
+            sqlDataManager.insertCookings(cooking.recipeId, cooking.recipeName, cooking.imageUrl)
+        }
+        
+        let sqlCookings = sqlDataManager.readCookings()
+        for i in 0 ..< sqlCookings.count {
+            print("sqlCookings[i].recipeId: \(sqlCookings[i].recipeId)")
+            print("sqlCookings[i].recipeName: \(sqlCookings[i].recipeName)")
+            print("sqlCookings[i].imageUrl: \(sqlCookings[i].imageUrl)")
+        }
+    }
     
     func getCookingCourse() {
     
@@ -126,7 +157,7 @@ class CookingRecipeController: UITableViewController {
                 }
                 cookingCourseController.cookingDescriptionArray = selectCookingDecriptionArray
                 
-                let cooking = cookings[indexPath.row ]
+                let cooking = cookings[indexPath.row]
                 cookingCourseController.cooking = cooking
         case "goToDetailDiary":
             break

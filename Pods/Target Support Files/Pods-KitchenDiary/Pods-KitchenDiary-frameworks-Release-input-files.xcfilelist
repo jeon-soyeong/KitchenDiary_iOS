@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-KitchenDiary/Pods-KitchenDiary-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
+${BUILT_PRODUCTS_DIR}/sqlite3/sqlite3.framework

@@ -13,6 +13,7 @@ class CookingTableViewCell: UITableViewCell {
     @IBOutlet weak var cookingName: UILabel!
     @IBOutlet weak var cookingImage: UIImageView!
 
+    @IBOutlet weak var bookMarkButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
