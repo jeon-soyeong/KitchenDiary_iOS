@@ -11,20 +11,50 @@ import UIKit
 class BookMarkViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    let myGroup = DispatchGroup()
     let sqlDataManager = SQLDataManager.init()
-    var cookings = [Cooking]() {
-        didSet {
-           
-        }
-    }
+    let cookingRecipeController = CookingRecipeController.init()
+    var cookings = [Cooking]()
+    var cookingDictionary = [Int : [String]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         cookings = sqlDataManager.readCookings()
+       
     }
     override func viewWillAppear(_ animated: Bool) {
         cookings = sqlDataManager.readCookings()
         tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        cookingDictionary = cookingRecipeController.getCookingCourse(cookings: cookings)
+        
+        switch(segue.identifier ?? "") {
+            case "bookMarkCookingCourse":
+                guard let cookingCourseController = segue.destination as? CookingCourseController else {
+                    fatalError("Unexpected destination: \(segue.destination)")
+                }
+                guard let selectedCookingCell = sender as? BookMarkTableViewCell else {
+                    fatalError("Unexpected sender: \(sender)")
+                }
+        
+                guard let indexPath = tableView.indexPath(for: selectedCookingCell) else {
+                    fatalError("The selected cell is not being displayed by the table")
+                }
+    
+                guard let selectCookingDecriptionArray = cookingDictionary[indexPath.row] else {
+                    return
+                }
+                cookingCourseController.cookingDescriptionArray = selectCookingDecriptionArray
+                
+                let cooking = cookings[indexPath.row]
+                cookingCourseController.cooking = cooking
+            default:
+                fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+        }
     }
 }
 
@@ -61,4 +91,7 @@ extension BookMarkViewController: UITableViewDataSource {
 extension BookMarkViewController: UITableViewDelegate {
     
 }
+
+
+
 

@@ -905,6 +905,7 @@
                                             <outlet property="bookMarkButton" destination="xir-Wa-TLw" id="zcT-TC-bxZ"/>
                                             <outlet property="bookMarkCookingImage" destination="Ls4-th-lkX" id="mKs-PC-ZBU"/>
                                             <outlet property="bookMarkCookingName" destination="MQ8-Ll-5xI" id="l8P-dg-boC"/>
+                                            <segue destination="bdx-jd-yUr" kind="show" identifier="bookMarkCookingCourse" id="FhX-wJ-uQK"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1238,6 +1239,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="PwQ-DY-npb"/>
+        <segue reference="1ie-PP-cGM"/>
         <segue reference="CxJ-fn-yKM"/>
         <segue reference="eHf-BD-2a8"/>
     </inferredMetricsTieBreakers>

@@ -32,10 +32,14 @@ class CookingRecipeController: UITableViewController {
     var cookingDictionary = [Int : [String]]()
     let sqlDataManager = SQLDataManager.init()
     var loadCooking = [Cooking]()
+    let myGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getCookingCourse()
+        getCookingCourse(cookings: cookings)
+        print("getCookingCourse.count: \(getCookingCourse(cookings: cookings).count)")
+        print("getCookingCourse: \(getCookingCourse(cookings: cookings))")
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -95,14 +99,15 @@ class CookingRecipeController: UITableViewController {
         }
     }
     
-    func getCookingCourse() {
-    
+    func getCookingCourse(cookings: [Cooking]) -> [Int : [String]] {
         for i in 0 ..< cookings.count {
-   
             let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000228_1//1/1000?RECIPE_ID=\(cookings[i].recipeId)"
             let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            guard let url = URL(string: encoded) else {return }
-           
+            guard let url = URL(string: encoded) else {
+                fatalError("no url")
+            }
+            print("url: \(url)")
+            myGroup.enter()
                 URLSession.shared.dataTask(with: url) { [self] data, response, err in
                     let task = DispatchWorkItem {
                         guard let data = data else {return}
@@ -114,16 +119,20 @@ class CookingRecipeController: UITableViewController {
                             cookingDescriptionArr = []
                             for j in 0 ..< cookingCourseCount {
                                 guard let cookingDescription = cookingCourseInfo?.Grid_20150827000000000228_1.row[j].COOKING_DC else {return}
+                               
                                 cookingDescriptionArr.append(cookingDescription)
                             }
                             cookingDictionary.updateValue(cookingDescriptionArr, forKey: i)
                         } catch let jsonArr {
                         }
+                        myGroup.leave()
                     }
                     self.cookingCourseQueue.sync(execute: task)
                 }
                 .resume()
         }
+        myGroup.wait(timeout: .distantFuture)
+        return cookingDictionary
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
