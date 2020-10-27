@@ -24,6 +24,13 @@ class FillInIngredientsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        let barButtonItem = UIBarItem()
+//
+//        barButtonItem.setTitleTextAttributes([
+//                NSAttributedString.Key.foregroundColor : UIColor.orange,
+//        ], for: .normal)
+  
         ingredientsName.delegate = self
         ingredientsMemo.delegate = self
         scrollView.delegate = self
@@ -176,10 +183,21 @@ extension FillInIngredientsController: UITextFieldDelegate {
   
   func textFieldDidEndEditing(_ textField: UITextField) {
          updateSaveButtonState()
+    navigationItem.rightBarButtonItem?.tintColor = UIColor.orange
+    
+    let barButtonItem = UIBarItem()
+
+        .setTitleTextAttributes([
+            NSAttributedString.Key.foregroundColor : UIColor.orange,
+    ], for: .normal)
+
   }
     
   func updateSaveButtonState() {
         let text = ingredientsName.text ?? ""
         saveButton.isEnabled = !text.isEmpty
+    if saveButton.isEnabled {
+        saveButton.tintColor = UIColor.orange
+    }
   }
 }

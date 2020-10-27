@@ -40,6 +40,8 @@ extension BookMarkViewController: UITableViewDataSource {
             return cell
         }
         bookMarkCell.cooking = cookings[indexPath.row]
+        
+        bookMarkCell.bookMarkButton.tag = indexPath.row
         bookMarkCell.bookMarkButton.addTarget(self, action: #selector(bookMarkbuttonPressed(_:)), for: .touchUpInside)
         return cell
     }
@@ -49,7 +51,9 @@ extension BookMarkViewController: UITableViewDataSource {
 
         let cooking = cookings[indexPath]
         sqlDataManager.deleteByRecipeId(recipeId: cooking.recipeId)
-       // tableView.reloadData()
+        print("------bookMark Delete: \(cooking.recipeId)------")
+        cookings.remove(at: indexPath)
+        tableView.reloadData()
     }
 }
 

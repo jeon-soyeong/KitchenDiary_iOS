@@ -517,6 +517,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="부엌 채우기" id="dYC-cN-m20">
                         <barButtonItem key="rightBarButtonItem" title="저장" id="rtd-0e-M6a">
+                            <color key="tintColor" red="1" green="0.52762569059999997" blue="0.1529166981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="TAU-OT-wsj" kind="unwind" unwindAction="unwindToIngredientslListWithSender:" id="xaq-o7-gcm"/>
                             </connections>

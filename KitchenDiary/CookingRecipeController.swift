@@ -26,11 +26,7 @@ struct CourseInfo: Codable {
 class CookingRecipeController: UITableViewController {
     
     //받음
-    var cookings = [Cooking]() {
-        didSet {
-            loadCooking = sqlDataManager.readCookings()
-        }
-    }
+    var cookings = [Cooking]() 
     let cookingCourseQueue = DispatchQueue(label: "cookingCourse")
     var cookingDescriptionArr = [String]()
     var cookingDictionary = [Int : [String]]()
@@ -43,8 +39,8 @@ class CookingRecipeController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //loadCooking = sqlDataManager.readCookings()
-       // tableView.reloadData()
+        loadCooking = sqlDataManager.readCookings()
+        tableView.reloadData()
     }
     
     // tabBar 이동
