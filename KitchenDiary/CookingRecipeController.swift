@@ -29,7 +29,6 @@ class CookingRecipeController: UITableViewController {
     var cookings = [Cooking]() {
         didSet {
             loadCooking = sqlDataManager.readCookings()
-            tableView.reloadData()
         }
     }
     let cookingCourseQueue = DispatchQueue(label: "cookingCourse")
@@ -40,9 +39,12 @@ class CookingRecipeController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad!!")
-        
         getCookingCourse()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //loadCooking = sqlDataManager.readCookings()
+       // tableView.reloadData()
     }
     
     // tabBar 이동
@@ -86,10 +88,14 @@ class CookingRecipeController: UITableViewController {
         if sender.isSelected == true {//delete
             sender.isSelected = false
             sqlDataManager.deleteByRecipeId(recipeId: cooking.recipeId)
+            print("-------delete: \(cooking.recipeId)-------")
+            
+           
         }
         else {// insert
             sender.isSelected = true
             sqlDataManager.insertCookings(cooking.recipeId, cooking.recipeName, cooking.imageUrl)
+            print("-------insert: \(cooking.recipeId), \(cooking.recipeName), \(cooking.imageUrl)-------")
         }
     }
     

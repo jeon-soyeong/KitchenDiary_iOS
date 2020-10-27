@@ -14,13 +14,17 @@ class BookMarkViewController: UIViewController {
     let sqlDataManager = SQLDataManager.init()
     var cookings = [Cooking]() {
         didSet {
-            tableView.reloadData()
+           
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         cookings = sqlDataManager.readCookings()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        cookings = sqlDataManager.readCookings()
+        tableView.reloadData()
     }
 }
 
