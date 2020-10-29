@@ -19,6 +19,14 @@ class DiaryDetailController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var textCount: UILabel!
     @IBOutlet weak var memoTextBottom: NSLayoutConstraint!
+    @IBOutlet weak var cookingName: UITextField!
+    var recipeName: String?
+    
+    // tabBar 이동
+    @IBAction func goToKitchenDiary(_ sender: Any) {
+        self.tabBarController?.selectedIndex = 3
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +45,8 @@ class DiaryDetailController: UIViewController {
         photoImageView.isUserInteractionEnabled = true
         
         textViewDidChange(memoText)
+        
+        cookingName.text = recipeName
     }
 }
 

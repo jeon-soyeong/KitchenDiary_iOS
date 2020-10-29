@@ -47,11 +47,6 @@ class CookingRecipeController: UITableViewController {
         tableView.reloadData()
     }
     
-    // tabBar 이동
-    @IBAction func goToKitchenDiary(_ sender: Any) {
-        self.tabBarController?.selectedIndex = 3
-    }
-    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -147,7 +142,7 @@ class CookingRecipeController: UITableViewController {
                 guard let selectedCookingCell = sender as? CookingTableViewCell else {
                     fatalError("Unexpected sender: \(sender)")
                 }
-        
+                
                 guard let indexPath = tableView.indexPath(for: selectedCookingCell) else {
                     fatalError("The selected cell is not being displayed by the table")
                 }
@@ -159,11 +154,26 @@ class CookingRecipeController: UITableViewController {
                 
                 let cooking = cookings[indexPath.row]
                 cookingCourseController.cooking = cooking
-            case "goToDetailDiary":
-                break
                 
-            default:
-                fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            case "goToDetailDiary":
+                guard let diaryDetailController = segue.destination as? DiaryDetailController else {
+                    fatalError("Unexpected destination: \(segue.destination)")
+                }
+                guard let goDiaryButton = sender as? UIButton else {
+                    fatalError("Unexpected sender: \(sender)")
+                }
+                
+                let buttonPosition:CGPoint = goDiaryButton.convert(CGPoint.zero, to:self.tableView)
+
+                guard let indexPath = self.tableView.indexPathForRow(at: buttonPosition)?.row else {
+                    fatalError("Unexpected indexPath")
+                }
+
+                let cookingName = cookings[indexPath].recipeName
+                print("cookings[indexPath.row].recipeName: \(cookings[indexPath].recipeName)")
+                diaryDetailController.recipeName = cookingName
+                
+        default: break
         }
     }
 
