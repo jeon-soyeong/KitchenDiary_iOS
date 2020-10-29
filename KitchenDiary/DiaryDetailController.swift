@@ -25,8 +25,15 @@ class DiaryDetailController: UIViewController {
     // tabBar 이동
     @IBAction func goToKitchenDiary(_ sender: Any) {
         self.tabBarController?.selectedIndex = 3
+        
+        //창 닫기
+        if let owningNavigationController = navigationController{
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The DiaryDetailController is not inside a navigation controller.")
+        }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

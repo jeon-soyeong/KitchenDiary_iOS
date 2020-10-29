@@ -163,7 +163,7 @@ class CookingRecipeController: UITableViewController {
                     fatalError("Unexpected sender: \(sender)")
                 }
                 
-                let buttonPosition:CGPoint = goDiaryButton.convert(CGPoint.zero, to:self.tableView)
+                let buttonPosition: CGPoint = goDiaryButton.convert(CGPoint.zero, to: self.tableView)
 
                 guard let indexPath = self.tableView.indexPathForRow(at: buttonPosition)?.row else {
                     fatalError("Unexpected indexPath")
