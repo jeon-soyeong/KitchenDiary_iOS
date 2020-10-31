@@ -12,33 +12,45 @@ import FSCalendar
 class DiaryController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     
     @IBOutlet weak var calendar: FSCalendar!
+    var cookingDiaries = [CookingDiary]()
+    var dataSentValue: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.tabBarController?.selectedIndex = 3
         self.calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.locale = Locale(identifier: "ko_KR")
-
-        // Do any additional setup after loading the view.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    //MARK: Actions
-    @IBAction func unwindToDiaryList (sender: UIStoryboardSegue) {
-        print("unwindToMealList 호출 1")
-        if let sourceViewController = sender.source as? DiaryDetailController {
-            print("unwindToMealList 호출 2")
+        print("1 cookingDiaries: \(cookingDiaries)")
+        print("2 dataSentValue: \(dataSentValue) ")
+        print("cookingDiaries.count: \(cookingDiaries.count)")
+        for i in 0 ..< cookingDiaries.count {
+            print("cookingDiaries[i].cookingName: \(cookingDiaries[i].cookingName)")
+            print("cookingDiaries[i].cookingPhoto: \(cookingDiaries[i].cookingPhoto)")
+            print("cookingDiaries[i].cookingRating: \(cookingDiaries[i].cookingRating)")
+            print("cookingDiaries[i].cookingMemo: \(cookingDiaries[i].cookingMemo)")
         }
     }
+}
+
+extension DiaryController: UITableViewDelegate,UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cookingDiaries.count
+      
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       
+        let cellIdentifier = "CookingDiaryTableViewCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        guard let cookingDiaryCell = cell as? CookingDiaryTableViewCell else {
+            return cell
+        }
+        cookingDiaryCell.cookingDiary = cookingDiaries[indexPath.row]
+        return cell
+    }
 }

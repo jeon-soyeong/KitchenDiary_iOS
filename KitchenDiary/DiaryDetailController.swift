@@ -9,23 +9,28 @@
 import UIKit
 import os.log
 
+//protocol CookingEvaluationProtocol {
+//    func sendCookingEvaluationData(dataSent: CookingDiary)
+//}
+
 class DiaryDetailController: UIViewController {
+    var recipeName: String?
+//    var delegate: CookingEvaluationProtocol?
+    var cookingDiary: CookingDiary?
     
-    @IBOutlet weak var memoHeight: NSLayoutConstraint!
-    @IBOutlet weak var viewHeight: NSLayoutConstraint!
-    @IBOutlet weak var memoText: UITextView!
+    @IBOutlet weak var cookingName: UITextField!
+    @IBOutlet weak var cookingPhoto: UIImageView!
+    @IBOutlet weak var cookingRating: RatingControl!
+    @IBOutlet weak var cookingMemoText: UITextView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var textCount: UILabel!
+    @IBOutlet weak var memoHeight: NSLayoutConstraint!
     @IBOutlet weak var memoTextBottom: NSLayoutConstraint!
-    @IBOutlet weak var cookingName: UITextField!
-    var recipeName: String?
+    @IBOutlet weak var viewHeight: NSLayoutConstraint!
     
     // tabBar 이동
-    @IBAction func goToKitchenDiary(_ sender: Any) {
-        self.tabBarController?.selectedIndex = 3
-        
+    @IBAction func goToKitchenDiary(_ sender: UIBarButtonItem) {
         //창 닫기
         if let owningNavigationController = navigationController{
             owningNavigationController.popViewController(animated: true)
@@ -33,13 +38,33 @@ class DiaryDetailController: UIViewController {
         else {
             fatalError("The DiaryDetailController is not inside a navigation controller.")
         }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "DiaryViewContorller") as? DiaryController else {
+            return
+        }
+        print("vc: \(vc)")
+        
+        let name = cookingName.text ?? ""
+        let photo = cookingPhoto.image
+        let rating = cookingRating.rating
+        let memo = cookingMemoText.text ?? ""
+        
+        print("보낼 data: name: \(name), photo: \(photo), rating: \(rating), memo: \(memo)")
+        
+        guard let cookingDiary = CookingDiary(cookingName: name, cookingPhoto: photo, cookingRating: rating, cookingMemo: memo) else {
+            return
+        }
+        vc.cookingDiaries.append(cookingDiary)
+        vc.dataSentValue = "sending succcess"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.memoText.layer.borderWidth = 1.0
-        self.memoText.layer.borderColor = UIColor.black.cgColor
-        memoText.delegate = self
+        self.cookingMemoText.layer.borderWidth = 1.0
+        self.cookingMemoText.layer.borderColor = UIColor.black.cgColor
+        cookingMemoText.delegate = self
         scrollView.delegate = self
         
         registerForKeyboardNotification()
@@ -49,9 +74,9 @@ class DiaryDetailController: UIViewController {
         singleTapGestureRecognizer.isEnabled = true
         singleTapGestureRecognizer.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(singleTapGestureRecognizer)
-        photoImageView.isUserInteractionEnabled = true
+        cookingPhoto.isUserInteractionEnabled = true
         
-        textViewDidChange(memoText)
+        textViewDidChange(cookingMemoText)
         
         cookingName.text = recipeName
     }
@@ -84,10 +109,10 @@ extension DiaryDetailController: UITextViewDelegate {
         textCount.text = memoCount
     }
     
-    //memoText.frame.height이 0보다 작으면 backspace 안되게 하기
+    //cookingMemoText.frame.height이 0보다 작으면 backspace 안되게 하기
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
-        let originMemoTextSize = memoText.frame.height
+        let originMemoTextSize = cookingMemoText.frame.height
         if text == "" && range.length > 0 {
             if originMemoTextSize < 0 {
                 return false
@@ -95,7 +120,7 @@ extension DiaryDetailController: UITextViewDelegate {
         }
         
         //글자수 200으로 제한하기
-        let currentText = memoText.text ?? ""
+        let currentText = cookingMemoText.text ?? ""
 
        // attempt to read the range they are trying to change, or exit if we can't
        guard let stringRange = Range(range, in: currentText) else { return false }
@@ -137,8 +162,8 @@ extension DiaryDetailController: UIImagePickerControllerDelegate, UINavigationCo
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
 
-        // Set photoImageView to display the selected image.
-        photoImageView.image = selectedImage
+        // Set cookingPhoto to display the selected image.
+        cookingPhoto.image = selectedImage
 
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)

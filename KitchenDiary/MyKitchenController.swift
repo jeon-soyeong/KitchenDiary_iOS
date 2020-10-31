@@ -92,7 +92,7 @@ class MyKitchenController: UITableViewController {
                 fatalError ("The dequeued cell is not an instance of IngredientTableViewCell.")
         }
 
-       let ingredient = ingredients[indexPath.row ]
+       let ingredient = ingredients[indexPath.row]
 
        cell.ingredientsName.text = ingredient.name
        cell.storageMethod.text = ingredient.storageMethod
