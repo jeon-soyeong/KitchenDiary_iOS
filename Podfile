@@ -4,6 +4,7 @@ target 'KitchenDiary' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'FSCalendar'
+  pod 'sqlite3'
   # Pods for KitchenDiary
 
   target 'KitchenDiaryTests' do

@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIBarButtonItem.appearance().setTitleTextAttributes(
         [
             NSAttributedString.Key.font : UIFont(name: "KoreanPGSB", size: 19)!,
-            NSAttributedString.Key.foregroundColor : UIColor.lightGray,
+            NSAttributedString.Key.foregroundColor : UIColor.orange,
         ], for: .normal)
         
         return true

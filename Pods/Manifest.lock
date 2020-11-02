@@ -1,16 +1,22 @@
 PODS:
   - FSCalendar (2.8.1)
+  - sqlite3 (3.33.0):
+    - sqlite3/common (= 3.33.0)
+  - sqlite3/common (3.33.0)
 
 DEPENDENCIES:
   - FSCalendar
+  - sqlite3
 
 SPEC REPOS:
   trunk:
     - FSCalendar
+    - sqlite3
 
 SPEC CHECKSUMS:
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
+  sqlite3: cd6cd1a4ee50b8b5fdad2940bd05b1c1d2659efc
 
-PODFILE CHECKSUM: 50545c547db2c6ed45948a62d7128aed37389ffe
+PODFILE CHECKSUM: 1e495f9f1d3cd035a34472c5696b0862765bcec1
 
 COCOAPODS: 1.9.3
