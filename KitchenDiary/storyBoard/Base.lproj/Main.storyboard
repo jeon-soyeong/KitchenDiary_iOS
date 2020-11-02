@@ -966,36 +966,40 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c0f-mD-7NK">
-                                                                    <rect key="frame" x="18" y="7" width="90" height="90"/>
+                                                                    <rect key="frame" x="18" y="7" width="92.5" height="90"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="90" id="1TJ-lv-uXb"/>
+                                                                        <constraint firstAttribute="width" constant="92.5" id="1TJ-lv-uXb"/>
                                                                         <constraint firstAttribute="height" constant="90" id="sRd-1X-ftb"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZ5-Vz-DW3">
-                                                                    <rect key="frame" x="122" y="18" width="43" height="21"/>
-                                                                    <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="18"/>
+                                                                    <rect key="frame" x="127.5" y="10" width="49.5" height="48"/>
+                                                                    <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="22"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9M1-b6-pcs" customClass="RatingControl" customModule="KitchenDiary" customModuleProvider="target">
-                                                                    <rect key="frame" x="119" y="52" width="233" height="40"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="232" id="IH0-ne-pjC"/>
-                                                                        <constraint firstAttribute="height" constant="40" id="OmM-6a-9xT"/>
-                                                                    </constraints>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="9M1-b6-pcs" customClass="RatingControl" customModule="KitchenDiary" customModuleProvider="target">
+                                                                    <rect key="frame" x="130.5" y="63" width="108" height="19"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="size" keyPath="starSize">
+                                                                            <size key="value" width="20" height="19"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="starCount">
+                                                                            <integer key="value" value="5"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </stackView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="TZ5-Vz-DW3" secondAttribute="trailing" constant="205" id="F8m-Y1-bhA"/>
-                                                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="9M1-b6-pcs" secondAttribute="trailing" constant="18" id="Tcn-XW-M8n"/>
-                                                                <constraint firstAttribute="bottom" secondItem="9M1-b6-pcs" secondAttribute="bottom" constant="12" id="Zjk-wZ-6m1"/>
+                                                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="9M1-b6-pcs" secondAttribute="trailing" constant="150" id="Tcn-XW-M8n"/>
+                                                                <constraint firstAttribute="bottom" secondItem="9M1-b6-pcs" secondAttribute="bottom" constant="22" id="Zjk-wZ-6m1"/>
                                                                 <constraint firstAttribute="bottom" secondItem="c0f-mD-7NK" secondAttribute="bottom" constant="7" id="a8m-zq-kJd"/>
-                                                                <constraint firstItem="TZ5-Vz-DW3" firstAttribute="top" secondItem="eyD-8i-rv9" secondAttribute="top" constant="18" id="fDD-o5-ZWW"/>
-                                                                <constraint firstItem="TZ5-Vz-DW3" firstAttribute="leading" secondItem="c0f-mD-7NK" secondAttribute="trailing" constant="14" id="gb2-pA-fqY"/>
-                                                                <constraint firstItem="9M1-b6-pcs" firstAttribute="leading" secondItem="c0f-mD-7NK" secondAttribute="trailing" constant="11" id="kdz-1A-iIh"/>
+                                                                <constraint firstItem="TZ5-Vz-DW3" firstAttribute="top" secondItem="eyD-8i-rv9" secondAttribute="top" constant="10" id="fDD-o5-ZWW"/>
+                                                                <constraint firstItem="TZ5-Vz-DW3" firstAttribute="leading" secondItem="c0f-mD-7NK" secondAttribute="trailing" constant="17" id="gb2-pA-fqY"/>
+                                                                <constraint firstItem="9M1-b6-pcs" firstAttribute="leading" secondItem="c0f-mD-7NK" secondAttribute="trailing" constant="20" id="kdz-1A-iIh"/>
                                                                 <constraint firstItem="c0f-mD-7NK" firstAttribute="top" secondItem="eyD-8i-rv9" secondAttribute="top" constant="7" id="upU-vH-Lg6"/>
-                                                                <constraint firstItem="9M1-b6-pcs" firstAttribute="top" secondItem="TZ5-Vz-DW3" secondAttribute="bottom" constant="13" id="vJF-de-OMe"/>
+                                                                <constraint firstItem="9M1-b6-pcs" firstAttribute="top" secondItem="TZ5-Vz-DW3" secondAttribute="bottom" constant="5" id="vJF-de-OMe"/>
                                                                 <constraint firstItem="c0f-mD-7NK" firstAttribute="leading" secondItem="eyD-8i-rv9" secondAttribute="leading" constant="18" id="yWP-kJ-FLG"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
