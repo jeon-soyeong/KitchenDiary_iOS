@@ -34,7 +34,7 @@ public class CookingEvaluationDataManager {
     }
     
     func createTable() {
-        let createTableString = "CREATE TABLE IF NOT EXISTS CookingEvaluation(CookingName TEXT,CookingPhoto BLOB,CookingRating INTEGER,CookingMemo TEXT);"
+        let createTableString = "CREATE TABLE IF NOT EXISTS CookingEvaluation(cookingName TEXT,cookingPhoto BLOB,cookingRating INTEGER,cookingMemo TEXT);"
         var createTableStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK {
             if sqlite3_step(createTableStatement) == SQLITE_DONE {
@@ -49,31 +49,23 @@ public class CookingEvaluationDataManager {
     }
         
     
-    func insertCookingEvaluations(_ CookingName: String, _ CookingPhoto: UIImage, _ CookingRating: Int, _ CookingMemo: String) {
+    func insertCookingEvaluations(_ cookingName: String, _ cookingPhoto: UIImage, _ cookingRating: Int, _ cookingMemo: String) {
            //(1) insert sql문
-        guard let data = CookingPhoto.pngData() as NSData? else {
-            return
-        }
-        print("imageData: \(data)")
            let insertStatementString = "INSERT INTO CookingEvaluation (CookingName, CookingPhoto, CookingRating, CookingMemo) VALUES (?, ?, ?, ?);"
            //(2) 쿼리 저장 변수
            var stmt: OpaquePointer? //query를 가리키는 포인터
+           guard let data = cookingPhoto.pngData() as NSData? else {
+                return
+           }
        
-           if sqlite3_prepare_v2(db, insertStatementString, -1, &stmt, nil) == SQLITE_OK{
-//            let imageURL =  Bundle.main.url(forResource: "0", withExtension: "png")!
-//            let imageData = try! Data(contentsOf: imageURL)
-            
-            sqlite3_bind_text(stmt, 1, CookingName, -1, nil)
+           if sqlite3_prepare_v2(db, insertStatementString, -1, &stmt, nil) == SQLITE_OK {
+
+            sqlite3_bind_text(stmt, 1, cookingName, -1, nil)
             sqlite3_bind_blob(stmt, 2, data.bytes, Int32(data.length), nil)
-            sqlite3_bind_int(stmt, 3, Int32(CookingRating))
-            sqlite3_bind_text(stmt, 4, CookingMemo, -1, nil)
+            sqlite3_bind_int(stmt, 3, Int32(cookingRating))
+            sqlite3_bind_text(stmt, 4, cookingMemo, -1, nil)
              
                if sqlite3_step(stmt) == SQLITE_DONE{
-                print("..CookingName: \(CookingName)")
-                print("..CookingName: \(CookingPhoto)")
-                print("..CookingName: \(CookingRating)")
-                print("..CookingName: \(CookingMemo)")
-                
                    print("\nInsert row Success")
                }else{
                    print("\nInsert row Faild")
@@ -87,7 +79,7 @@ public class CookingEvaluationDataManager {
     }
     
     func readCookingEvaluations() -> [CookingDiary] {
-            let queryStatementString = "SELECT * FROM CookingEvaluation;"
+            let queryStatementString = "SELECT *, rowid FROM CookingEvaluation;"
             var queryStatement: OpaquePointer? = nil
             var cookingDiaries : [CookingDiary] = []
             if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
@@ -106,14 +98,15 @@ public class CookingEvaluationDataManager {
                   
                     let cookingRating = sqlite3_column_int(queryStatement, 2)
                     let cookingMemo = String(describing: String(cString: sqlite3_column_text(queryStatement, 3)))
+                    let cookingIndex = sqlite3_column_int(queryStatement, 4)
                  
-                    guard let cookingDiary = CookingDiary(cookingName: cookingName, cookingPhoto: cookingPhoto, cookingRating: Int(cookingRating), cookingMemo: cookingMemo) else {
+                    guard let cookingDiary = CookingDiary(cookingName: cookingName, cookingPhoto: cookingPhoto, cookingRating: Int(cookingRating), cookingMemo: cookingMemo, cookingIndex: Int(cookingIndex)) else {
                         fatalError("no cookingDiary")
                     }
                     
                     cookingDiaries.append(cookingDiary)
                     print("Query Result:")
-                    print("\(cookingName) | \(cookingPhoto) | \(cookingRating) | \(cookingMemo) ")
+                    print("\(cookingName) | \(cookingPhoto) | \(cookingRating) | \(cookingMemo) | \(cookingIndex) ")
                 }
             } else {
                 print("SELECT statement could not be prepared")
@@ -122,11 +115,11 @@ public class CookingEvaluationDataManager {
             return cookingDiaries
     }
     
-    func deleteByRecipeId(recipeId: Int) {
-            let deleteStatementStirng = "DELETE FROM Cooking WHERE recipeId = ?;"
+    func deleteByCookingIndex(cookingIndex: Int) {
+            let deleteStatementStirng = "DELETE FROM CookingEvaluation WHERE rowid = ?;"
             var deleteStatement: OpaquePointer? = nil
             if sqlite3_prepare_v2(db, deleteStatementStirng, -1, &deleteStatement, nil) == SQLITE_OK {
-                sqlite3_bind_int(deleteStatement, 1, Int32(recipeId))
+                sqlite3_bind_int(deleteStatement, 1, Int32(cookingIndex))
                 if sqlite3_step(deleteStatement) == SQLITE_DONE {
                     print("Successfully deleted row.")
                 } else {
@@ -136,6 +129,6 @@ public class CookingEvaluationDataManager {
                 print("DELETE statement could not be prepared")
             }
             sqlite3_finalize(deleteStatement)
-        }
+    }
 
 }

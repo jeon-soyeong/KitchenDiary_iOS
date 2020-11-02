@@ -52,4 +52,20 @@ extension DiaryController: UITableViewDelegate,UITableViewDataSource {
         cookingDiaryCell.cookingDiary = cookingDiaries[indexPath.row]
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let cookingDiary = cookingDiaries[indexPath.row]
+            print("delete cookingIndex: \(cookingDiary.cookingIndex)")
+            print("delete cookingName: \(cookingDiary.cookingName)")
+           
+            cookingEvaluationDataManager.deleteByCookingIndex(cookingIndex: cookingDiary.cookingIndex)
+            cookingDiaries.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 }

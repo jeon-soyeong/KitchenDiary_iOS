@@ -15,31 +15,36 @@ class CookingDiary: NSObject {
     var cookingPhoto: UIImage?
     var cookingRating: Int
     var cookingMemo: String
+    var cookingIndex: Int
     
 //    //MARK: Archiving Paths
 //    static let DoumentsDirectory = FileManager().urls(for: .documentDirectory, in:.userDomainMask).first!
 //    static let ArchiveURL = DoumentsDirectory.appendingPathComponent("cookingDiaries")
     
-    //MARK: Types
-    struct  PropertyKey {
-        static let cookingName = "cookingName"
-        static let cookingPhoto = "cookingPhoto"
-        static let cookingRating = "cookingRating"
-        static let cookingMemo = "cookingMemo"
-    }
+//    //MARK: Types
+//    struct  PropertyKey {
+//        static let cookingName = "cookingName"
+//        static let cookingPhoto = "cookingPhoto"
+//        static let cookingRating = "cookingRating"
+//        static let cookingMemo = "cookingMemo"
+//    }
     
     //MARK: Initialization
-    init?(cookingName: String, cookingPhoto: UIImage?, cookingRating: Int, cookingMemo: String) {
+    init?(cookingName: String, cookingPhoto: UIImage?, cookingRating: Int, cookingMemo: String, cookingIndex: Int) {
         guard !cookingName.isEmpty || !cookingMemo.isEmpty else {
             return nil
         }
         guard (cookingRating >= 0) && (cookingRating <= 5) else {
             return nil
         }
+        guard cookingIndex >= 0 else {
+            return nil
+        }
         self.cookingName = cookingName
         self.cookingPhoto = cookingPhoto
         self.cookingRating = cookingRating
         self.cookingMemo = cookingMemo
+        self.cookingIndex = cookingIndex
     }
     
 //    //MARK: NSCoding  --> 데이터 지속성과 관련됨
