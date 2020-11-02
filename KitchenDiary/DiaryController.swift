@@ -14,23 +14,21 @@ class DiaryController: UIViewController, FSCalendarDelegate, FSCalendarDataSourc
     @IBOutlet weak var calendar: FSCalendar!
     var cookingDiaries = [CookingDiary]()
     var dataSentValue: String = ""
+    let cookingEvaluationDataManager = CookingEvaluationDataManager.init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.tabBarController?.selectedIndex = 3
+     
         self.calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.locale = Locale(identifier: "ko_KR")
-        print("1 cookingDiaries: \(cookingDiaries)")
-        print("2 dataSentValue: \(dataSentValue) ")
-        print("cookingDiaries.count: \(cookingDiaries.count)")
-        for i in 0 ..< cookingDiaries.count {
-            print("cookingDiaries[i].cookingName: \(cookingDiaries[i].cookingName)")
-            print("cookingDiaries[i].cookingPhoto: \(cookingDiaries[i].cookingPhoto)")
-            print("cookingDiaries[i].cookingRating: \(cookingDiaries[i].cookingRating)")
-            print("cookingDiaries[i].cookingMemo: \(cookingDiaries[i].cookingMemo)")
-        }
+       
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        cookingDiaries = cookingEvaluationDataManager.readCookingEvaluations()
+        print("cookingDiaries: \(cookingDiaries)")
     }
 }
+
 
 extension DiaryController: UITableViewDelegate,UITableViewDataSource {
     

@@ -31,6 +31,19 @@ class DiaryDetailController: UIViewController {
     
     // tabBar 이동
     @IBAction func goToKitchenDiary(_ sender: UIBarButtonItem) {
+       
+        let name = cookingName.text ?? ""
+        guard let photo = cookingPhoto.image else {
+            return
+        }
+        let rating = cookingRating.rating
+        let memo = cookingMemoText.text ?? ""
+       
+        //DB 저장하기
+        let cookingEvaluationDataManager = CookingEvaluationDataManager.init()
+        cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo)
+        print("보낼 data: name: \(name), photo: \(photo), rating: \(rating), memo: \(memo)")
+        
         //창 닫기
         if let owningNavigationController = navigationController{
             owningNavigationController.popViewController(animated: true)
@@ -39,29 +52,13 @@ class DiaryDetailController: UIViewController {
             fatalError("The DiaryDetailController is not inside a navigation controller.")
         }
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: "DiaryViewContorller") as? DiaryController else {
-            return
-        }
-        print("vc: \(vc)")
-        
-        let name = cookingName.text ?? ""
-        let photo = cookingPhoto.image
-        let rating = cookingRating.rating
-        let memo = cookingMemoText.text ?? ""
-        
-        print("보낼 data: name: \(name), photo: \(photo), rating: \(rating), memo: \(memo)")
-        
-        guard let cookingDiary = CookingDiary(cookingName: name, cookingPhoto: photo, cookingRating: rating, cookingMemo: memo) else {
-            return
-        }
-        vc.cookingDiaries.append(cookingDiary)
-        vc.dataSentValue = "sending succcess"
-        self.navigationController?.pushViewController(vc, animated: true)
+        //tabBar 이동하기
+        self.tabBarController?.selectedIndex = 3
     }
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         self.cookingMemoText.layer.borderWidth = 1.0
         self.cookingMemoText.layer.borderColor = UIColor.black.cgColor
         cookingMemoText.delegate = self

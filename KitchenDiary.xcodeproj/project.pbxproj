@@ -12,6 +12,7 @@
 		9B0F4D18254489930077E4D9 /* SQLDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0F4D17254489930077E4D9 /* SQLDataManager.swift */; };
 		9B1F1FD02514A481002487F7 /* MyKitchenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F1FCF2514A481002487F7 /* MyKitchenController.swift */; };
 		9B213CF3254BF461006C7625 /* CookingDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B213CF2254BF461006C7625 /* CookingDiaryTableViewCell.swift */; };
+		9B213D39254EB2DA006C7625 /* CookingEvaluationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B213D38254EB2DA006C7625 /* CookingEvaluationDataManager.swift */; };
 		9B2715B12537FC72003CA18D /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2715B02537FC72003CA18D /* IngredientTableViewCell.swift */; };
 		9B309992254BDA44009D067D /* CookingDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B309991254BDA44009D067D /* CookingDiary.swift */; };
 		9B3540B825406A2300343FEB /* Cooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3540B725406A2300343FEB /* Cooking.swift */; };
@@ -53,6 +54,7 @@
 		9B0F4D17254489930077E4D9 /* SQLDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLDataManager.swift; sourceTree = "<group>"; };
 		9B1F1FCF2514A481002487F7 /* MyKitchenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKitchenController.swift; sourceTree = "<group>"; };
 		9B213CF2254BF461006C7625 /* CookingDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingDiaryTableViewCell.swift; sourceTree = "<group>"; };
+		9B213D38254EB2DA006C7625 /* CookingEvaluationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingEvaluationDataManager.swift; sourceTree = "<group>"; };
 		9B2715B02537FC72003CA18D /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B309991254BDA44009D067D /* CookingDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingDiary.swift; sourceTree = "<group>"; };
 		9B3540B725406A2300343FEB /* Cooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cooking.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				9B144F7225440CD8001307D5 /* storyBoard */,
 				9B0F4D17254489930077E4D9 /* SQLDataManager.swift */,
+				9B213D38254EB2DA006C7625 /* CookingEvaluationDataManager.swift */,
 				9B3540B725406A2300343FEB /* Cooking.swift */,
 				9B98930E2512498B00589B5B /* AppDelegate.swift */,
 				9B96C3F4253B5FC000F1CB1C /* CookingRecipeController.swift */,
@@ -380,6 +383,7 @@
 				9B5413E42519FB5A00071544 /* DiaryController.swift in Sources */,
 				9B309992254BDA44009D067D /* CookingDiary.swift in Sources */,
 				9B3540B825406A2300343FEB /* Cooking.swift in Sources */,
+				9B213D39254EB2DA006C7625 /* CookingEvaluationDataManager.swift in Sources */,
 				9B481F5F25413B31001FAFC8 /* CookingTableViewCell.swift in Sources */,
 				9BF6FB4F254736F200DEF139 /* BookMarkViewController.swift in Sources */,
 				9B9893132512498B00589B5B /* ViewController.swift in Sources */,
