@@ -42,7 +42,6 @@ class DiaryDetailController: UIViewController {
         //DB 저장하기
         let cookingEvaluationDataManager = CookingEvaluationDataManager.init()
         cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo)
-        print("보낼 data: name: \(name), photo: \(photo), rating: \(rating), memo: \(memo)")
         
         //창 닫기
         if let owningNavigationController = navigationController{

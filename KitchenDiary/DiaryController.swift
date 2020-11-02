@@ -11,6 +11,7 @@ import FSCalendar
 
 class DiaryController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     var cookingDiaries = [CookingDiary]()
     var dataSentValue: String = ""
@@ -25,7 +26,7 @@ class DiaryController: UIViewController, FSCalendarDelegate, FSCalendarDataSourc
     }
     override func viewWillAppear(_ animated: Bool) {
         cookingDiaries = cookingEvaluationDataManager.readCookingEvaluations()
-        print("cookingDiaries: \(cookingDiaries)")
+        tableView.reloadData()
     }
 }
 
