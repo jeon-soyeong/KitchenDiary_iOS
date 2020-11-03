@@ -50,21 +50,17 @@ public class CookingEvaluationDataManager {
         
     
     func insertCookingEvaluations(_ cookingName: String, _ cookingPhoto: UIImage, _ cookingRating: Int, _ cookingMemo: String) {
-           //(1) insert sql문
            let insertStatementString = "INSERT INTO CookingEvaluation (CookingName, CookingPhoto, CookingRating, CookingMemo) VALUES (?, ?, ?, ?);"
-           //(2) 쿼리 저장 변수
            var stmt: OpaquePointer? //query를 가리키는 포인터
            guard let data = cookingPhoto.pngData() as NSData? else {
                 return
            }
-       
-           if sqlite3_prepare_v2(db, insertStatementString, -1, &stmt, nil) == SQLITE_OK {
 
+           if sqlite3_prepare_v2(db, insertStatementString, -1, &stmt, nil) == SQLITE_OK {
             sqlite3_bind_text(stmt, 1, cookingName, -1, nil)
             sqlite3_bind_blob(stmt, 2, data.bytes, Int32(data.length), nil)
             sqlite3_bind_int(stmt, 3, Int32(cookingRating))
             sqlite3_bind_text(stmt, 4, cookingMemo, -1, nil)
-             
                if sqlite3_step(stmt) == SQLITE_DONE{
                    print("\nInsert row Success")
                }else{
@@ -76,6 +72,39 @@ public class CookingEvaluationDataManager {
                print("\nInsert Statement is not prepared")
            }
            sqlite3_finalize(stmt)
+    }
+    
+    func updateCookingEvaluations(_ cookingName: String, _ cookingPhoto: UIImage, _ cookingRating: Int, _ cookingMemo: String, _ cookingIndex: Int) {
+       
+        let updateStatementString =  "UPDATE CookingEvaluation SET cookingName = ?, cookingPhoto = ?, cookingRating = ?, cookingMemo = ? WHERE rowid = ?;"
+        var stmt: OpaquePointer? //query를 가리키는 포인터
+        if sqlite3_prepare_v2(db, updateStatementString, -1, &stmt, nil) == SQLITE_OK {
+            guard let data = cookingPhoto.pngData() as NSData? else {
+                 return
+            }
+            print("전달받은 cookingName: \(cookingName)")
+            print("전달받은 cookingPhoto: \(cookingPhoto)")
+            print("전달받은 cookingRating: \(cookingRating)")
+            print("전달받은 cookingMemo: \(cookingMemo)")
+            print("전달받은 cookingIndex: \(cookingIndex)")
+            sqlite3_bind_text(stmt, 1, cookingName, -1, nil)
+            sqlite3_bind_blob(stmt, 2, data.bytes, Int32(data.length), nil)
+            sqlite3_bind_int(stmt, 3, Int32(cookingRating))
+            sqlite3_bind_text(stmt, 4, cookingMemo, -1, nil)
+            sqlite3_bind_int(stmt, 5, Int32(cookingIndex))
+    
+            if sqlite3_step(stmt) == SQLITE_DONE{
+                print("\nUpdate row Success")
+                print("updateStatement: \(updateStatementString)")
+            }else{
+                print("\nUpdate row Faild")
+            }
+        }else{
+             let errmsg = String(cString: sqlite3_errmsg(db)!)
+             print("error preparing update: \(errmsg)")
+            print("\nUpdate Statement is not prepared")
+        }
+        sqlite3_finalize(stmt)
     }
     
     func readCookingEvaluations() -> [CookingDiary] {

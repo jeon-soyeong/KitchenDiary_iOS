@@ -46,6 +46,10 @@ class CookingDiary: NSObject {
         self.cookingMemo = cookingMemo
         self.cookingIndex = cookingIndex
     }
+    convenience init(cookingName: String, cookingPhoto: UIImage?, cookingRating: Int, cookingMemo: String) {
+        self.init(cookingName: cookingName, cookingPhoto: cookingPhoto, cookingRating:  cookingRating, cookingMemo: cookingMemo)
+        
+    }
     
 //    //MARK: NSCoding  --> 데이터 지속성과 관련됨
 //    func encode(with aCoder: NSCoder) {

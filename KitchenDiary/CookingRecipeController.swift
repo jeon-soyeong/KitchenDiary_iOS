@@ -172,6 +172,7 @@ class CookingRecipeController: UITableViewController {
                 let cookingName = cookings[indexPath].recipeName
                 print("cookings[indexPath.row].recipeName: \(cookings[indexPath].recipeName)")
                 diaryDetailController.recipeName = cookingName
+                diaryDetailController.saveButtonMode = "save"
         default: break
         }
     }

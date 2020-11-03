@@ -15,8 +15,8 @@ import os.log
 
 class DiaryDetailController: UIViewController {
     var recipeName: String?
-//    var delegate: CookingEvaluationProtocol?
     var cookingDiary: CookingDiary?
+    var saveButtonMode: String?
     
     @IBOutlet weak var cookingName: UITextField!
     @IBOutlet weak var cookingPhoto: UIImageView!
@@ -38,10 +38,16 @@ class DiaryDetailController: UIViewController {
         }
         let rating = cookingRating.rating
         let memo = cookingMemoText.text ?? ""
+        guard let index = cookingDiary?.cookingIndex else {
+            return
+        }
        
         //DB 저장하기
         let cookingEvaluationDataManager = CookingEvaluationDataManager.init()
         cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo)
+        if saveButtonMode! == "save" {
+            print("save...")
+        }
         
         //창 닫기
         if let owningNavigationController = navigationController{
@@ -57,6 +63,17 @@ class DiaryDetailController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set up views if editing an existing Ingredients.
+          if let cookingDiary = cookingDiary {
+            cookingName.text = cookingDiary.cookingName
+            print("cookingDiary.cookingName: \(cookingDiary.cookingName)")
+            cookingPhoto.image = cookingDiary.cookingPhoto
+            cookingRating.rating = cookingDiary.cookingRating
+            cookingMemoText.text = cookingDiary.cookingMemo
+            
+            //updateSaveButtonState()
+         }
       
         self.cookingMemoText.layer.borderWidth = 1.0
         self.cookingMemoText.layer.borderColor = UIColor.black.cgColor
@@ -74,8 +91,28 @@ class DiaryDetailController: UIViewController {
         
         textViewDidChange(cookingMemoText)
         
-        cookingName.text = recipeName
+        cookingName.placeholder = recipeName
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        super.prepare(for: segue, sender: sender)
+//
+//    guard let button = sender as? UIBarButtonItem, button === saveButton else{
+//     print("saveButton 호출")
+//      os_log ( "The save button was not pressed, cancelling" , log : OSLog . default , type : . debug )
+//        return
+//    }
+//        let name = cookingName.text ?? ""
+//        let photo =  cookingPhoto.image
+//        let rating = cookingRating.rating
+//        let memo = cookingMemoText.text ?? ""
+//        guard let index = cookingDiary?.cookingIndex else {
+//            return
+//        }
+//        print("DiaryDetail cookingDiary : \(name), \(photo), \(rating), \(memo), \(index)")
+//    // 보낼
+//        cookingDiary = CookingDiary(cookingName: name, cookingPhoto: photo, cookingRating: rating, cookingMemo: memo, cookingIndex: index)
+//    }
 }
 
 
