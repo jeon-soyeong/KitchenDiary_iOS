@@ -38,16 +38,10 @@ class DiaryDetailController: UIViewController {
         }
         let rating = cookingRating.rating
         let memo = cookingMemoText.text ?? ""
-        guard let index = cookingDiary?.cookingIndex else {
-            return
-        }
        
         //DB 저장하기
         let cookingEvaluationDataManager = CookingEvaluationDataManager.init()
         cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo)
-        if saveButtonMode! == "save" {
-            print("save...")
-        }
         
         //창 닫기
         if let owningNavigationController = navigationController{
@@ -94,25 +88,25 @@ class DiaryDetailController: UIViewController {
         cookingName.placeholder = recipeName
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        super.prepare(for: segue, sender: sender)
-//
-//    guard let button = sender as? UIBarButtonItem, button === saveButton else{
-//     print("saveButton 호출")
-//      os_log ( "The save button was not pressed, cancelling" , log : OSLog . default , type : . debug )
-//        return
-//    }
-//        let name = cookingName.text ?? ""
-//        let photo =  cookingPhoto.image
-//        let rating = cookingRating.rating
-//        let memo = cookingMemoText.text ?? ""
-//        guard let index = cookingDiary?.cookingIndex else {
-//            return
-//        }
-//        print("DiaryDetail cookingDiary : \(name), \(photo), \(rating), \(memo), \(index)")
-//    // 보낼
-//        cookingDiary = CookingDiary(cookingName: name, cookingPhoto: photo, cookingRating: rating, cookingMemo: memo, cookingIndex: index)
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+    guard let button = sender as? UIBarButtonItem, button === saveButton else{
+     print("saveButton 호출")
+      os_log ( "The save button was not pressed, cancelling" , log : OSLog . default , type : . debug )
+        return
+    }
+        let name = cookingName.text ?? ""
+        let photo =  cookingPhoto.image
+        let rating = cookingRating.rating
+        let memo = cookingMemoText.text ?? ""
+        guard let index = cookingDiary?.cookingIndex else {
+            return
+        }
+        print("DiaryDetail cookingDiary : \(name), \(photo), \(rating), \(memo), \(index)")
+    // 보낼
+        cookingDiary = CookingDiary(cookingName: name, cookingPhoto: photo, cookingRating: rating, cookingMemo: memo, cookingIndex: index)
+    }
 }
 
 

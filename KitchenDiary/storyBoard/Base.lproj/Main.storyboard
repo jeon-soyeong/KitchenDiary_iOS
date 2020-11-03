@@ -951,13 +951,13 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZ5-Vz-DW3">
-                                                                    <rect key="frame" x="127.5" y="10" width="49.5" height="50"/>
+                                                                    <rect key="frame" x="127.5" y="10" width="49.5" height="22"/>
                                                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="22"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="9M1-b6-pcs" customClass="RatingControl" customModule="KitchenDiary" customModuleProvider="target">
-                                                                    <rect key="frame" x="130.5" y="65" width="109" height="19"/>
+                                                                    <rect key="frame" x="130.5" y="37" width="109" height="47"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="size" keyPath="starSize">
                                                                             <size key="value" width="20" height="19"/>
