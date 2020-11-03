@@ -38,10 +38,20 @@ class DiaryDetailController: UIViewController {
         }
         let rating = cookingRating.rating
         let memo = cookingMemoText.text ?? ""
-       
+        print("saveButtonMode : \(saveButtonMode)")
         //DB 저장하기
         let cookingEvaluationDataManager = CookingEvaluationDataManager.init()
-        cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo)
+        if saveButtonMode == "save" {
+            print("saving")
+            cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo)
+        }
+        if saveButtonMode == "edit" {
+            print("editing")
+            guard let index = cookingDiary?.cookingIndex else {
+                return
+            }
+            cookingEvaluationDataManager.updateCookingEvaluations(name, photo, rating, memo, index)
+        }
         
         //창 닫기
         if let owningNavigationController = navigationController{
