@@ -67,7 +67,6 @@ class DiaryDetailController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Set up views if editing an existing Ingredients.
           if let cookingDiary = cookingDiary {
             cookingName.text = cookingDiary.cookingName

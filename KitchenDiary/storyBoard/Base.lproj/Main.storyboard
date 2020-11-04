@@ -23,13 +23,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 부엌으로 이동하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rol-BQ-zNq">
-                                <rect key="frame" x="135" y="174" width="200" height="23.5"/>
+                                <rect key="frame" x="135" y="174" width="200" height="20"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgA-d4-YBt">
-                                <rect key="frame" x="282" y="201" width="68" height="39"/>
+                                <rect key="frame" x="282" y="197.5" width="68" height="35"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="23"/>
                                 <state key="normal" title="&gt;">
                                     <color key="titleColor" systemColor="darkTextColor"/>
@@ -40,7 +40,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="garden" translatesAutoresizingMaskIntoConstraints="NO" id="ehN-oC-yM3">
-                                <rect key="frame" x="37.5" y="245" width="300" height="337"/>
+                                <rect key="frame" x="37.5" y="237.5" width="300" height="337"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="N8k-ns-Nw9"/>
                                     <constraint firstAttribute="height" constant="337" id="mJL-7l-eca"/>
@@ -925,6 +925,16 @@
                                                     <outletCollection property="gestureRecognizers" destination="7ET-dw-MAf" appends="YES" id="eqM-We-EYT"/>
                                                 </connections>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MrT-gS-BVK">
+                                                <rect key="frame" x="289" y="5" width="86" height="27"/>
+                                                <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="15"/>
+                                                <state key="normal" title="11월 4일 ▼">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="calendarToggle:" destination="koJ-Z1-Fzj" eventType="touchUpInside" id="DZa-RB-OXa"/>
+                                                </connections>
+                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gme-Q2-S9O" customClass="FSCalendar">
                                                 <rect key="frame" x="0.0" y="65" width="370" height="350"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1002,10 +1012,13 @@
                                             <constraint firstItem="s9p-kE-efJ" firstAttribute="leading" secondItem="eTO-Xc-q9C" secondAttribute="leading" id="7an-vW-zVp"/>
                                             <constraint firstAttribute="bottom" secondItem="s9p-kE-efJ" secondAttribute="bottom" id="Fi5-T7-l7z"/>
                                             <constraint firstItem="vaw-Bq-ebS" firstAttribute="leading" secondItem="eTO-Xc-q9C" secondAttribute="leading" constant="155" id="HD1-Ad-hhF"/>
+                                            <constraint firstItem="MrT-gS-BVK" firstAttribute="leading" secondItem="vaw-Bq-ebS" secondAttribute="trailing" constant="74" id="KzP-eS-Mn9"/>
                                             <constraint firstAttribute="trailing" secondItem="vaw-Bq-ebS" secondAttribute="trailing" constant="155" id="N7G-QO-qZL"/>
                                             <constraint firstItem="gme-Q2-S9O" firstAttribute="leading" secondItem="eTO-Xc-q9C" secondAttribute="leading" id="PDX-DZ-Pj6"/>
                                             <constraint firstAttribute="trailing" secondItem="gme-Q2-S9O" secondAttribute="trailing" id="RqX-OI-alh"/>
                                             <constraint firstAttribute="height" constant="620" id="XdA-Dx-8dX"/>
+                                            <constraint firstItem="MrT-gS-BVK" firstAttribute="top" secondItem="eTO-Xc-q9C" secondAttribute="top" constant="5" id="XxG-Wv-cT5"/>
+                                            <constraint firstAttribute="trailing" secondItem="MrT-gS-BVK" secondAttribute="trailing" constant="-5" id="btX-eW-d7W"/>
                                             <constraint firstItem="gme-Q2-S9O" firstAttribute="top" secondItem="vaw-Bq-ebS" secondAttribute="bottom" constant="-8" id="jJs-M8-weR"/>
                                             <constraint firstItem="vaw-Bq-ebS" firstAttribute="top" secondItem="eTO-Xc-q9C" secondAttribute="top" constant="13" id="ki4-V4-7Bd"/>
                                             <constraint firstAttribute="trailing" secondItem="s9p-kE-efJ" secondAttribute="trailing" id="ktW-dv-Tm0"/>
@@ -1036,6 +1049,7 @@
                     <navigationItem key="navigationItem" title="나의 식사일기" id="cHB-Vn-8Gq"/>
                     <connections>
                         <outlet property="calendar" destination="gme-Q2-S9O" id="zbT-9u-Yxz"/>
+                        <outlet property="selectDate" destination="MrT-gS-BVK" id="YPG-P1-5EH"/>
                         <outlet property="tableView" destination="s9p-kE-efJ" id="fuH-Q9-MjH"/>
                     </connections>
                 </viewController>
@@ -1302,7 +1316,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="JMd-Nm-KzE"/>
-        <segue reference="1ie-PP-cGM"/>
+        <segue reference="FhX-wJ-uQK"/>
         <segue reference="9om-My-4qs"/>
         <segue reference="eHf-BD-2a8"/>
     </inferredMetricsTieBreakers>

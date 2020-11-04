@@ -9,8 +9,9 @@
 import UIKit
 import FSCalendar
 
-class DiaryController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
+class DiaryController: UIViewController {
     
+    @IBOutlet weak var selectDate: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     var cookingDiaries = [CookingDiary]()
@@ -19,9 +20,18 @@ class DiaryController: UIViewController, FSCalendarDelegate, FSCalendarDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        calendar.delegate = self
      
         self.calendar.appearance.headerMinimumDissolvedAlpha = 0.0
+        calendar.appearance.headerDateFormat = "M월"
+        calendar.appearance.headerTitleColor = .black
+        calendar.appearance.headerTitleFont = UIFont(name: "KoreanPGSB", size: 23)!
+
         calendar.locale = Locale(identifier: "ko_KR")
+           
+        calendar.appearance.weekdayTextColor = UIColor.black
+        calendar.appearance.selectionColor = UIColor.black
+
        
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -29,7 +39,6 @@ class DiaryController: UIViewController, FSCalendarDelegate, FSCalendarDataSourc
         tableView.reloadData()
     }
     
-    //전달
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         switch(segue.identifier ?? "") {
@@ -38,15 +47,12 @@ class DiaryController: UIViewController, FSCalendarDelegate, FSCalendarDataSourc
             guard let diaryDetailController = segue.destination as? DiaryDetailController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-
             guard let selectedDiariesCell = sender as? CookingDiaryTableViewCell else {
                 fatalError("Unexpected sender: \(sender)")
             }
-
             guard let indexPath = tableView.indexPath(for: selectedDiariesCell) else {
                 fatalError("The selected cell is not being displayed by the table")
             }
-            
             let cookingDiary = cookingDiaries[indexPath.row]
             diaryDetailController.cookingDiary = cookingDiary
             diaryDetailController.saveButtonMode = "edit"
@@ -55,30 +61,38 @@ class DiaryController: UIViewController, FSCalendarDelegate, FSCalendarDataSourc
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
     }
+}
+
+extension DiaryController: FSCalendarDelegate, FSCalendarDataSource {
+    @IBAction func calendarToggle(_ sender: Any) {
+        
+        if self.calendar.scope == FSCalendarScope.month {
+            self.calendar.scope = .week
+            self.calendar.setScope(FSCalendarScope.week, animated: true)
+            // this will cause the calendar to be squished again
+            //self.tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            //movingConstraint.constant = view.safeAreaLayoutGuide.layoutFrame.size.height * -0.20
+        } else {
+            self.calendar.scope = .month
+            self.calendar.setScope(FSCalendarScope.month, animated: true)
+            //movingConstraint.constant = 0
+        }
+    }
     
-    //MARK: Actions
-//    @IBAction func unwindToIngredientslList (sender: UIStoryboardSegue) {
-//        print("unwindToIngredientslList 호출 1")
-//        if let sourceViewController = sender.source as? DiaryDetailController, let cookingDiary = sourceViewController.cookingDiary {
-//            if let selectedIndexPath = tableView.indexPathForSelectedRow {
-//               cookingDiaries[selectedIndexPath.row] = cookingDiary
-//               // tableView.reloadRows(at: [selectedIndexPath], with: .none)
-//
-//                let cookingName = cookingDiaries[selectedIndexPath.row].cookingName
-//                guard let cookingPhoto = cookingDiaries[selectedIndexPath.row].cookingPhoto else {
-//                    fatalError("no cookingPhoto")
-//                }
-//                let cookingRating = cookingDiaries[selectedIndexPath.row].cookingRating
-//                let cookingMemo = cookingDiaries[selectedIndexPath.row].cookingMemo
-//                let cookingIndex = cookingDiaries[selectedIndexPath.row].cookingIndex
-//                print("전달할 데이터 : \(cookingName), \(cookingPhoto), \(cookingRating), \(cookingMemo), \(cookingIndex)")
-//                //dataManager update
-//                cookingEvaluationDataManager.updateCookingEvaluations(cookingName, cookingPhoto, cookingRating, cookingMemo, cookingIndex)
-//                cookingEvaluationDataManager.readCookingEvaluations()
-//                tableView.reloadData()
-//            }
-//        }
-//    }
+    func currentCalendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        if monthPosition == .previous || monthPosition == .next {
+            calendar.setCurrentPage(date, animated: true)
+        }
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM월 dd일 ▼"
+        let selectDateString = dateFormatter.string(from: date)
+        selectDate.setTitle(selectDateString, for: .normal)
+    }
+    
 }
 
 
@@ -90,7 +104,6 @@ extension DiaryController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cookingDiaries.count
-      
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -111,13 +124,9 @@ extension DiaryController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let cookingDiary = cookingDiaries[indexPath.row]
-            print("delete cookingIndex: \(cookingDiary.cookingIndex)")
-            print("delete cookingName: \(cookingDiary.cookingName)")
-           
             cookingEvaluationDataManager.deleteByCookingIndex(cookingIndex: cookingDiary.cookingIndex)
             cookingDiaries.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-    
 }
