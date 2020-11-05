@@ -31,12 +31,14 @@ class DiaryController: UIViewController {
         calendar.appearance.headerDateFormat = "M월"
         calendar.appearance.headerTitleColor = .black
         calendar.appearance.headerTitleFont = UIFont(name: "KoreanPGSB", size: 23)!
-
-        calendar.locale = Locale(identifier: "ko_KR")
-           
         calendar.appearance.weekdayTextColor = UIColor.black
         calendar.appearance.selectionColor = UIColor.black
-        self.view.bringSubviewToFront(self.tableView)
+        calendar.locale = Locale(identifier: "ko_KR")
+
+        dateFormatter.dateFormat = "MM월 dd일 ▼"
+        let selectDateString = dateFormatter.string(from: Date())
+        selectDate.setTitle(selectDateString, for: .normal)
+  
     }
     override func viewWillAppear(_ animated: Bool) {
         cookingDiaries = cookingEvaluationDataManager.readCookingEvaluations()
@@ -75,40 +77,22 @@ extension DiaryController: FSCalendarDelegate, FSCalendarDataSource {
 //    }
        func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
            print("\(self.dateFormatter.string(from: calendar.currentPage))")
-    }
+       }
        
     @IBAction func calendarToggle(_ sender: Any) {
         self.view.bringSubviewToFront(tableView)
-//        tableViewTopConstraint.constant.isEqual(to: calendar.contentView.bounds.maxY)
+
         if self.calendar.scope == FSCalendarScope.month {
             self.calendar.scope = .week
-            self.calendar.setScope(FSCalendarScope.week, animated: true)
+            self.calendar.setScope(.week, animated: true)
             calendar.contentView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: 0).isActive = true
-    
-           // tableViewTopConstraint.constant -= view.safeAreaLayoutGuide.layoutFrame.size.height
-        
-         
-//        print("calendar.contentView.bounds.maxY : \(calendar.contentView.bounds.maxY)")
-//        print("tableViewTopConstraint.constant: \(tableViewTopConstraint.constant)")
-//        print(" calendarBottomAnchor.constant: \( calendarBottomAnchor.constant)")
-//            print("topBottomAnchor: \(topBottomAnchor.constant)")
-            
-//            tableViewTopConstraint = carlendarView.contentView.bottomAnchor
-//            self.tableView.contentInset.top = carlendarView.contentView.bottomAnchor
-            // this will cause the calendar to be squished again
-            //self.tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
             //movingConstraint.constant = view.safeAreaLayoutGuide.layoutFrame.size.height * -0.20
         } else {
             self.calendar.scope = .month
-//            print("calendar.contentView.bounds.maxY : \(calendar.contentView.bounds.maxY)")
-//            print("tableViewTopConstraint.constant: \(tableViewTopConstraint.constant)")
-//            print(" calendarBottomAnchor.constant: \( calendarBottomAnchor.constant)")
-//            print("topBottomAnchor: \(topBottomAnchor.constant)")
-            self.calendar.setScope(FSCalendarScope.month, animated: true)
+            self.calendar.setScope(.month, animated: true)
             //movingConstraint.constant = 0
         }
     }
-    
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
@@ -116,12 +100,8 @@ extension DiaryController: FSCalendarDelegate, FSCalendarDataSource {
         dateFormatter.dateFormat = "MM월 dd일 ▼"
         let selectDateString = dateFormatter.string(from: date)
         selectDate.setTitle(selectDateString, for: .normal)
-        if monthPosition == .next || monthPosition == .previous {
-            calendar.setCurrentPage(date, animated: true)
-        }
     }
 }
-
 
 extension DiaryController: UITableViewDelegate,UITableViewDataSource {
     
