@@ -10,17 +10,22 @@ import UIKit
 import FSCalendar
 
 class DiaryController: UIViewController {
-    
     @IBOutlet weak var selectDate: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     var cookingDiaries = [CookingDiary]()
     var dataSentValue: String = ""
     let cookingEvaluationDataManager = CookingEvaluationDataManager.init()
+    @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var calendarBottomAnchor: NSLayoutConstraint!
+    @IBOutlet weak var topBottomAnchor: NSLayoutConstraint!
+    @IBOutlet weak var viewHeight: NSLayoutConstraint!
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.delegate = self
+        tableView.delegate = self
      
         self.calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.appearance.headerDateFormat = "M월"
@@ -31,8 +36,7 @@ class DiaryController: UIViewController {
            
         calendar.appearance.weekdayTextColor = UIColor.black
         calendar.appearance.selectionColor = UIColor.black
-
-       
+        self.view.bringSubviewToFront(self.tableView)
     }
     override func viewWillAppear(_ animated: Bool) {
         cookingDiaries = cookingEvaluationDataManager.readCookingEvaluations()
@@ -64,35 +68,58 @@ class DiaryController: UIViewController {
 }
 
 extension DiaryController: FSCalendarDelegate, FSCalendarDataSource {
+   
+//    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+//          tableViewTopConstraint.constant = bounds.height
+//          self.view.layoutIfNeeded()
+//    }
+       func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+           print("\(self.dateFormatter.string(from: calendar.currentPage))")
+    }
+       
     @IBAction func calendarToggle(_ sender: Any) {
-        
+        self.view.bringSubviewToFront(tableView)
+//        tableViewTopConstraint.constant.isEqual(to: calendar.contentView.bounds.maxY)
         if self.calendar.scope == FSCalendarScope.month {
             self.calendar.scope = .week
             self.calendar.setScope(FSCalendarScope.week, animated: true)
+            calendar.contentView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: 0).isActive = true
+    
+           // tableViewTopConstraint.constant -= view.safeAreaLayoutGuide.layoutFrame.size.height
+        
+         
+//        print("calendar.contentView.bounds.maxY : \(calendar.contentView.bounds.maxY)")
+//        print("tableViewTopConstraint.constant: \(tableViewTopConstraint.constant)")
+//        print(" calendarBottomAnchor.constant: \( calendarBottomAnchor.constant)")
+//            print("topBottomAnchor: \(topBottomAnchor.constant)")
+            
+//            tableViewTopConstraint = carlendarView.contentView.bottomAnchor
+//            self.tableView.contentInset.top = carlendarView.contentView.bottomAnchor
             // this will cause the calendar to be squished again
             //self.tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
             //movingConstraint.constant = view.safeAreaLayoutGuide.layoutFrame.size.height * -0.20
         } else {
             self.calendar.scope = .month
+//            print("calendar.contentView.bounds.maxY : \(calendar.contentView.bounds.maxY)")
+//            print("tableViewTopConstraint.constant: \(tableViewTopConstraint.constant)")
+//            print(" calendarBottomAnchor.constant: \( calendarBottomAnchor.constant)")
+//            print("topBottomAnchor: \(topBottomAnchor.constant)")
             self.calendar.setScope(FSCalendarScope.month, animated: true)
             //movingConstraint.constant = 0
         }
     }
     
-    func currentCalendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        if monthPosition == .previous || monthPosition == .next {
-            calendar.setCurrentPage(date, animated: true)
-        }
-    }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
-        let dateFormatter = DateFormatter()
+       // let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM월 dd일 ▼"
         let selectDateString = dateFormatter.string(from: date)
         selectDate.setTitle(selectDateString, for: .normal)
+        if monthPosition == .next || monthPosition == .previous {
+            calendar.setCurrentPage(date, animated: true)
+        }
     }
-    
 }
 
 

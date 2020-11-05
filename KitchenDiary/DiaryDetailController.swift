@@ -42,11 +42,9 @@ class DiaryDetailController: UIViewController {
         //DB 저장하기
         let cookingEvaluationDataManager = CookingEvaluationDataManager.init()
         if saveButtonMode == "save" {
-            print("saving")
             cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo)
         }
         if saveButtonMode == "edit" {
-            print("editing")
             guard let index = cookingDiary?.cookingIndex else {
                 return
             }
