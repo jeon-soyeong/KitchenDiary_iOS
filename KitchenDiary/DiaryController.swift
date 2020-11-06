@@ -12,13 +12,12 @@ import FSCalendar
 class DiaryController: UIViewController {
     @IBOutlet weak var selectDate: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var calendar: FSCalendar!
     var cookingDiaries = [CookingDiary]()
     var dataSentValue: String = ""
     let cookingEvaluationDataManager = CookingEvaluationDataManager.init()
-    @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var calendarBottomAnchor: NSLayoutConstraint!
-    @IBOutlet weak var topBottomAnchor: NSLayoutConstraint!
+ 
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
     let dateFormatter = DateFormatter()
     
@@ -38,6 +37,12 @@ class DiaryController: UIViewController {
         dateFormatter.dateFormat = "MM월 dd일 ▼"
         let selectDateString = dateFormatter.string(from: Date())
         selectDate.setTitle(selectDateString, for: .normal)
+        
+//        tableView.heightAnchor.constraint(equalToConstant: tableView.contentSize.height).isActive = true
+//        tableView.frame.height = tableView.contentSize.height
+        print("tableView.contentSize.height: \(tableView.contentSize.height)")
+        print("tableView.frame.height: \(tableView.frame.height)")
+//        scrollView.alwaysBounceVertical = true
   
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +91,10 @@ extension DiaryController: FSCalendarDelegate, FSCalendarDataSource {
             self.calendar.scope = .week
             self.calendar.setScope(.week, animated: true)
             calendar.contentView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: 0).isActive = true
+            var frame = self.tableView.frame
+            frame.size.height = self.tableView.contentSize.height
+            tableView.sizeToFit()
+            
             //movingConstraint.constant = view.safeAreaLayoutGuide.layoutFrame.size.height * -0.20
         } else {
             self.calendar.scope = .month

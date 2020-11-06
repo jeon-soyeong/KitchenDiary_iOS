@@ -842,7 +842,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQ8-Ll-5xI">
-                                                    <rect key="frame" x="16" y="10" width="46" height="20"/>
+                                                    <rect key="frame" x="16" y="10" width="49" height="20"/>
                                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -915,7 +915,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0b-nB-Z8M">
                                 <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eTO-Xc-q9C">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eTO-Xc-q9C">
                                         <rect key="frame" x="0.0" y="0.0" width="370" height="700"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="todayMeal" translatesAutoresizingMaskIntoConstraints="NO" id="vaw-Bq-ebS">
@@ -945,9 +945,6 @@
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s9p-kE-efJ">
                                                 <rect key="frame" x="0.0" y="499" width="370" height="201"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="s9p-kE-efJ" secondAttribute="height" multiplier="370:201" id="VfN-nC-VeX"/>
-                                                </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CookingDiaryTableViewCell" rowHeight="106" id="Jij-A5-cca" customClass="CookingDiaryTableViewCell" customModule="KitchenDiary" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="370" height="106"/>
@@ -1020,7 +1017,7 @@
                                             <constraint firstItem="gme-Q2-S9O" firstAttribute="leading" secondItem="eTO-Xc-q9C" secondAttribute="leading" id="PDX-DZ-Pj6"/>
                                             <constraint firstAttribute="trailing" secondItem="gme-Q2-S9O" secondAttribute="trailing" id="RqX-OI-alh"/>
                                             <constraint firstAttribute="height" constant="700" id="XdA-Dx-8dX"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="s9p-kE-efJ" secondAttribute="bottom" id="XrF-L2-Vi4"/>
+                                            <constraint firstAttribute="bottom" secondItem="s9p-kE-efJ" secondAttribute="bottom" id="XrF-L2-Vi4"/>
                                             <constraint firstItem="MrT-gS-BVK" firstAttribute="top" secondItem="eTO-Xc-q9C" secondAttribute="top" constant="5" id="XxG-Wv-cT5"/>
                                             <constraint firstAttribute="trailing" secondItem="MrT-gS-BVK" secondAttribute="trailing" constant="-5" id="btX-eW-d7W"/>
                                             <constraint firstItem="gme-Q2-S9O" firstAttribute="top" secondItem="vaw-Bq-ebS" secondAttribute="bottom" constant="-8" id="jJs-M8-weR"/>
@@ -1052,7 +1049,7 @@
                     <navigationItem key="navigationItem" title="나의 식사일기" id="cHB-Vn-8Gq"/>
                     <connections>
                         <outlet property="calendar" destination="gme-Q2-S9O" id="zbT-9u-Yxz"/>
-                        <outlet property="calendarBottomAnchor" destination="Imm-Vm-kqc" id="NN6-W6-cng"/>
+                        <outlet property="scrollView" destination="g0b-nB-Z8M" id="Lzw-69-PYm"/>
                         <outlet property="selectDate" destination="MrT-gS-BVK" id="YPG-P1-5EH"/>
                         <outlet property="tableView" destination="s9p-kE-efJ" id="fuH-Q9-MjH"/>
                         <outlet property="viewHeight" destination="XdA-Dx-8dX" id="oxd-iS-Iep"/>
