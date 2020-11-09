@@ -12,20 +12,20 @@ import FSCalendar
 class DiaryController: UIViewController {
     @IBOutlet weak var selectDate: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var calendar: FSCalendar!
     var cookingDiaries = [CookingDiary]()
     var dataSentValue: String = ""
-    let cookingEvaluationDataManager = CookingEvaluationDataManager.init()
- 
-    @IBOutlet weak var viewHeight: NSLayoutConstraint!
     let dateFormatter = DateFormatter()
+    let cookingTableCell = CookingTableViewCell.init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.delegate = self
         tableView.delegate = self
-     
+        cookingTableCell.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(cookingTableCell)
+        
         self.calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.appearance.headerDateFormat = "M월"
         calendar.appearance.headerTitleColor = .black
@@ -33,20 +33,18 @@ class DiaryController: UIViewController {
         calendar.appearance.weekdayTextColor = UIColor.black
         calendar.appearance.selectionColor = UIColor.black
         calendar.locale = Locale(identifier: "ko_KR")
-
+        
         dateFormatter.dateFormat = "MM월 dd일 ▼"
         let selectDateString = dateFormatter.string(from: Date())
         selectDate.setTitle(selectDateString, for: .normal)
-        
-//        tableView.heightAnchor.constraint(equalToConstant: tableView.contentSize.height).isActive = true
-//        tableView.frame.height = tableView.contentSize.height
-        print("tableView.contentSize.height: \(tableView.contentSize.height)")
-        print("tableView.frame.height: \(tableView.frame.height)")
-//        scrollView.alwaysBounceVertical = true
-  
     }
     override func viewWillAppear(_ animated: Bool) {
-        cookingDiaries = cookingEvaluationDataManager.readCookingEvaluations()
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+        //            guard let self = self else {
+        //                return
+        //            }
+        //        }
+        cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations()
         tableView.reloadData()
     }
     
@@ -75,37 +73,37 @@ class DiaryController: UIViewController {
 }
 
 extension DiaryController: FSCalendarDelegate, FSCalendarDataSource {
-   
-//    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
-//          tableViewTopConstraint.constant = bounds.height
-//          self.view.layoutIfNeeded()
-//    }
-       func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-           print("\(self.dateFormatter.string(from: calendar.currentPage))")
-       }
-       
+    
+    //    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+    //          tableViewTopConstraint.constant = bounds.height
+    //          self.view.layoutIfNeeded()
+    //    }
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        print("\(self.dateFormatter.string(from: calendar.currentPage))")
+    }
+    
     @IBAction func calendarToggle(_ sender: Any) {
         self.view.bringSubviewToFront(tableView)
-
+        
         if self.calendar.scope == FSCalendarScope.month {
             self.calendar.scope = .week
-            self.calendar.setScope(.week, animated: true)
-            calendar.contentView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: 0).isActive = true
-            var frame = self.tableView.frame
-            frame.size.height = self.tableView.contentSize.height
-            tableView.sizeToFit()
             
-            //movingConstraint.constant = view.safeAreaLayoutGuide.layoutFrame.size.height * -0.20
+            cookingTableCell.topAnchor.constraint(equalTo: calendar.contentView.bottomAnchor, constant: 0).isActive = true
+            
+            tableView.contentInset.top = 250
+            
+            self.calendar.setScope(.week, animated: true)
+            
+            
         } else {
             self.calendar.scope = .month
             self.calendar.setScope(.month, animated: true)
-            //movingConstraint.constant = 0
         }
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
-       // let dateFormatter = DateFormatter()
+        // let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM월 dd일 ▼"
         let selectDateString = dateFormatter.string(from: date)
         selectDate.setTitle(selectDateString, for: .normal)
@@ -123,7 +121,7 @@ extension DiaryController: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
+        
         let cellIdentifier = "CookingDiaryTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         guard let cookingDiaryCell = cell as? CookingDiaryTableViewCell else {
@@ -136,11 +134,11 @@ extension DiaryController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let cookingDiary = cookingDiaries[indexPath.row]
-            cookingEvaluationDataManager.deleteByCookingIndex(cookingIndex: cookingDiary.cookingIndex)
+            CookingEvaluationDataManager.shared.deleteByCookingIndex(cookingIndex: cookingDiary.cookingIndex)
             cookingDiaries.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

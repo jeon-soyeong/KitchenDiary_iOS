@@ -16,7 +16,7 @@ class CookingDiary: NSObject {
     var cookingRating: Int
     var cookingMemo: String
     var cookingIndex: Int
- 
+
     init?(cookingName: String, cookingPhoto: UIImage?, cookingRating: Int, cookingMemo: String, cookingIndex: Int) {
         guard !cookingName.isEmpty || !cookingMemo.isEmpty else {
             return nil
