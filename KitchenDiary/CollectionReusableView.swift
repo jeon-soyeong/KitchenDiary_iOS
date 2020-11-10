@@ -29,6 +29,10 @@ extension CollectionReusableView: FSCalendarDelegate, FSCalendarDataSource {
         calendar.appearance.weekdayTextColor = UIColor.black
         calendar.appearance.selectionColor = UIColor.black
         calendar.locale = Locale(identifier: "ko_KR")
+        
+        dateFormatter.dateFormat = "MM월 dd일 ▼"
+        let selectDateString = dateFormatter.string(from: Date())
+        selectDate.setTitle(selectDateString, for: .normal)
     }
     
     @IBAction func calendarToggle(_ sender: Any) {

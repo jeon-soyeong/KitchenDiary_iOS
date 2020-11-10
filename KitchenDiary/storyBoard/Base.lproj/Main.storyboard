@@ -912,7 +912,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Sd3-0B-Tgs">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Sd3-0B-Tgs">
                                 <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UEF-Ml-YCj">
@@ -930,13 +930,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkq-2H-5AD">
-                                                    <rect key="frame" x="128" y="15" width="197" height="26"/>
+                                                    <rect key="frame" x="128" y="15" width="191" height="49"/>
                                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="i6g-lP-hf0" customClass="RatingControl" customModule="KitchenDiary" customModuleProvider="target">
-                                                    <rect key="frame" x="137" y="43" width="108" height="42"/>
+                                                    <rect key="frame" x="129" y="66" width="116" height="19"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="size" keyPath="starSize">
                                                             <size key="value" width="20" height="19"/>
@@ -953,17 +953,29 @@
                                                         <constraint firstAttribute="height" constant="88" id="txN-qa-J04"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0E-VD-lw1">
+                                                    <rect key="frame" x="339" y="45" width="20" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="itH-zE-NCg"/>
+                                                        <constraint firstAttribute="width" constant="20" id="xfr-zC-YZI"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="0.93128800392150879" green="0.20332369208335876" blue="0.035454638302326202" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="multiply.circle" catalog="system"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="pkq-2H-5AD" firstAttribute="top" secondItem="0X6-AW-6zv" secondAttribute="top" constant="15" id="3sd-IZ-lhY"/>
                                                 <constraint firstItem="yZg-hJ-zHh" firstAttribute="top" secondItem="0X6-AW-6zv" secondAttribute="top" constant="12" id="4DH-h2-Iza"/>
-                                                <constraint firstItem="i6g-lP-hf0" firstAttribute="leading" secondItem="yZg-hJ-zHh" secondAttribute="trailing" constant="28" id="7a7-mK-pgC"/>
+                                                <constraint firstItem="k0E-VD-lw1" firstAttribute="top" secondItem="0X6-AW-6zv" secondAttribute="top" constant="45" id="7Z4-wf-bKZ"/>
+                                                <constraint firstItem="i6g-lP-hf0" firstAttribute="leading" secondItem="yZg-hJ-zHh" secondAttribute="trailing" constant="20" id="7a7-mK-pgC"/>
+                                                <constraint firstAttribute="bottom" secondItem="k0E-VD-lw1" secondAttribute="bottom" constant="45" id="9Bh-XG-QMS"/>
                                                 <constraint firstAttribute="trailing" secondItem="i6g-lP-hf0" secondAttribute="trailing" constant="130" id="VnL-6e-caq"/>
                                                 <constraint firstItem="i6g-lP-hf0" firstAttribute="top" secondItem="pkq-2H-5AD" secondAttribute="bottom" constant="2" id="b2q-Ch-geY"/>
+                                                <constraint firstAttribute="trailing" secondItem="k0E-VD-lw1" secondAttribute="trailing" constant="16" id="e52-0t-yb4"/>
                                                 <constraint firstItem="yZg-hJ-zHh" firstAttribute="leading" secondItem="0X6-AW-6zv" secondAttribute="leading" constant="19" id="kVi-fI-Vyb"/>
                                                 <constraint firstItem="pkq-2H-5AD" firstAttribute="leading" secondItem="yZg-hJ-zHh" secondAttribute="trailing" constant="19" id="nOa-Lu-UoE"/>
+                                                <constraint firstItem="k0E-VD-lw1" firstAttribute="leading" relation="lessThanOrEqual" secondItem="pkq-2H-5AD" secondAttribute="trailing" constant="20" id="rLI-oa-FDg"/>
                                                 <constraint firstAttribute="bottom" secondItem="yZg-hJ-zHh" secondAttribute="bottom" constant="12" id="sCe-99-u9G"/>
-                                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="pkq-2H-5AD" secondAttribute="trailing" constant="50" id="tAe-aH-zbF"/>
                                                 <constraint firstAttribute="bottom" secondItem="i6g-lP-hf0" secondAttribute="bottom" constant="27" id="vTZ-1f-Vm5"/>
                                             </constraints>
                                         </collectionViewCellContentView>
@@ -972,6 +984,7 @@
                                             <outlet property="cookingName" destination="pkq-2H-5AD" id="9Ks-dO-Wmx"/>
                                             <outlet property="cookingPhoto" destination="yZg-hJ-zHh" id="gcW-Kq-tE6"/>
                                             <outlet property="cookingRating" destination="i6g-lP-hf0" id="1Qs-Ed-dsZ"/>
+                                            <outlet property="deleteButton" destination="k0E-VD-lw1" id="7rV-VF-I7M"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -979,9 +992,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="474"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7X0-uq-nBw">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7X0-uq-nBw">
                                             <rect key="frame" x="290" y="7" width="87" height="27"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="15"/>
                                             <state key="normal" title="11월 4일 ▼">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -990,14 +1002,12 @@
                                                 <action selector="calendarToggle:" destination="OuZ-Iv-oqN" eventType="touchUpInside" id="AWd-LB-hXX"/>
                                             </connections>
                                         </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="todayMeal" translatesAutoresizingMaskIntoConstraints="NO" id="OBa-fY-ESp">
-                                            <rect key="frame" x="165" y="27" width="60" height="74"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="todayMeal" translatesAutoresizingMaskIntoConstraints="NO" id="OBa-fY-ESp">
+                                            <rect key="frame" x="158" y="27" width="60" height="60"/>
                                             <gestureRecognizers/>
                                         </imageView>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gzd-5d-VGn" customClass="FSCalendar">
-                                            <rect key="frame" x="-3" y="79" width="381" height="390"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzd-5d-VGn" customClass="FSCalendar">
+                                            <rect key="frame" x="-3" y="72" width="381" height="397"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <connections>
                                                 <outlet property="dataSource" destination="t5e-Sd-jRp" id="ASG-xL-vEr"/>
@@ -1005,6 +1015,18 @@
                                             </connections>
                                         </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="OBa-fY-ESp" firstAttribute="leading" secondItem="OuZ-Iv-oqN" secondAttribute="leading" constant="158" id="1Be-Mh-ihu"/>
+                                        <constraint firstAttribute="trailing" secondItem="gzd-5d-VGn" secondAttribute="trailing" constant="-3" id="1rE-TQ-w92"/>
+                                        <constraint firstItem="gzd-5d-VGn" firstAttribute="leading" secondItem="OuZ-Iv-oqN" secondAttribute="leading" constant="-3" id="663-x7-Ge3"/>
+                                        <constraint firstAttribute="trailing" secondItem="OBa-fY-ESp" secondAttribute="trailing" constant="157" id="CCr-qc-bPb"/>
+                                        <constraint firstItem="OBa-fY-ESp" firstAttribute="top" secondItem="7X0-uq-nBw" secondAttribute="bottom" constant="-7" id="FRS-hd-dBe"/>
+                                        <constraint firstAttribute="bottom" secondItem="gzd-5d-VGn" secondAttribute="bottom" constant="5" id="FTD-Tu-KFH"/>
+                                        <constraint firstItem="7X0-uq-nBw" firstAttribute="top" secondItem="OuZ-Iv-oqN" secondAttribute="top" constant="7" id="PGp-tg-VKs"/>
+                                        <constraint firstAttribute="trailing" secondItem="7X0-uq-nBw" secondAttribute="trailing" constant="-2" id="Z6d-Ga-HeZ"/>
+                                        <constraint firstItem="7X0-uq-nBw" firstAttribute="leading" secondItem="OuZ-Iv-oqN" secondAttribute="leading" constant="290" id="nlg-eY-g32"/>
+                                        <constraint firstItem="gzd-5d-VGn" firstAttribute="top" secondItem="OBa-fY-ESp" secondAttribute="bottom" constant="-15" id="v9I-ag-DV7"/>
+                                    </constraints>
                                     <connections>
                                         <outlet property="calendar" destination="gzd-5d-VGn" id="DCv-hL-7mw"/>
                                         <outlet property="selectDate" destination="7X0-uq-nBw" id="JW5-jo-i4y"/>
@@ -1033,7 +1055,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RHP-Nu-O8c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1967" y="2215"/>
+            <point key="canvasLocation" x="1965.5999999999999" y="2214.2428785607199"/>
         </scene>
         <!--Diary Detail Controller-->
         <scene sceneID="7VN-I9-DAA">
@@ -1302,6 +1324,7 @@
         <image name="home" width="322" height="293.5"/>
         <image name="ingredients" width="3125" height="3125"/>
         <image name="line" width="266.5" height="4"/>
+        <image name="multiply.circle" catalog="system" width="128" height="121"/>
         <image name="myKitchen" width="398.5" height="364"/>
         <image name="noSelectPhoto" width="540" height="540"/>
         <image name="setting" width="87" height="87.5"/>

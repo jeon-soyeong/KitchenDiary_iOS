@@ -13,6 +13,7 @@ class CookingDiaryCell: UICollectionViewCell {
     @IBOutlet weak var cookingName: UILabel!
     @IBOutlet weak var cookingPhoto: UIImageView!
     @IBOutlet weak var cookingRating: RatingControl!
+    @IBOutlet weak var deleteButton: UIButton!
     
     func updateUI(_ cookingDiary: CookingDiary) {
         cookingName.text = cookingDiary.cookingName

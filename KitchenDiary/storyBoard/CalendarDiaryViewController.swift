@@ -15,6 +15,10 @@ class CalendarDiaryViewController: UIViewController {
     var cookingDiaries = [CookingDiary]()
     var headerView = CollectionReusableView()
     
+    override func viewDidLoad() {
+
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations()
         collectionView.reloadData()
@@ -74,11 +78,20 @@ extension CalendarDiaryViewController: UICollectionViewDataSource, UICollectionV
         
         let cookingDiary = cookingDiaries[indexPath.row]
         cell.updateUI(cookingDiary)
+        cell.deleteButton.tag = indexPath.row // 버튼에 tag를 입력해줍니다!!
+        cell.deleteButton.addTarget(self, action: #selector(deletingCell(sender:)), for: .touchUpInside)
         return cell
     }
     
-    //삭제기능 추가해야 함
-//    func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
-//        isEditing
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+           return UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+    }
+    
+    @objc func deletingCell(sender : UIButton) {
+        let cookingDiary = cookingDiaries[sender.tag]
+        collectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
+        CookingEvaluationDataManager.shared.deleteByCookingIndex(cookingIndex: cookingDiary.cookingIndex)
+        cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations()
+        collectionView.reloadData()
+    }
 }
