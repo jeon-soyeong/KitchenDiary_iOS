@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class DetailViewModel {
+class DiaryDetailViewModel {
     var cookingDiary: CookingDiary?
     
     func update(model: CookingDiary?) {
@@ -22,7 +22,7 @@ class DiaryDetailController: UIViewController {
     var recipeName: String?
     var cookingDiary: CookingDiary?
     var saveButtonMode: String?
-    let viewModel = DetailViewModel()
+    let viewModel = DiaryDetailViewModel()
     
     @IBOutlet weak var cookingName: UITextField!
     @IBOutlet weak var cookingPhoto: UIImageView!

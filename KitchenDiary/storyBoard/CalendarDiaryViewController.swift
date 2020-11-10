@@ -9,10 +9,24 @@
 import UIKit
 import FSCalendar
 
+class CalendarDiaryViewModel {
+    var cookingDiaries = [CookingDiary]()
+    
+    var numOfCookingDiaries: Int {
+        return cookingDiaries.count
+    }
+    
+    func cookingDiaries(at index: Int) -> CookingDiary {
+        return cookingDiaries[index]
+    }
+}
+
+
 class CalendarDiaryViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var cookingDiaries = [CookingDiary]()
+   // var cookingDiaries = [CookingDiary]()
+    let viewModel = CalendarDiaryViewModel()
     var headerView = CollectionReusableView()
     
     override func viewDidLoad() {
@@ -20,7 +34,7 @@ class CalendarDiaryViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations()
+        viewModel.cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations()
         collectionView.reloadData()
       
     }
@@ -32,7 +46,7 @@ class CalendarDiaryViewController: UIViewController {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             if let indexPath = sender as? Int {
-                let cookingDiary = cookingDiaries[indexPath]
+                let cookingDiary = viewModel.cookingDiaries(at: indexPath)
                 print("CalendarDiaryViewController.cookingIndex : \(cookingDiary.cookingIndex)")
                 diaryDetailController.saveButtonMode = "edit"
                 diaryDetailController.viewModel.update(model: cookingDiary)
@@ -63,7 +77,7 @@ extension CalendarDiaryViewController: UICollectionViewDataSource, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cookingDiaries.count
+        return viewModel.numOfCookingDiaries
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -76,7 +90,7 @@ extension CalendarDiaryViewController: UICollectionViewDataSource, UICollectionV
             return UICollectionViewCell()
         }
         
-        let cookingDiary = cookingDiaries[indexPath.row]
+        let cookingDiary = viewModel.cookingDiaries(at: indexPath.row)
         cell.updateUI(cookingDiary)
         cell.deleteButton.tag = indexPath.row // 버튼에 tag를 입력해줍니다!!
         cell.deleteButton.addTarget(self, action: #selector(deletingCell(sender:)), for: .touchUpInside)
@@ -88,10 +102,10 @@ extension CalendarDiaryViewController: UICollectionViewDataSource, UICollectionV
     }
     
     @objc func deletingCell(sender : UIButton) {
-        let cookingDiary = cookingDiaries[sender.tag]
+        let cookingDiary = viewModel.cookingDiaries(at: sender.tag)
         collectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
         CookingEvaluationDataManager.shared.deleteByCookingIndex(cookingIndex: cookingDiary.cookingIndex)
-        cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations()
+        viewModel.cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations()
         collectionView.reloadData()
     }
 }
