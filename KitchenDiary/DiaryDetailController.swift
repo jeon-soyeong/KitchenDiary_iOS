@@ -9,10 +9,20 @@
 import UIKit
 import os.log
 
+class DetailViewModel {
+    var cookingDiary: CookingDiary?
+    
+    func update(model: CookingDiary?) {
+        cookingDiary = model
+        print("updateCookingIndex :\(cookingDiary?.cookingIndex)")
+    }
+}
+
 class DiaryDetailController: UIViewController {
     var recipeName: String?
     var cookingDiary: CookingDiary?
     var saveButtonMode: String?
+    let viewModel = DetailViewModel()
     
     @IBOutlet weak var cookingName: UITextField!
     @IBOutlet weak var cookingPhoto: UIImageView!
@@ -24,6 +34,7 @@ class DiaryDetailController: UIViewController {
     @IBOutlet weak var memoHeight: NSLayoutConstraint!
     @IBOutlet weak var memoTextBottom: NSLayoutConstraint!
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
+    
    
     // tabBar 이동
     @IBAction func goToKitchenDiary(_ sender: UIBarButtonItem) {
@@ -35,7 +46,7 @@ class DiaryDetailController: UIViewController {
         }
         let rating = cookingRating.rating
         let memo = cookingMemoText.text ?? ""
-        
+        print("saveButtonMode: \(saveButtonMode)")
         //DB 저장하기
         let cookingEvaluationDataManager = CookingEvaluationDataManager.shared
         if saveButtonMode == "save" {
@@ -43,9 +54,11 @@ class DiaryDetailController: UIViewController {
             cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo)
         }
         if saveButtonMode == "edit" {
-            guard let index = cookingDiary?.cookingIndex else {
+            print("edit!!!!!!!!!!!!")
+            guard let index = viewModel.cookingDiary?.cookingIndex else {
                 return
             }
+            print("viewModel.cookingDiary?.index : \(index)")
             cookingEvaluationDataManager.updateCookingEvaluations(name, photo, rating, memo, index)
         }
         
@@ -61,18 +74,22 @@ class DiaryDetailController: UIViewController {
         self.tabBarController?.selectedIndex = 3
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Set up views if editing an existing Ingredients.
-        if let cookingDiary = cookingDiary {
+    func updateUI() {
+        
+        if let cookingDiary = viewModel.cookingDiary {
             cookingName.text = cookingDiary.cookingName
             print("cookingDiary.cookingName: \(cookingDiary.cookingName)")
+            print("updateUI cookingDiary.cookingIndex: \(cookingDiary.cookingIndex)")
             cookingPhoto.image = cookingDiary.cookingPhoto
             cookingRating.rating = cookingDiary.cookingRating
             cookingMemoText.text = cookingDiary.cookingMemo
-            
-            //updateSaveButtonState()
+
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateUI()
         
         self.cookingMemoText.layer.borderWidth = 1.0
         self.cookingMemoText.layer.borderColor = UIColor.black.cgColor

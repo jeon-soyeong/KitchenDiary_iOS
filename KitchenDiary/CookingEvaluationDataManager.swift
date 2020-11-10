@@ -124,7 +124,9 @@ public class CookingEvaluationDataManager {
         queue.sync {
             if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
                 while sqlite3_step(queryStatement) == SQLITE_ROW {
-                   
+                    
+                    let cookingName = String(describing: String(cString: sqlite3_column_text(queryStatement, 0)))
+                    print("cookingName : \(cookingName)")
                     let image = sqlite3_column_blob(queryStatement, 1);
                     let image_length = sqlite3_column_bytes(queryStatement, 1);
                     let imageData = NSData(bytes: image, length: Int(image_length))
@@ -140,10 +142,7 @@ public class CookingEvaluationDataManager {
                     let cookingIndex = sqlite3_column_int(queryStatement, 4)
                     print("cookingIndex : \(cookingIndex)")
                     
-                    //순서를 뒤로 뺌
-                    let cookingName = String(describing: String(cString: sqlite3_column_text(queryStatement, 0)))
-                    print("cookingName : \(cookingName)")
-                    
+                   
                     guard let cookingDiary = CookingDiary(cookingName: cookingName, cookingPhoto: cookingPhoto, cookingRating: Int(cookingRating), cookingMemo: cookingMemo, cookingIndex: Int(cookingIndex)) else {
                         fatalError("no cookingDiary")
                     }

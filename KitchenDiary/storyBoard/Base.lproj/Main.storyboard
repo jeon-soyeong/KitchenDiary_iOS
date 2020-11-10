@@ -2,10 +2,10 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FmF-0d-IB6">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -23,13 +23,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 부엌으로 이동하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rol-BQ-zNq">
-                                <rect key="frame" x="135" y="174" width="200" height="20"/>
+                                <rect key="frame" x="135" y="174" width="200" height="23.5"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgA-d4-YBt">
-                                <rect key="frame" x="282" y="197.5" width="68" height="35"/>
+                                <rect key="frame" x="282" y="201" width="68" height="39"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="23"/>
                                 <state key="normal" title="&gt;">
                                     <color key="titleColor" systemColor="darkTextColor"/>
@@ -40,7 +40,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="garden" translatesAutoresizingMaskIntoConstraints="NO" id="ehN-oC-yM3">
-                                <rect key="frame" x="37.5" y="237.5" width="300" height="337"/>
+                                <rect key="frame" x="37.5" y="245" width="300" height="337"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="N8k-ns-Nw9"/>
                                     <constraint firstAttribute="height" constant="337" id="mJL-7l-eca"/>
@@ -134,7 +134,7 @@
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="4QT-yO-XZg" kind="show" identifier="goToDetailDiary" id="yD9-4M-faE"/>
+                                                        <segue destination="4QT-yO-XZg" kind="show" identifier="goToDetailDiary" id="rVT-0N-VJY"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -192,7 +192,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIh-Sm-pRb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3076" y="1389.3553223388308"/>
+            <point key="canvasLocation" x="2910" y="1359"/>
         </scene>
         <!--부엌 채우기-->
         <scene sceneID="9Qg-S7-dQQ">
@@ -905,80 +905,38 @@
             <point key="canvasLocation" x="1957.5999999999999" y="1499.1004497751126"/>
         </scene>
         <!--나의 식사일기-->
-        <scene sceneID="r2z-pn-awg">
+        <scene sceneID="1wb-2H-so8">
             <objects>
-                <viewController storyboardIdentifier="DiaryViewContorller" id="koJ-Z1-Fzj" customClass="DiaryController" customModule="KitchenDiary" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="7s7-uS-3Nt">
+                <viewController id="t5e-Sd-jRp" customClass="CalendarDiaryViewController" customModule="KitchenDiary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zy9-XI-4Fg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s9p-kE-efJ">
-                                <rect key="frame" x="2" y="49" width="370" height="566"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Sd3-0B-Tgs">
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="xXn-vR-20y">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="460"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="todayMeal" translatesAutoresizingMaskIntoConstraints="NO" id="vaw-Bq-ebS">
-                                            <rect key="frame" x="156" y="15" width="60" height="74"/>
-                                            <gestureRecognizers/>
-                                            <connections>
-                                                <outletCollection property="gestureRecognizers" destination="7ET-dw-MAf" appends="YES" id="eqM-We-EYT"/>
-                                            </connections>
-                                        </imageView>
-                                        <view contentMode="scaleToFill" id="gme-Q2-S9O" customClass="FSCalendar">
-                                            <rect key="frame" x="-3" y="74" width="377" height="384"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <connections>
-                                                <outlet property="dataSource" destination="xXn-vR-20y" id="78Y-2W-8LK"/>
-                                                <outlet property="delegate" destination="xXn-vR-20y" id="g1c-mg-F1I"/>
-                                            </connections>
-                                        </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MrT-gS-BVK">
-                                            <rect key="frame" x="286" y="2" width="87" height="27"/>
-                                            <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="15"/>
-                                            <state key="normal" title="11월 4일 ▼">
-                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="calendarToggle:" destination="koJ-Z1-Fzj" eventType="touchUpInside" id="DZa-RB-OXa"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstItem="MrT-gS-BVK" firstAttribute="leading" secondItem="vaw-Bq-ebS" secondAttribute="trailing" constant="70" id="3LT-9J-PdY"/>
-                                        <constraint firstItem="vaw-Bq-ebS" firstAttribute="top" secondItem="xXn-vR-20y" secondAttribute="top" constant="15" id="Dpo-La-bXM"/>
-                                        <constraint firstItem="vaw-Bq-ebS" firstAttribute="leading" secondItem="xXn-vR-20y" secondAttribute="leading" constant="156" id="SMR-jL-Mi6"/>
-                                        <constraint firstAttribute="trailing" secondItem="MrT-gS-BVK" secondAttribute="trailing" constant="-3" id="e6Y-w8-aO4"/>
-                                        <constraint firstItem="MrT-gS-BVK" firstAttribute="top" secondItem="xXn-vR-20y" secondAttribute="top" constant="2" id="eIN-qC-9Ge"/>
-                                        <constraint firstItem="gme-Q2-S9O" firstAttribute="top" secondItem="vaw-Bq-ebS" secondAttribute="bottom" constant="-15" id="jI9-4M-jaw"/>
-                                    </constraints>
-                                </view>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CookingDiaryTableViewCell" rowHeight="104.5" id="Jij-A5-cca" customClass="CookingDiaryTableViewCell" customModule="KitchenDiary" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="488" width="370" height="104.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jij-A5-cca" id="eyD-8i-rv9">
-                                            <rect key="frame" x="0.0" y="0.0" width="370" height="104.5"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UEF-Ml-YCj">
+                                    <size key="itemSize" width="375" height="112"/>
+                                    <size key="headerReferenceSize" width="50" height="474"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CookingDiaryCell" id="Awk-76-cVq" customClass="CookingDiaryCell" customModule="KitchenDiary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="474" width="375" height="112"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0X6-AW-6zv">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c0f-mD-7NK">
-                                                    <rect key="frame" x="18" y="7" width="90" height="88"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="90" id="1TJ-lv-uXb"/>
-                                                        <constraint firstAttribute="height" constant="88" id="sRd-1X-ftb"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZ5-Vz-DW3">
-                                                    <rect key="frame" x="125" y="10" width="215" height="48.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkq-2H-5AD">
+                                                    <rect key="frame" x="128" y="15" width="197" height="26"/>
                                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="9M1-b6-pcs" customClass="RatingControl" customModule="KitchenDiary" customModuleProvider="target">
-                                                    <rect key="frame" x="131" y="63.5" width="108" height="19"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="i6g-lP-hf0" customClass="RatingControl" customModule="KitchenDiary" customModuleProvider="target">
+                                                    <rect key="frame" x="137" y="43" width="108" height="42"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="size" keyPath="starSize">
                                                             <size key="value" width="20" height="19"/>
@@ -988,58 +946,94 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </stackView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yZg-hJ-zHh">
+                                                    <rect key="frame" x="19" y="12" width="90" height="88"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="pUH-jK-qXz"/>
+                                                        <constraint firstAttribute="height" constant="88" id="txN-qa-J04"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="TZ5-Vz-DW3" secondAttribute="trailing" constant="30" id="F8m-Y1-bhA"/>
-                                                <constraint firstItem="9M1-b6-pcs" firstAttribute="centerX" secondItem="eyD-8i-rv9" secondAttribute="centerX" id="G3t-xh-JEm"/>
-                                                <constraint firstAttribute="bottom" secondItem="9M1-b6-pcs" secondAttribute="bottom" constant="22" id="Zjk-wZ-6m1"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="c0f-mD-7NK" secondAttribute="bottom" constant="7" id="a8m-zq-kJd"/>
-                                                <constraint firstItem="TZ5-Vz-DW3" firstAttribute="top" secondItem="eyD-8i-rv9" secondAttribute="top" constant="10" id="fDD-o5-ZWW"/>
-                                                <constraint firstItem="TZ5-Vz-DW3" firstAttribute="leading" secondItem="c0f-mD-7NK" secondAttribute="trailing" constant="17" id="gb2-pA-fqY"/>
-                                                <constraint firstItem="c0f-mD-7NK" firstAttribute="top" secondItem="eyD-8i-rv9" secondAttribute="top" constant="7" id="upU-vH-Lg6"/>
-                                                <constraint firstItem="9M1-b6-pcs" firstAttribute="top" secondItem="TZ5-Vz-DW3" secondAttribute="bottom" constant="5" id="vJF-de-OMe"/>
-                                                <constraint firstItem="c0f-mD-7NK" firstAttribute="leading" secondItem="eyD-8i-rv9" secondAttribute="leading" constant="18" id="yWP-kJ-FLG"/>
+                                                <constraint firstItem="pkq-2H-5AD" firstAttribute="top" secondItem="0X6-AW-6zv" secondAttribute="top" constant="15" id="3sd-IZ-lhY"/>
+                                                <constraint firstItem="yZg-hJ-zHh" firstAttribute="top" secondItem="0X6-AW-6zv" secondAttribute="top" constant="12" id="4DH-h2-Iza"/>
+                                                <constraint firstItem="i6g-lP-hf0" firstAttribute="leading" secondItem="yZg-hJ-zHh" secondAttribute="trailing" constant="28" id="7a7-mK-pgC"/>
+                                                <constraint firstAttribute="trailing" secondItem="i6g-lP-hf0" secondAttribute="trailing" constant="130" id="VnL-6e-caq"/>
+                                                <constraint firstItem="i6g-lP-hf0" firstAttribute="top" secondItem="pkq-2H-5AD" secondAttribute="bottom" constant="2" id="b2q-Ch-geY"/>
+                                                <constraint firstItem="yZg-hJ-zHh" firstAttribute="leading" secondItem="0X6-AW-6zv" secondAttribute="leading" constant="19" id="kVi-fI-Vyb"/>
+                                                <constraint firstItem="pkq-2H-5AD" firstAttribute="leading" secondItem="yZg-hJ-zHh" secondAttribute="trailing" constant="19" id="nOa-Lu-UoE"/>
+                                                <constraint firstAttribute="bottom" secondItem="yZg-hJ-zHh" secondAttribute="bottom" constant="12" id="sCe-99-u9G"/>
+                                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="pkq-2H-5AD" secondAttribute="trailing" constant="50" id="tAe-aH-zbF"/>
+                                                <constraint firstAttribute="bottom" secondItem="i6g-lP-hf0" secondAttribute="bottom" constant="27" id="vTZ-1f-Vm5"/>
                                             </constraints>
-                                        </tableViewCellContentView>
-                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="375" height="112"/>
                                         <connections>
-                                            <outlet property="cookingName" destination="TZ5-Vz-DW3" id="YOL-nh-YdP"/>
-                                            <outlet property="cookingPhoto" destination="c0f-mD-7NK" id="HJv-Rj-gO5"/>
-                                            <outlet property="cookingRating" destination="9M1-b6-pcs" id="zws-K0-T33"/>
-                                            <segue destination="4QT-yO-XZg" kind="show" identifier="showDiary" id="JMd-Nm-KzE"/>
+                                            <outlet property="cookingName" destination="pkq-2H-5AD" id="9Ks-dO-Wmx"/>
+                                            <outlet property="cookingPhoto" destination="yZg-hJ-zHh" id="gcW-Kq-tE6"/>
+                                            <outlet property="cookingRating" destination="i6g-lP-hf0" id="1Qs-Ed-dsZ"/>
                                         </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionHeader" id="OuZ-Iv-oqN" customClass="CollectionReusableView" customModule="KitchenDiary" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="474"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7X0-uq-nBw">
+                                            <rect key="frame" x="290" y="7" width="87" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="15"/>
+                                            <state key="normal" title="11월 4일 ▼">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="calendarToggle:" destination="OuZ-Iv-oqN" eventType="touchUpInside" id="AWd-LB-hXX"/>
+                                            </connections>
+                                        </button>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="todayMeal" translatesAutoresizingMaskIntoConstraints="NO" id="OBa-fY-ESp">
+                                            <rect key="frame" x="165" y="27" width="60" height="74"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <gestureRecognizers/>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gzd-5d-VGn" customClass="FSCalendar">
+                                            <rect key="frame" x="-3" y="79" width="381" height="390"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="t5e-Sd-jRp" id="ASG-xL-vEr"/>
+                                                <outlet property="delegate" destination="t5e-Sd-jRp" id="v4d-dx-3T3"/>
+                                            </connections>
+                                        </view>
+                                    </subviews>
+                                    <connections>
+                                        <outlet property="calendar" destination="gzd-5d-VGn" id="DCv-hL-7mw"/>
+                                        <outlet property="selectDate" destination="7X0-uq-nBw" id="JW5-jo-i4y"/>
+                                    </connections>
+                                </collectionReusableView>
                                 <connections>
-                                    <outlet property="dataSource" destination="koJ-Z1-Fzj" id="fHb-i6-P2Z"/>
-                                    <outlet property="delegate" destination="koJ-Z1-Fzj" id="2ou-qn-QFc"/>
+                                    <outlet property="dataSource" destination="t5e-Sd-jRp" id="Oau-Pl-gb7"/>
+                                    <outlet property="delegate" destination="t5e-Sd-jRp" id="Orw-Bc-G6t"/>
                                 </connections>
-                            </tableView>
+                            </collectionView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="mWJ-v6-p0u"/>
+                        <viewLayoutGuide key="safeArea" id="qSz-bp-Njn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="s9p-kE-efJ" firstAttribute="top" secondItem="mWJ-v6-p0u" secondAttribute="top" constant="5" id="Pze-An-fm7"/>
-                            <constraint firstItem="mWJ-v6-p0u" firstAttribute="trailing" secondItem="s9p-kE-efJ" secondAttribute="trailing" constant="3" id="S15-XK-6D9"/>
-                            <constraint firstItem="mWJ-v6-p0u" firstAttribute="bottom" secondItem="s9p-kE-efJ" secondAttribute="bottom" constant="3" id="XmE-PZ-cif"/>
-                            <constraint firstItem="s9p-kE-efJ" firstAttribute="leading" secondItem="mWJ-v6-p0u" secondAttribute="leading" constant="2" id="n47-wn-xlA"/>
+                            <constraint firstItem="qSz-bp-Njn" firstAttribute="bottom" secondItem="Sd3-0B-Tgs" secondAttribute="bottom" id="9DZ-Jd-SZn"/>
+                            <constraint firstItem="Sd3-0B-Tgs" firstAttribute="top" secondItem="qSz-bp-Njn" secondAttribute="top" id="R4q-BY-n7S"/>
+                            <constraint firstItem="qSz-bp-Njn" firstAttribute="trailing" secondItem="Sd3-0B-Tgs" secondAttribute="trailing" id="YHr-PC-dbq"/>
+                            <constraint firstItem="Sd3-0B-Tgs" firstAttribute="leading" secondItem="qSz-bp-Njn" secondAttribute="leading" id="fc5-tZ-MV1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="나의 식사일기" id="cHB-Vn-8Gq"/>
+                    <navigationItem key="navigationItem" title="나의 식사일기" id="tnB-yD-WiA"/>
                     <connections>
-                        <outlet property="calendar" destination="gme-Q2-S9O" id="zbT-9u-Yxz"/>
-                        <outlet property="selectDate" destination="MrT-gS-BVK" id="YPG-P1-5EH"/>
-                        <outlet property="tableView" destination="s9p-kE-efJ" id="fuH-Q9-MjH"/>
+                        <outlet property="collectionView" destination="Sd3-0B-Tgs" id="2u6-k2-wed"/>
+                        <segue destination="4QT-yO-XZg" kind="show" identifier="showDiaryDetail" id="WZB-HX-X5Q"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dze-Df-rtG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="7ET-dw-MAf">
-                    <connections>
-                        <action selector="photo:" destination="koJ-Z1-Fzj" id="IuC-Hh-N7q"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RHP-Nu-O8c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1949.5999999999999" y="2241.2293853073465"/>
+            <point key="canvasLocation" x="1967" y="2215"/>
         </scene>
         <!--Diary Detail Controller-->
         <scene sceneID="7VN-I9-DAA">
@@ -1185,7 +1179,6 @@
                     </navigationItem>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
-                        <outlet property="ViewHeight" destination="8ad-WH-3Fy" id="J6S-Hv-fag"/>
                         <outlet property="cookingMemoText" destination="m2K-QZ-l0p" id="mvr-yL-GzT"/>
                         <outlet property="cookingName" destination="yyu-U8-Qtc" id="sDf-mT-CEM"/>
                         <outlet property="cookingPhoto" destination="WsV-wP-s1c" id="Em1-ZH-JyM"/>
@@ -1205,7 +1198,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2799" y="2239"/>
+            <point key="canvasLocation" x="2910" y="2187"/>
         </scene>
         <!--시작하기-->
         <scene sceneID="Fdz-5V-IhD">
@@ -1285,7 +1278,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="koJ-Z1-Fzj" kind="relationship" relationship="rootViewController" id="7wb-WT-twH"/>
+                        <segue destination="t5e-Sd-jRp" kind="relationship" relationship="rootViewController" id="ide-3W-Iln"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ynN-Sb-CiO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1294,8 +1287,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JMd-Nm-KzE"/>
-        <segue reference="FhX-wJ-uQK"/>
+        <segue reference="WZB-HX-X5Q"/>
+        <segue reference="1ie-PP-cGM"/>
         <segue reference="9om-My-4qs"/>
         <segue reference="eHf-BD-2a8"/>
     </inferredMetricsTieBreakers>

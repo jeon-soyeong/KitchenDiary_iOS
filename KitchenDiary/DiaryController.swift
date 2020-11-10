@@ -93,8 +93,6 @@ extension DiaryController: FSCalendarDelegate, FSCalendarDataSource {
             tableView.contentInset.top = 250
             
             self.calendar.setScope(.week, animated: true)
-            
-            
         } else {
             self.calendar.scope = .month
             self.calendar.setScope(.month, animated: true)
