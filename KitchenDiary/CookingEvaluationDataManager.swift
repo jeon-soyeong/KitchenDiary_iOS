@@ -36,7 +36,7 @@ public class CookingEvaluationDataManager {
     }
     
     func createTable() {
-        let createTableString = "CREATE TABLE IF NOT EXISTS CookingEvaluation(cookingName TEXT,cookingPhoto BLOB,cookingRating INTEGER,cookingMemo TEXT);"
+        let createTableString = "CREATE TABLE IF NOT EXISTS CookingEvaluation(cookingName TEXT,cookingPhoto BLOB,cookingRating INTEGER,cookingMemo TEXT, todayDate TEXT);"
         var createTableStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK {
             if sqlite3_step(createTableStatement) == SQLITE_DONE {
@@ -50,8 +50,8 @@ public class CookingEvaluationDataManager {
         sqlite3_finalize(createTableStatement)
     }
     
-    func insertCookingEvaluations(_ cookingName: String, _ cookingPhoto: UIImage, _ cookingRating: Int, _ cookingMemo: String) {
-        let insertStatementString = "INSERT INTO CookingEvaluation (cookingName, cookingPhoto, cookingRating, cookingMemo) VALUES (?, ?, ?, ?);"
+    func insertCookingEvaluations(_ cookingName: String, _ cookingPhoto: UIImage, _ cookingRating: Int, _ cookingMemo: String, _ todayDate: String) {
+        let insertStatementString = "INSERT INTO CookingEvaluation (cookingName, cookingPhoto, cookingRating, cookingMemo, todayDate) VALUES (?, ?, ?, ?, ?);"
         var stmt: OpaquePointer? //query를 가리키는 포인터
         queue.sync {
             print("insert cooking : \(cookingName), \(cookingPhoto), \(cookingRating), \(cookingMemo)")
@@ -66,6 +66,7 @@ public class CookingEvaluationDataManager {
                 sqlite3_bind_blob(stmt, 2, data.bytes, Int32(data.length), SQLITE_TRANSIENT)
                 sqlite3_bind_int(stmt, 3, Int32(cookingRating))
                 sqlite3_bind_text(stmt, 4, cookingMemo, -1, SQLITE_TRANSIENT)
+                sqlite3_bind_text(stmt, 5, todayDate, -1, SQLITE_TRANSIENT)
                 if sqlite3_step(stmt) == SQLITE_DONE {
                     print("\nInsert row Success")
                 } else {
@@ -116,13 +117,17 @@ public class CookingEvaluationDataManager {
     }
     
     
-    func readCookingEvaluations() -> [CookingDiary] {
-        let queryStatementString = "SELECT *, rowid FROM CookingEvaluation;"
+    func readCookingEvaluations(_ todayDate: String) -> [CookingDiary] {
+        let queryStatementString = "SELECT *, rowid FROM CookingEvaluation WHERE todayDate = ?;"
         var queryStatement: OpaquePointer?
         var cookingDiaries : [CookingDiary] = []
         
         queue.sync {
             if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+                
+                let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+                sqlite3_bind_text(queryStatement, 1, todayDate, -1, SQLITE_TRANSIENT)
+                
                 while sqlite3_step(queryStatement) == SQLITE_ROW {
                     
                     let cookingName = String(describing: String(cString: sqlite3_column_text(queryStatement, 0)))
@@ -139,7 +144,9 @@ public class CookingEvaluationDataManager {
                     print("cookingRating : \(cookingRating)")
                     let cookingMemo = String(describing: String(cString: sqlite3_column_text(queryStatement, 3)))
                     print("cookingMemo : \(cookingMemo)")
-                    let cookingIndex = sqlite3_column_int(queryStatement, 4)
+                    let todayDate = String(describing: String(cString: sqlite3_column_text(queryStatement, 4)))
+                    print("todayDate : \(todayDate)")
+                    let cookingIndex = sqlite3_column_int(queryStatement, 5)
                     print("cookingIndex : \(cookingIndex)")
                     
                    
@@ -148,7 +155,7 @@ public class CookingEvaluationDataManager {
                     }
                     cookingDiaries.append(cookingDiary)
                     print("Query Result:")
-                    print("\(cookingName) | \(cookingPhoto) | \(cookingRating) | \(cookingMemo) | \(cookingIndex) ")
+                    print("\(cookingName) | \(cookingPhoto) | \(cookingRating) | \(cookingMemo) | \(cookingIndex) | \(todayDate)")
                 }
             } else {
                 print("SELECT statement could not be prepared")

@@ -46,12 +46,16 @@ class DiaryDetailController: UIViewController {
         }
         let rating = cookingRating.rating
         let memo = cookingMemoText.text ?? ""
-        print("saveButtonMode: \(saveButtonMode)")
+      
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY년 MM월 dd일"
+        let selectDateString = dateFormatter.string(from: Date())
+       
         //DB 저장하기
         let cookingEvaluationDataManager = CookingEvaluationDataManager.shared
         if saveButtonMode == "save" {
             print("전달할 : \(name), \(photo), \(rating), \(memo)")
-            cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo)
+            cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo, selectDateString)
         }
         if saveButtonMode == "edit" {
             print("edit!!!!!!!!!!!!")

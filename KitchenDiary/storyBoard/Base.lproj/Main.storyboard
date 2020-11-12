@@ -23,13 +23,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 부엌으로 이동하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rol-BQ-zNq">
-                                <rect key="frame" x="135" y="174" width="200" height="23.5"/>
+                                <rect key="frame" x="135" y="174" width="200" height="20"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgA-d4-YBt">
-                                <rect key="frame" x="282" y="201" width="68" height="39"/>
+                                <rect key="frame" x="282" y="197.5" width="68" height="35"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="23"/>
                                 <state key="normal" title="&gt;">
                                     <color key="titleColor" systemColor="darkTextColor"/>
@@ -40,7 +40,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="garden" translatesAutoresizingMaskIntoConstraints="NO" id="ehN-oC-yM3">
-                                <rect key="frame" x="37.5" y="245" width="300" height="337"/>
+                                <rect key="frame" x="37.5" y="237.5" width="300" height="337"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="N8k-ns-Nw9"/>
                                     <constraint firstAttribute="height" constant="337" id="mJL-7l-eca"/>
@@ -930,16 +930,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkq-2H-5AD">
-                                                    <rect key="frame" x="128" y="15" width="191" height="49"/>
+                                                    <rect key="frame" x="128" y="15" width="191" height="48"/>
                                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="i6g-lP-hf0" customClass="RatingControl" customModule="KitchenDiary" customModuleProvider="target">
-                                                    <rect key="frame" x="129" y="66" width="116" height="19"/>
+                                                    <rect key="frame" x="129" y="65" width="108" height="20"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="size" keyPath="starSize">
-                                                            <size key="value" width="20" height="19"/>
+                                                            <size key="value" width="20" height="20"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="starCount">
                                                             <integer key="value" value="5"/>
@@ -969,7 +969,7 @@
                                                 <constraint firstItem="k0E-VD-lw1" firstAttribute="top" secondItem="0X6-AW-6zv" secondAttribute="top" constant="45" id="7Z4-wf-bKZ"/>
                                                 <constraint firstItem="i6g-lP-hf0" firstAttribute="leading" secondItem="yZg-hJ-zHh" secondAttribute="trailing" constant="20" id="7a7-mK-pgC"/>
                                                 <constraint firstAttribute="bottom" secondItem="k0E-VD-lw1" secondAttribute="bottom" constant="45" id="9Bh-XG-QMS"/>
-                                                <constraint firstAttribute="trailing" secondItem="i6g-lP-hf0" secondAttribute="trailing" constant="130" id="VnL-6e-caq"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="i6g-lP-hf0" secondAttribute="trailing" constant="130" id="VnL-6e-caq"/>
                                                 <constraint firstItem="i6g-lP-hf0" firstAttribute="top" secondItem="pkq-2H-5AD" secondAttribute="bottom" constant="2" id="b2q-Ch-geY"/>
                                                 <constraint firstAttribute="trailing" secondItem="k0E-VD-lw1" secondAttribute="trailing" constant="16" id="e52-0t-yb4"/>
                                                 <constraint firstItem="yZg-hJ-zHh" firstAttribute="leading" secondItem="0X6-AW-6zv" secondAttribute="leading" constant="19" id="kVi-fI-Vyb"/>

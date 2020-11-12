@@ -44,7 +44,7 @@ class DiaryController: UIViewController {
         //                return
         //            }
         //        }
-        cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations()
+    //    cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations()
         tableView.reloadData()
     }
     

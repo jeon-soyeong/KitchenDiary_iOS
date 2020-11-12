@@ -28,13 +28,16 @@ class CalendarDiaryViewController: UIViewController {
    // var cookingDiaries = [CookingDiary]()
     let viewModel = CalendarDiaryViewModel()
     var headerView = CollectionReusableView()
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations()
+        dateFormatter.dateFormat = "YYYY년 MM월 dd일"
+        let selectDateString = dateFormatter.string(from: Date())
+        viewModel.cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations(selectDateString)
         collectionView.reloadData()
       
     }
@@ -92,7 +95,7 @@ extension CalendarDiaryViewController: UICollectionViewDataSource, UICollectionV
         
         let cookingDiary = viewModel.cookingDiaries(at: indexPath.row)
         cell.updateUI(cookingDiary)
-        cell.deleteButton.tag = indexPath.row // 버튼에 tag를 입력해줍니다!!
+        cell.deleteButton.tag = indexPath.row
         cell.deleteButton.addTarget(self, action: #selector(deletingCell(sender:)), for: .touchUpInside)
         return cell
     }
@@ -103,9 +106,13 @@ extension CalendarDiaryViewController: UICollectionViewDataSource, UICollectionV
     
     @objc func deletingCell(sender : UIButton) {
         let cookingDiary = viewModel.cookingDiaries(at: sender.tag)
+       print("cookingDiary.cookingIndex : \(cookingDiary.cookingIndex)")
         collectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
         CookingEvaluationDataManager.shared.deleteByCookingIndex(cookingIndex: cookingDiary.cookingIndex)
-        viewModel.cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations()
+        
+        dateFormatter.dateFormat = "YYYY년 MM월 dd일"
+        let selectDateString = dateFormatter.string(from: Date())
+        viewModel.cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations(selectDateString)
         collectionView.reloadData()
     }
 }
