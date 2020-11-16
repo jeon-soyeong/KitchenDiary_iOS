@@ -24,6 +24,8 @@
 		9B481F632541E161001FAFC8 /* CookingCourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B481F622541E161001FAFC8 /* CookingCourseTableViewCell.swift */; };
 		9B5413E42519FB5A00071544 /* DiaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5413E32519FB5A00071544 /* DiaryController.swift */; };
 		9B5889B1253611DA008AFB2A /* Ingredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5889B0253611DA008AFB2A /* Ingredients.swift */; };
+		9B5FCBB0255E6AD7005D4657 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FCBAF255E6AD7005D4657 /* CalendarView.swift */; };
+		9B5FCBB2255E6BD3005D4657 /* CalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FCBB1255E6BD3005D4657 /* CalendarView.xib */; };
 		9B96C3F5253B5FC000F1CB1C /* CookingRecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96C3F4253B5FC000F1CB1C /* CookingRecipeController.swift */; };
 		9B98930F2512498B00589B5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B98930E2512498B00589B5B /* AppDelegate.swift */; };
 		9B9893112512498B00589B5B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9893102512498B00589B5B /* SceneDelegate.swift */; };
@@ -69,6 +71,8 @@
 		9B481F622541E161001FAFC8 /* CookingCourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingCourseTableViewCell.swift; sourceTree = "<group>"; };
 		9B5413E32519FB5A00071544 /* DiaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryController.swift; sourceTree = "<group>"; };
 		9B5889B0253611DA008AFB2A /* Ingredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredients.swift; sourceTree = "<group>"; };
+		9B5FCBAF255E6AD7005D4657 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		9B5FCBB1255E6BD3005D4657 /* CalendarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarView.xib; sourceTree = "<group>"; };
 		9B96C3F4253B5FC000F1CB1C /* CookingRecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingRecipeController.swift; sourceTree = "<group>"; };
 		9B98930B2512498B00589B5B /* KitchenDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KitchenDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B98930E2512498B00589B5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 				9B213CF2254BF461006C7625 /* CookingDiaryTableViewCell.swift */,
 				9B29D6C72559958900AC5986 /* CollectionReusableView.swift */,
 				9B29D6C9255A3ED300AC5986 /* CalendarDiaryViewController.swift */,
+				9B5FCBAF255E6AD7005D4657 /* CalendarView.swift */,
+				9B5FCBB1255E6BD3005D4657 /* CalendarView.xib */,
 				9B9893172512499100589B5B /* Assets.xcassets */,
 				9B9893192512499100589B5B /* LaunchScreen.storyboard */,
 				9BF09CCD251352EA0094ABC5 /* a펜글씨B.otf */,
@@ -280,6 +286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B5FCBB2255E6BD3005D4657 /* CalendarView.xib in Resources */,
 				9BF09CDB251353720094ABC5 /* a펜글씨B.otf in Resources */,
 				9BF09CD0251353440094ABC5 /* a펜글씨L.otf in Resources */,
 				9B98931B2512499100589B5B /* LaunchScreen.storyboard in Resources */,
@@ -388,6 +395,7 @@
 				9B481F612541B549001FAFC8 /* CookingCourseController.swift in Sources */,
 				9B481F632541E161001FAFC8 /* CookingCourseTableViewCell.swift in Sources */,
 				9BA29EFF251C4AC70075703D /* DiaryDetailController.swift in Sources */,
+				9B5FCBB0255E6AD7005D4657 /* CalendarView.swift in Sources */,
 				9B96C3F5253B5FC000F1CB1C /* CookingRecipeController.swift in Sources */,
 				9B0F4D18254489930077E4D9 /* SQLDataManager.swift in Sources */,
 				9B5413E42519FB5A00071544 /* DiaryController.swift in Sources */,
@@ -569,7 +577,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 577SG3C42S;
 				INFOPLIST_FILE = KitchenDiary/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -589,7 +597,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 577SG3C42S;
 				INFOPLIST_FILE = KitchenDiary/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
