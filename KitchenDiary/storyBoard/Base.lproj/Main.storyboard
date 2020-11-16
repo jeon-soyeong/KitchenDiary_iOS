@@ -24,13 +24,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 부엌으로 이동하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rol-BQ-zNq">
-                                <rect key="frame" x="135" y="174" width="200" height="20"/>
+                                <rect key="frame" x="135" y="174" width="200" height="23.5"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgA-d4-YBt">
-                                <rect key="frame" x="282" y="197.5" width="68" height="35"/>
+                                <rect key="frame" x="282" y="201" width="68" height="39"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="23"/>
                                 <state key="normal" title="&gt;">
                                     <color key="titleColor" systemColor="darkTextColor"/>
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="garden" translatesAutoresizingMaskIntoConstraints="NO" id="ehN-oC-yM3">
-                                <rect key="frame" x="37.5" y="237.5" width="300" height="337"/>
+                                <rect key="frame" x="37.5" y="245" width="300" height="337"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="N8k-ns-Nw9"/>
                                     <constraint firstAttribute="height" constant="337" id="mJL-7l-eca"/>
@@ -571,7 +571,7 @@
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWF-SE-4NQ">
-                                    <rect key="frame" x="291" y="360" width="69" height="33"/>
+                                    <rect key="frame" x="291" y="360" width="69" height="30"/>
                                     <color key="backgroundColor" systemColor="systemYellowColor"/>
                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="18"/>
                                     <state key="normal" title="요리하기">
@@ -610,13 +610,13 @@
                                             <rect key="frame" x="31" y="39.5" width="84" height="18"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="보관 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rP-id-Qvb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50.5" height="18"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="47.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemOrangeColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="보관" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVC-WD-Sro">
-                                                    <rect key="frame" x="54.5" y="0.0" width="29.5" height="18"/>
+                                                    <rect key="frame" x="51.5" y="0.0" width="32.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -630,13 +630,13 @@
                                             <rect key="frame" x="29" y="66.5" width="178.5" height="18"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="유통기한 :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTu-No-FXq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75.5" height="18"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="71.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="17"/>
                                                     <color key="textColor" red="1" green="0.52762569059999997" blue="0.1529166981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="유통기한 날짜" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZo-NE-jdD">
-                                                    <rect key="frame" x="85.5" y="0.0" width="93" height="18"/>
+                                                    <rect key="frame" x="81.5" y="0.0" width="97" height="18"/>
                                                     <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -656,7 +656,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="메모 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ye-fX-rfE">
-                                            <rect key="frame" x="30" y="95" width="53" height="19"/>
+                                            <rect key="frame" x="30" y="95" width="53" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="53" id="2jJ-yM-baE"/>
                                             </constraints>
@@ -1003,7 +1003,7 @@
                                         </connections>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fsN-rd-9EQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="410"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="430"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKc-dK-ugQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
@@ -1011,7 +1011,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="4Bf-gY-TxD"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="16"/>
-                                                <inset key="titleEdgeInsets" minX="240" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="titleEdgeInsets" minX="235" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="YYYY년 MM월 dd일 ▼">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -1019,14 +1019,29 @@
                                                     <action selector="dateToggle:" destination="t5e-Sd-jRp" eventType="touchUpInside" id="x0b-uN-xV6"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVS-t5-nAx">
+                                                <rect key="frame" x="0.0" y="30" width="375" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="hhr-UX-ncV"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="contentEdgeInsets" minX="-290" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title=" Today" image="calendar.circle" catalog="system">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="goToTodayDate:" destination="t5e-Sd-jRp" eventType="touchUpInside" id="2Cd-Vi-zRm"/>
+                                                </connections>
+                                            </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="todayMeal" translatesAutoresizingMaskIntoConstraints="NO" id="8Mb-6X-4u9">
-                                                <rect key="frame" x="0.0" y="30" width="375" height="60"/>
+                                                <rect key="frame" x="0.0" y="50" width="375" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="LDp-1Q-XoW"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ToY-2e-6gC" customClass="FSCalendar">
-                                                <rect key="frame" x="0.0" y="90" width="375" height="320"/>
+                                                <rect key="frame" x="0.0" y="110" width="375" height="320"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="320" id="HWj-he-mY9"/>
                                                 </constraints>
@@ -1034,17 +1049,20 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="ToY-2e-6gC" secondAttribute="trailing" id="1Kk-iu-eHw"/>
-                                            <constraint firstItem="eKc-dK-ugQ" firstAttribute="leading" secondItem="fsN-rd-9EQ" secondAttribute="leading" id="RsJ-B2-n3b"/>
+                                            <constraint firstItem="ToY-2e-6gC" firstAttribute="top" secondItem="8Mb-6X-4u9" secondAttribute="bottom" id="87Y-L2-SuF"/>
+                                            <constraint firstItem="fVS-t5-nAx" firstAttribute="leading" secondItem="fsN-rd-9EQ" secondAttribute="leading" id="Ih6-zu-kIL"/>
                                             <constraint firstAttribute="bottom" secondItem="ToY-2e-6gC" secondAttribute="bottom" id="Uuv-B4-UdI"/>
                                             <constraint firstItem="eKc-dK-ugQ" firstAttribute="top" secondItem="fsN-rd-9EQ" secondAttribute="top" id="VNE-U6-B8f"/>
-                                            <constraint firstItem="8Mb-6X-4u9" firstAttribute="top" secondItem="eKc-dK-ugQ" secondAttribute="bottom" id="eee-gu-z9a"/>
+                                            <constraint firstAttribute="trailing" secondItem="fVS-t5-nAx" secondAttribute="trailing" id="Z6D-VP-cZH"/>
                                             <constraint firstAttribute="width" constant="375" id="fVT-zv-A5v"/>
                                             <constraint firstAttribute="trailing" secondItem="eKc-dK-ugQ" secondAttribute="trailing" id="hJJ-IQ-UgJ"/>
                                             <constraint firstItem="ToY-2e-6gC" firstAttribute="leading" secondItem="fsN-rd-9EQ" secondAttribute="leading" id="hY1-M6-5C9"/>
+                                            <constraint firstItem="8Mb-6X-4u9" firstAttribute="top" secondItem="fVS-t5-nAx" secondAttribute="bottom" id="kIK-AZ-fao"/>
                                             <constraint firstAttribute="trailing" secondItem="8Mb-6X-4u9" secondAttribute="trailing" id="kc0-Dp-I85"/>
                                             <constraint firstItem="8Mb-6X-4u9" firstAttribute="leading" secondItem="fsN-rd-9EQ" secondAttribute="leading" id="oy0-vV-Zl6"/>
                                             <constraint firstItem="eKc-dK-ugQ" firstAttribute="leading" secondItem="fsN-rd-9EQ" secondAttribute="leading" id="q7Z-BI-nb7"/>
-                                            <constraint firstAttribute="height" constant="410" id="w7e-7m-t4b"/>
+                                            <constraint firstAttribute="height" constant="430" id="w7e-7m-t4b"/>
+                                            <constraint firstItem="fVS-t5-nAx" firstAttribute="top" secondItem="eKc-dK-ugQ" secondAttribute="bottom" id="xLy-vd-72b"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -1080,6 +1098,7 @@
                         <outlet property="headerView" destination="fsN-rd-9EQ" id="n8j-bC-KJZ"/>
                         <outlet property="scrollView" destination="dQn-XT-SPa" id="Byd-yd-gAA"/>
                         <outlet property="selectDate" destination="eKc-dK-ugQ" id="jbe-KV-z6Z"/>
+                        <outlet property="todayButton" destination="fVS-t5-nAx" id="YTp-bY-qJK"/>
                         <segue destination="4QT-yO-XZg" kind="show" identifier="showDiaryDetail" id="WZB-HX-X5Q"/>
                     </connections>
                 </viewController>
@@ -1345,6 +1364,7 @@
     <resources>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
+        <image name="calendar.circle" catalog="system" width="128" height="121"/>
         <image name="category" width="94" height="94"/>
         <image name="checkMark" width="256" height="256"/>
         <image name="garden" width="357" height="337"/>

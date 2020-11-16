@@ -29,6 +29,7 @@ class CalendarDiaryViewController: UIViewController {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var selectDate: UIButton!
     @IBOutlet weak var calendarImage: UIImageView!
+    @IBOutlet weak var todayButton: UIButton!
     
     let viewModel = CalendarDiaryViewModel()
     let dateFormatter = DateFormatter()
@@ -39,7 +40,20 @@ class CalendarDiaryViewController: UIViewController {
             collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
-   
+    
+    @IBAction func goToTodayDate(_ sender: Any) {
+        calendar.setCurrentPage(Date(), animated: true)
+        calendar.select(Date(), scrollToDate: true)
+        dateFormatter.dateFormat = "YYYY년 MM월 dd일 ▼"
+        let todayDate = dateFormatter.string(from: Date())
+        selectDate.setTitle(todayDate, for: .normal)
+        
+        dateFormatter.dateFormat = "YYYY년 MM월 dd일"
+        let todayDateString = dateFormatter.string(from: Date())
+        viewModel.cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations(todayDateString)
+        collectionView.reloadData()
+    }
+    
     @IBAction func dateToggle(_ sender: Any) {
         headerFixPart = Int(selectDate.bounds.maxY) + Int(calendarImage.bounds.maxY)
         var calendarHeight = Int(calendar.contentView.bounds.maxY)
@@ -54,6 +68,7 @@ class CalendarDiaryViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        todayButton.layer.cornerRadius = 0.3 * todayButton.bounds.size.height
         scrollView.addGestureRecognizer(collectionView.panGestureRecognizer)
         calendar.delegate = self
         
@@ -105,35 +120,6 @@ class CalendarDiaryViewController: UIViewController {
 
 extension CalendarDiaryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//         switch kind {
-//         case UICollectionView.elementKindSectionHeader:
-//
-//           guard
-//            let headerView = collectionView.dequeueReusableSupplementaryView(
-//               ofKind: kind,
-//               withReuseIdentifier: "CollectionHeader",
-//               for: indexPath) as? CollectionReusableView
-//             else {
-//               fatalError("Invalid view type")
-//           }
-//            headerView.updateUI()
-//            headerView.calendar.delegate = self
-//            dateFormatter.dateFormat = "MM월 dd일 ▼"
-//            let selectDateString = dateFormatter.string(from: Date())
-//            headerView.selectDate.setTitle(selectDateString, for: .normal)
-//
-//            if let selecting = headerView.selectDate {
-//                selectingDate = selecting
-//                print("selectingDate : \(selectingDate)")
-//                return headerView
-//            }
-//           return headerView
-//         default:
-//           assert(false, "Invalid element type")
-//         }
-//    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numOfCookingDiaries
     }
@@ -156,10 +142,10 @@ extension CalendarDiaryViewController: UICollectionViewDataSource, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if calendar.contentView.bounds.maxY < 320 {
-            return UIEdgeInsets(top: calendar.contentView.bounds.maxY + CGFloat(headerFixPart), left: 0, bottom: 0, right: 0)
+            return UIEdgeInsets(top: calendar.contentView.bounds.maxY + CGFloat(headerFixPart + 20), left: 0, bottom: 0, right: 0)
             
         } else {
-            return UIEdgeInsets(top: 410, left: 0, bottom: 0, right: 0)
+            return UIEdgeInsets(top: 440, left: 0, bottom: 0, right: 0)
         }
     }
     

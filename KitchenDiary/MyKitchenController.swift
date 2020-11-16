@@ -53,7 +53,6 @@ class MyKitchenController: UITableViewController {
     
     var cookings: [Cooking] = []
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         cookingButton.layer.cornerRadius = 0.3 * cookingButton.bounds.size.height
