@@ -22,7 +22,6 @@ class CalendarDiaryViewModel {
 }
 
 class CalendarDiaryViewController: UIViewController {
-
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var calendar: FSCalendar!
@@ -30,16 +29,16 @@ class CalendarDiaryViewController: UIViewController {
     @IBOutlet weak var selectDate: UIButton!
     @IBOutlet weak var calendarImage: UIImageView!
     @IBOutlet weak var todayButton: UIButton!
-    
     let viewModel = CalendarDiaryViewModel()
     let dateFormatter = DateFormatter()
     var headerFixPart: Int = 0
-   
     var headerViewHeight = 410 {
         didSet {
             collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
+    var eventDates = [String]()
+    var eventCount: Int = 0
     
     @IBAction func goToTodayDate(_ sender: Any) {
         calendar.setCurrentPage(Date(), animated: true)
@@ -71,7 +70,7 @@ class CalendarDiaryViewController: UIViewController {
         todayButton.layer.cornerRadius = 0.3 * todayButton.bounds.size.height
         scrollView.addGestureRecognizer(collectionView.panGestureRecognizer)
         calendar.delegate = self
-        
+        calendar.dataSource = self
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.appearance.headerDateFormat = "M월"
         calendar.appearance.headerTitleColor = .black
@@ -83,6 +82,9 @@ class CalendarDiaryViewController: UIViewController {
         dateFormatter.dateFormat = "YYYY년 MM월 dd일 ▼"
         let selectDateString = dateFormatter.string(from: Date())
         selectDate.setTitle(selectDateString, for: .normal)
+        
+        eventDates = CookingEvaluationDataManager.shared.selectEventDate()
+        print("eventDates : \(eventDates)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -158,7 +160,7 @@ extension CalendarDiaryViewController: UICollectionViewDataSource, UICollectionV
     }
 }
 
-extension CalendarDiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
+extension CalendarDiaryViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         dateFormatter.dateFormat = "YYYY년 MM월 dd일 ▼"
         let selectDateStringForButton = dateFormatter.string(from: date)
@@ -169,6 +171,25 @@ extension CalendarDiaryViewController: FSCalendarDelegate, FSCalendarDataSource 
         viewModel.cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations(selectDateString)
         collectionView.reloadData()
     }
+ 
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        dateFormatter.dateFormat = "YYYY년 MM월 dd일"
+        let dateString = dateFormatter.string(from: date)
+     
+        var eventDatesDictionary = [String : Int]()
+        
+        eventCount = 0
+        for i in 0..<eventDates.count {
+            print("dateString : \(dateString)")
+            if eventDates[i].contains(dateString) {
+                eventCount += 1
+                print("eventDates[i] : \(eventDates[i])")
+                eventDatesDictionary.updateValue(eventCount, forKey: eventDates[i])
+                print("eventDatesDictionary : \(eventDatesDictionary[eventDates[i]])")
+            }
+        }
+        return eventCount
+    }
 }
 
 extension CalendarDiaryViewController: UIScrollViewDelegate {
@@ -177,3 +198,18 @@ extension CalendarDiaryViewController: UIScrollViewDelegate {
         headerView.transform = CGAffineTransform(translationX: 0, y: -contentOffSetY)
     }
 }
+
+//    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+//        var datesWithEvent = ["2020-11-03", "2020-11-06", "2020-11-12", "2020-11-25"]
+//        var datesWithMultipleEvents = ["2020-11-08", "2020-11-16", "2020-11-20", "2020-11-28"]
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy-MM-dd"
+//          let dateString = formatter.string(from: date)
+//          if datesWithEvent.contains(dateString) {
+//              return 1
+//          }
+//          if datesWithMultipleEvents.contains(dateString) {
+//              return 3
+//          }
+//          return 0
+//      }

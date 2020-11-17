@@ -16,8 +16,9 @@ class CookingDiary: NSObject {
     var cookingRating: Int
     var cookingMemo: String
     var cookingIndex: Int
+    var todayDate: String
 
-    init?(cookingName: String, cookingPhoto: UIImage?, cookingRating: Int, cookingMemo: String, cookingIndex: Int) {
+    init?(cookingName: String, cookingPhoto: UIImage?, cookingRating: Int, cookingMemo: String, cookingIndex: Int, todayDate: String) {
         guard !cookingName.isEmpty || !cookingMemo.isEmpty else {
             return nil
         }
@@ -32,6 +33,7 @@ class CookingDiary: NSObject {
         self.cookingRating = cookingRating
         self.cookingMemo = cookingMemo
         self.cookingIndex = cookingIndex
+        self.todayDate = todayDate
     }
     convenience init(cookingName: String, cookingPhoto: UIImage?, cookingRating: Int, cookingMemo: String) {
         self.init(cookingName: cookingName, cookingPhoto: cookingPhoto, cookingRating:  cookingRating, cookingMemo: cookingMemo)

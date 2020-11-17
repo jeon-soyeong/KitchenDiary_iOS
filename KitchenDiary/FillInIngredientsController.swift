@@ -24,13 +24,7 @@ class FillInIngredientsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let barButtonItem = UIBarItem()
-//
-//        barButtonItem.setTitleTextAttributes([
-//                NSAttributedString.Key.foregroundColor : UIColor.orange,
-//        ], for: .normal)
-  
+ 
         ingredientsName.delegate = self
         ingredientsMemo.delegate = self
         scrollView.delegate = self

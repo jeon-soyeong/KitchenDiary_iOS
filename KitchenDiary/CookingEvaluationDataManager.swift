@@ -12,6 +12,7 @@ import sqlite3
 public class CookingEvaluationDataManager {
     static let shared: CookingEvaluationDataManager = CookingEvaluationDataManager.init()
     let queue = DispatchQueue(label: "dataQueue")
+    var eventDates = [String]()
     
     let dbPath: String = "CookingEvaluation.sqlite"
     var db: OpaquePointer?
@@ -150,7 +151,7 @@ public class CookingEvaluationDataManager {
                     print("cookingIndex : \(cookingIndex)")
                     
                    
-                    guard let cookingDiary = CookingDiary(cookingName: cookingName, cookingPhoto: cookingPhoto, cookingRating: Int(cookingRating), cookingMemo: cookingMemo, cookingIndex: Int(cookingIndex)) else {
+                    guard let cookingDiary = CookingDiary(cookingName: cookingName, cookingPhoto: cookingPhoto, cookingRating: Int(cookingRating), cookingMemo: cookingMemo, cookingIndex: Int(cookingIndex), todayDate: todayDate) else {
                         fatalError("no cookingDiary")
                     }
                     cookingDiaries.append(cookingDiary)
@@ -179,5 +180,22 @@ public class CookingEvaluationDataManager {
             print("DELETE statement could not be prepared")
         }
         sqlite3_finalize(deleteStatement)
+    }
+    
+    func selectEventDate() -> [String] {
+        let queryStatementString = "SELECT todayDate FROM CookingEvaluation;"
+        var queryStatement: OpaquePointer?
+        queue.sync {
+            if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+                while sqlite3_step(queryStatement) == SQLITE_ROW {
+                    let todayDate = String(describing: String(cString: sqlite3_column_text(queryStatement, 0)))
+                    eventDates.append(todayDate)
+                }
+            } else {
+                print("SELECT statement could not be prepared")
+            }
+            sqlite3_finalize(queryStatement)
+        }
+        return eventDates
     }
 }

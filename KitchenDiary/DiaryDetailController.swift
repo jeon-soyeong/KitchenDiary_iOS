@@ -23,7 +23,7 @@ class DiaryDetailController: UIViewController {
     var cookingDiary: CookingDiary?
     var saveButtonMode: String?
     let viewModel = DiaryDetailViewModel()
-    
+   
     @IBOutlet weak var cookingName: UITextField!
     @IBOutlet weak var cookingPhoto: UIImageView!
     @IBOutlet weak var cookingRating: RatingControl!
@@ -34,13 +34,11 @@ class DiaryDetailController: UIViewController {
     @IBOutlet weak var memoHeight: NSLayoutConstraint!
     @IBOutlet weak var memoTextBottom: NSLayoutConstraint!
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
-    
    
     // tabBar 이동
     @IBAction func goToKitchenDiary(_ sender: UIBarButtonItem) {
         
         let name = cookingName.text ?? ""
-        
         guard let photo = cookingPhoto.image else {
             return
         }
@@ -54,15 +52,12 @@ class DiaryDetailController: UIViewController {
         //DB 저장하기
         let cookingEvaluationDataManager = CookingEvaluationDataManager.shared
         if saveButtonMode == "save" {
-            print("전달할 : \(name), \(photo), \(rating), \(memo)")
             cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo, selectDateString)
         }
         if saveButtonMode == "edit" {
-            print("edit!!!!!!!!!!!!")
             guard let index = viewModel.cookingDiary?.cookingIndex else {
                 return
             }
-            print("viewModel.cookingDiary?.index : \(index)")
             cookingEvaluationDataManager.updateCookingEvaluations(name, photo, rating, memo, index)
         }
         
@@ -79,7 +74,6 @@ class DiaryDetailController: UIViewController {
     }
     
     func updateUI() {
-        
         if let cookingDiary = viewModel.cookingDiary {
             cookingName.text = cookingDiary.cookingName
             print("cookingDiary.cookingName: \(cookingDiary.cookingName)")
@@ -87,7 +81,6 @@ class DiaryDetailController: UIViewController {
             cookingPhoto.image = cookingDiary.cookingPhoto
             cookingRating.rating = cookingDiary.cookingRating
             cookingMemoText.text = cookingDiary.cookingMemo
-
         }
     }
     
@@ -129,9 +122,12 @@ class DiaryDetailController: UIViewController {
         guard let index = cookingDiary?.cookingIndex else {
             return
         }
+        guard let todayDate = cookingDiary?.todayDate else {
+            return
+        }
         print("DiaryDetail cookingDiary : \(name), \(photo), \(rating), \(memo), \(index)")
         // 보낼
-        cookingDiary = CookingDiary(cookingName: name, cookingPhoto: photo, cookingRating: rating, cookingMemo: memo, cookingIndex: index)
+        cookingDiary = CookingDiary(cookingName: name, cookingPhoto: photo, cookingRating: rating, cookingMemo: memo, cookingIndex: index, todayDate: todayDate)
     }
 }
 

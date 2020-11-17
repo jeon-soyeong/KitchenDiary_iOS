@@ -14,7 +14,6 @@
 		9B213CF3254BF461006C7625 /* CookingDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B213CF2254BF461006C7625 /* CookingDiaryTableViewCell.swift */; };
 		9B213D39254EB2DA006C7625 /* CookingEvaluationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B213D38254EB2DA006C7625 /* CookingEvaluationDataManager.swift */; };
 		9B2715B12537FC72003CA18D /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2715B02537FC72003CA18D /* IngredientTableViewCell.swift */; };
-		9B29D6C82559958900AC5986 /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29D6C72559958900AC5986 /* CollectionReusableView.swift */; };
 		9B29D6CA255A3ED300AC5986 /* CalendarDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29D6C9255A3ED300AC5986 /* CalendarDiaryViewController.swift */; };
 		9B29D6CC255A485600AC5986 /* CookingDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29D6CB255A485600AC5986 /* CookingDiaryCell.swift */; };
 		9B309992254BDA44009D067D /* CookingDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B309991254BDA44009D067D /* CookingDiary.swift */; };
@@ -61,7 +60,6 @@
 		9B213CF2254BF461006C7625 /* CookingDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingDiaryTableViewCell.swift; sourceTree = "<group>"; };
 		9B213D38254EB2DA006C7625 /* CookingEvaluationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingEvaluationDataManager.swift; sourceTree = "<group>"; };
 		9B2715B02537FC72003CA18D /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
-		9B29D6C72559958900AC5986 /* CollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
 		9B29D6C9255A3ED300AC5986 /* CalendarDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarDiaryViewController.swift; path = storyBoard/CalendarDiaryViewController.swift; sourceTree = "<group>"; };
 		9B29D6CB255A485600AC5986 /* CookingDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingDiaryCell.swift; sourceTree = "<group>"; };
 		9B309991254BDA44009D067D /* CookingDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingDiary.swift; sourceTree = "<group>"; };
@@ -179,7 +177,6 @@
 				9B309991254BDA44009D067D /* CookingDiary.swift */,
 				9B29D6CB255A485600AC5986 /* CookingDiaryCell.swift */,
 				9B213CF2254BF461006C7625 /* CookingDiaryTableViewCell.swift */,
-				9B29D6C72559958900AC5986 /* CollectionReusableView.swift */,
 				9B29D6C9255A3ED300AC5986 /* CalendarDiaryViewController.swift */,
 				9B5FCBAF255E6AD7005D4657 /* CalendarView.swift */,
 				9B5FCBB1255E6BD3005D4657 /* CalendarView.xib */,
@@ -391,7 +388,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B1F1FD02514A481002487F7 /* MyKitchenController.swift in Sources */,
-				9B29D6C82559958900AC5986 /* CollectionReusableView.swift in Sources */,
 				9B481F612541B549001FAFC8 /* CookingCourseController.swift in Sources */,
 				9B481F632541E161001FAFC8 /* CookingCourseTableViewCell.swift in Sources */,
 				9BA29EFF251C4AC70075703D /* DiaryDetailController.swift in Sources */,
