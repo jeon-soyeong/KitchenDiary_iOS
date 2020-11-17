@@ -11,11 +11,9 @@ import FSCalendar
 
 class CalendarDiaryViewModel {
     var cookingDiaries = [CookingDiary]()
-    
     var numOfCookingDiaries: Int {
         return cookingDiaries.count
     }
-    
     func cookingDiaries(at index: Int) -> CookingDiary {
         return cookingDiaries[index]
     }
@@ -39,6 +37,8 @@ class CalendarDiaryViewController: UIViewController {
     }
     var eventDates = [String]()
     var eventCount: Int = 0
+    var eventDatesDictionary = [String : Int]()
+    var retunCount: String = ""
     
     @IBAction func goToTodayDate(_ sender: Any) {
         calendar.setCurrentPage(Date(), animated: true)
@@ -82,13 +82,12 @@ class CalendarDiaryViewController: UIViewController {
         dateFormatter.dateFormat = "YYYY년 MM월 dd일 ▼"
         let selectDateString = dateFormatter.string(from: Date())
         selectDate.setTitle(selectDateString, for: .normal)
-        
-        eventDates = CookingEvaluationDataManager.shared.selectEventDate()
-        print("eventDates : \(eventDates)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        eventDates = CookingEvaluationDataManager.shared.selectEventDate()
+        print("eventDates: \(eventDates)")
         scrollView.addGestureRecognizer(collectionView.panGestureRecognizer)
         collectionViewReloadData()
     }
@@ -157,10 +156,27 @@ extension CalendarDiaryViewController: UICollectionViewDataSource, UICollectionV
         collectionView.deleteItems(at: [IndexPath.init(item: sender.tag, section: 0)])
         CookingEvaluationDataManager.shared.deleteByCookingIndex(cookingIndex: cookingDiary.cookingIndex)
         collectionViewReloadData()
+        
+        eventDates = CookingEvaluationDataManager.shared.selectEventDate()
+        dateFormatter.dateFormat = "YYYY년 MM월 dd일"
+        guard let selectDateTitle = selectDate.titleLabel?.text else {
+            return
+        }
+        let selectDateTitleSubString =  selectDateTitle.dropLast(2)
+        guard let eventDownCount = eventDatesDictionary[String(selectDateTitleSubString)] else {
+            return
+        }
+        print("eventDownCount : \(eventDownCount)")
+        eventDatesDictionary.updateValue(eventDownCount-1, forKey: String(selectDateTitleSubString))
+        print("eventDatesDictionary[String(selectDateTitleSubString)] 0 : \(eventDatesDictionary[String(selectDateTitleSubString)])")
+        retunCount = String(eventDatesDictionary[String(selectDateTitleSubString)] ?? -1)
+        calendar(calendar, numberOfEventsFor: Date())
+        calendar.reloadData()
     }
 }
 
 extension CalendarDiaryViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
+ 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         dateFormatter.dateFormat = "YYYY년 MM월 dd일 ▼"
         let selectDateStringForButton = dateFormatter.string(from: date)
@@ -171,24 +187,31 @@ extension CalendarDiaryViewController: FSCalendarDelegate, FSCalendarDataSource,
         viewModel.cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations(selectDateString)
         collectionView.reloadData()
     }
- 
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         dateFormatter.dateFormat = "YYYY년 MM월 dd일"
         let dateString = dateFormatter.string(from: date)
-     
-        var eventDatesDictionary = [String : Int]()
         
-        eventCount = 0
-        for i in 0..<eventDates.count {
-            print("dateString : \(dateString)")
-            if eventDates[i].contains(dateString) {
-                eventCount += 1
-                print("eventDates[i] : \(eventDates[i])")
-                eventDatesDictionary.updateValue(eventCount, forKey: eventDates[i])
-                print("eventDatesDictionary : \(eventDatesDictionary[eventDates[i]])")
+        print("eventDatesDictionary[dateString] 1: \(eventDatesDictionary[dateString])")
+        if eventDatesDictionary[dateString] == nil {
+            eventCount = 0
+            for i in 0..<eventDates.count {
+                print("dateString : \(dateString)")
+                if eventDates[i].contains(dateString) {
+                    eventCount += 1
+                    eventDatesDictionary.updateValue(eventCount, forKey: eventDates[i])
+                }
             }
+          
+        } else {
+            print("eventDatesDictionary[dateString] 2: \(eventDatesDictionary[dateString])")
+            guard let changeCount = eventDatesDictionary[dateString] else {
+                return -1
+            }
+            print("changeCount : \(changeCount)")
+            eventCount = changeCount
         }
         return eventCount
+        
     }
 }
 
@@ -198,18 +221,3 @@ extension CalendarDiaryViewController: UIScrollViewDelegate {
         headerView.transform = CGAffineTransform(translationX: 0, y: -contentOffSetY)
     }
 }
-
-//    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-//        var datesWithEvent = ["2020-11-03", "2020-11-06", "2020-11-12", "2020-11-25"]
-//        var datesWithMultipleEvents = ["2020-11-08", "2020-11-16", "2020-11-20", "2020-11-28"]
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd"
-//          let dateString = formatter.string(from: date)
-//          if datesWithEvent.contains(dateString) {
-//              return 1
-//          }
-//          if datesWithMultipleEvents.contains(dateString) {
-//              return 3
-//          }
-//          return 0
-//      }
