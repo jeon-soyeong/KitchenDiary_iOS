@@ -52,6 +52,18 @@ class DiaryDetailController: UIViewController {
         //DB 저장하기
         let cookingEvaluationDataManager = CookingEvaluationDataManager.shared
         if saveButtonMode == "save" {
+            print("CalendarDiaryViewController.eventDatesDictionary: \(CalendarDiaryViewController.eventDatesDictionary)")
+            print("CalendarDiaryViewController.eventDatesDictionary[selectDateString]: \(CalendarDiaryViewController.eventDatesDictionary[selectDateString])")
+            var dicCount = CalendarDiaryViewController.eventDatesDictionary[selectDateString]
+            if dicCount == nil {
+                dicCount = 0
+            }
+            print("dicCount: \(dicCount)")
+            CalendarDiaryViewController.eventDatesDictionary.updateValue(dicCount!+1, forKey: selectDateString)
+            print("dicCount update: \(CalendarDiaryViewController.eventDatesDictionary[selectDateString])")
+            print("CalendarDiaryViewController.eventDatesDictionary : \(CalendarDiaryViewController.eventDatesDictionary)")
+            
+ 
             cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo, selectDateString)
         }
         if saveButtonMode == "edit" {

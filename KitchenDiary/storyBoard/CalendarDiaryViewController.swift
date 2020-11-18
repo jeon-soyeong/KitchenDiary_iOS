@@ -37,7 +37,7 @@ class CalendarDiaryViewController: UIViewController {
     }
     var eventDates = [String]()
     var eventCount: Int = 0
-    var eventDatesDictionary = [String : Int]()
+    static var eventDatesDictionary = [String : Int]()
     var retunCount: String = ""
     
     @IBAction func goToTodayDate(_ sender: Any) {
@@ -87,6 +87,9 @@ class CalendarDiaryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         eventDates = CookingEvaluationDataManager.shared.selectEventDate()
+        print("CalendarDiaryViewController.eventDatesDictionary : \(CalendarDiaryViewController.eventDatesDictionary)")
+        calendar(calendar, numberOfEventsFor: Date())
+        calendar.reloadData()
         print("eventDates: \(eventDates)")
         scrollView.addGestureRecognizer(collectionView.panGestureRecognizer)
         collectionViewReloadData()
@@ -157,22 +160,20 @@ extension CalendarDiaryViewController: UICollectionViewDataSource, UICollectionV
         CookingEvaluationDataManager.shared.deleteByCookingIndex(cookingIndex: cookingDiary.cookingIndex)
         collectionViewReloadData()
         
-        eventDates = CookingEvaluationDataManager.shared.selectEventDate()
-        dateFormatter.dateFormat = "YYYY년 MM월 dd일"
         guard let selectDateTitle = selectDate.titleLabel?.text else {
             return
         }
         let selectDateTitleSubString =  selectDateTitle.dropLast(2)
-        guard let eventDownCount = eventDatesDictionary[String(selectDateTitleSubString)] else {
+        guard let eventDownCount = CalendarDiaryViewController.eventDatesDictionary[String(selectDateTitleSubString)] else {
             return
         }
-        print("eventDownCount : \(eventDownCount)")
-        eventDatesDictionary.updateValue(eventDownCount-1, forKey: String(selectDateTitleSubString))
-        print("eventDatesDictionary[String(selectDateTitleSubString)] 0 : \(eventDatesDictionary[String(selectDateTitleSubString)])")
-        retunCount = String(eventDatesDictionary[String(selectDateTitleSubString)] ?? -1)
+        print("CalendarDiaryViewController.eventDatesDictionary : \(CalendarDiaryViewController.eventDatesDictionary)")
+        CalendarDiaryViewController.eventDatesDictionary.updateValue(eventDownCount-1, forKey: String(selectDateTitleSubString))
+        print("CalendarDiaryViewController.eventDatesDictionary : \(CalendarDiaryViewController.eventDatesDictionary)")
         calendar(calendar, numberOfEventsFor: Date())
         calendar.reloadData()
     }
+    
 }
 
 extension CalendarDiaryViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
@@ -191,23 +192,19 @@ extension CalendarDiaryViewController: FSCalendarDelegate, FSCalendarDataSource,
         dateFormatter.dateFormat = "YYYY년 MM월 dd일"
         let dateString = dateFormatter.string(from: date)
         
-        print("eventDatesDictionary[dateString] 1: \(eventDatesDictionary[dateString])")
-        if eventDatesDictionary[dateString] == nil {
+        if CalendarDiaryViewController.eventDatesDictionary[dateString] == nil {
             eventCount = 0
             for i in 0..<eventDates.count {
-                print("dateString : \(dateString)")
                 if eventDates[i].contains(dateString) {
                     eventCount += 1
-                    eventDatesDictionary.updateValue(eventCount, forKey: eventDates[i])
+                    CalendarDiaryViewController.eventDatesDictionary.updateValue(eventCount, forKey: eventDates[i])
                 }
             }
-          
         } else {
-            print("eventDatesDictionary[dateString] 2: \(eventDatesDictionary[dateString])")
-            guard let changeCount = eventDatesDictionary[dateString] else {
+            guard let changeCount = CalendarDiaryViewController.eventDatesDictionary[dateString] else {
                 return -1
             }
-            print("changeCount : \(changeCount)")
+            print("chnageCount: \(changeCount)")
             eventCount = changeCount
         }
         return eventCount
