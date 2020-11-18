@@ -52,6 +52,15 @@ class DiaryDetailController: UIViewController {
         //DB 저장하기
         let cookingEvaluationDataManager = CookingEvaluationDataManager.shared
         if saveButtonMode == "save" {
+            
+            let userDefaults = UserDefaults.standard
+            if let eventDictionary = UserDefaults.standard.object(forKey: "eventDictionary") as? Data {
+                guard let eventDatesDictionary = NSKeyedUnarchiver.unarchiveObject(with: eventDictionary) as? [String : Int] else {
+                    return
+                }
+                print("eventDatesDictionary: \(eventDatesDictionary)")
+                CalendarDiaryViewController.eventDatesDictionary = eventDatesDictionary
+            }
             print("CalendarDiaryViewController.eventDatesDictionary: \(CalendarDiaryViewController.eventDatesDictionary)")
             print("CalendarDiaryViewController.eventDatesDictionary[selectDateString]: \(CalendarDiaryViewController.eventDatesDictionary[selectDateString])")
             var dicCount = CalendarDiaryViewController.eventDatesDictionary[selectDateString]
@@ -60,9 +69,10 @@ class DiaryDetailController: UIViewController {
             }
             print("dicCount: \(dicCount)")
             CalendarDiaryViewController.eventDatesDictionary.updateValue(dicCount!+1, forKey: selectDateString)
+            let eventDictionary = try? NSKeyedArchiver.archivedData(withRootObject: CalendarDiaryViewController.eventDatesDictionary, requiringSecureCoding: false)
+            UserDefaults.standard.set(eventDictionary, forKey: "eventDictionary")
             print("dicCount update: \(CalendarDiaryViewController.eventDatesDictionary[selectDateString])")
             print("CalendarDiaryViewController.eventDatesDictionary : \(CalendarDiaryViewController.eventDatesDictionary)")
-            
  
             cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo, selectDateString)
         }

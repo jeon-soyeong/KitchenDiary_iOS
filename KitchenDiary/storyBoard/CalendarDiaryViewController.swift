@@ -39,6 +39,7 @@ class CalendarDiaryViewController: UIViewController {
     var eventCount: Int = 0
     static var eventDatesDictionary = [String : Int]()
     var retunCount: String = ""
+    let userDefaults = UserDefaults.standard
     
     @IBAction func goToTodayDate(_ sender: Any) {
         calendar.setCurrentPage(Date(), animated: true)
@@ -167,9 +168,22 @@ extension CalendarDiaryViewController: UICollectionViewDataSource, UICollectionV
         guard let eventDownCount = CalendarDiaryViewController.eventDatesDictionary[String(selectDateTitleSubString)] else {
             return
         }
+        
+        if let eventDictionary = UserDefaults.standard.object(forKey: "eventDictionary") as? Data {
+            guard let eventDatesDictionary = NSKeyedUnarchiver.unarchiveObject(with: eventDictionary) as? [String : Int] else {
+                return
+            }
+            print("eventDatesDictionary: \(eventDatesDictionary)")
+            CalendarDiaryViewController.eventDatesDictionary = eventDatesDictionary
+        }
+        
         print("CalendarDiaryViewController.eventDatesDictionary : \(CalendarDiaryViewController.eventDatesDictionary)")
         CalendarDiaryViewController.eventDatesDictionary.updateValue(eventDownCount-1, forKey: String(selectDateTitleSubString))
         print("CalendarDiaryViewController.eventDatesDictionary : \(CalendarDiaryViewController.eventDatesDictionary)")
+        
+        let eventDictionary = try? NSKeyedArchiver.archivedData(withRootObject: CalendarDiaryViewController.eventDatesDictionary, requiringSecureCoding: false)
+        UserDefaults.standard.set(eventDictionary, forKey: "eventDictionary")
+        
         calendar(calendar, numberOfEventsFor: Date())
         calendar.reloadData()
     }
@@ -198,17 +212,18 @@ extension CalendarDiaryViewController: FSCalendarDelegate, FSCalendarDataSource,
                 if eventDates[i].contains(dateString) {
                     eventCount += 1
                     CalendarDiaryViewController.eventDatesDictionary.updateValue(eventCount, forKey: eventDates[i])
+                    let eventDictionary = try? NSKeyedArchiver.archivedData(withRootObject: CalendarDiaryViewController.eventDatesDictionary, requiringSecureCoding: false)
+                    UserDefaults.standard.set(eventDictionary, forKey: "eventDictionary")
                 }
             }
         } else {
             guard let changeCount = CalendarDiaryViewController.eventDatesDictionary[dateString] else {
                 return -1
             }
-            print("chnageCount: \(changeCount)")
+            print("changeCount: \(changeCount)")
             eventCount = changeCount
         }
         return eventCount
-        
     }
 }
 
