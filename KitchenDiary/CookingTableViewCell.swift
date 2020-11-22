@@ -9,7 +9,6 @@
 import UIKit
 
 class CookingTableViewCell: UITableViewCell {
-
     @IBOutlet private weak var cookingName: UILabel!
     @IBOutlet private weak var cookingImage: UIImageView!
     @IBOutlet weak var bookMarkButton: UIButton!
@@ -58,5 +57,4 @@ class CookingTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

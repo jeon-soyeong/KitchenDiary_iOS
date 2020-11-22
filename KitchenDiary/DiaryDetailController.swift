@@ -14,7 +14,6 @@ class DiaryDetailViewModel {
     
     func update(model: CookingDiary?) {
         cookingDiary = model
-        print("updateCookingIndex :\(cookingDiary?.cookingIndex)")
     }
 }
 
@@ -23,7 +22,7 @@ class DiaryDetailController: UIViewController {
     var cookingDiary: CookingDiary?
     var saveButtonMode: String?
     let viewModel = DiaryDetailViewModel()
-   
+    
     @IBOutlet weak var cookingName: UITextField!
     @IBOutlet weak var cookingPhoto: UIImageView!
     @IBOutlet weak var cookingRating: RatingControl!
@@ -34,7 +33,7 @@ class DiaryDetailController: UIViewController {
     @IBOutlet weak var memoHeight: NSLayoutConstraint!
     @IBOutlet weak var memoTextBottom: NSLayoutConstraint!
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
-   
+    
     // tabBar 이동
     @IBAction func goToKitchenDiary(_ sender: UIBarButtonItem) {
         
@@ -44,11 +43,11 @@ class DiaryDetailController: UIViewController {
         }
         let rating = cookingRating.rating
         let memo = cookingMemoText.text ?? ""
-      
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 MM월 dd일"
         let selectDateString = dateFormatter.string(from: Date())
-       
+        
         //DB 저장하기
         let cookingEvaluationDataManager = CookingEvaluationDataManager.shared
         if saveButtonMode == "save" {
@@ -73,7 +72,7 @@ class DiaryDetailController: UIViewController {
             UserDefaults.standard.set(eventDictionary, forKey: "eventDictionary")
             print("dicCount update: \(CalendarDiaryViewController.eventDatesDictionary[selectDateString])")
             print("CalendarDiaryViewController.eventDatesDictionary : \(CalendarDiaryViewController.eventDatesDictionary)")
- 
+            
             cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo, selectDateString)
         }
         if saveButtonMode == "edit" {
@@ -90,7 +89,6 @@ class DiaryDetailController: UIViewController {
         else {
             fatalError("The DiaryDetailController is not inside a navigation controller.")
         }
-        
         //tabBar 이동하기
         self.tabBarController?.selectedIndex = 3
     }

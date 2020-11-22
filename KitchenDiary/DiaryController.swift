@@ -39,12 +39,6 @@ class DiaryController: UIViewController {
         selectDate.setTitle(selectDateString, for: .normal)
     }
     override func viewWillAppear(_ animated: Bool) {
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
-        //            guard let self = self else {
-        //                return
-        //            }
-        //        }
-    //    cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations()
         tableView.reloadData()
     }
     
@@ -109,7 +103,6 @@ extension DiaryController: FSCalendarDelegate, FSCalendarDataSource {
 }
 
 extension DiaryController: UITableViewDelegate,UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

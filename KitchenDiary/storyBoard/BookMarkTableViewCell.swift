@@ -9,8 +9,6 @@
 import UIKit
 
 class BookMarkTableViewCell: UITableViewCell {
-
-    
     @IBOutlet weak var bookMarkCookingName: UILabel!
     @IBOutlet weak var bookMarkCookingImage: UIImageView!
     @IBOutlet weak var bookMarkButton: UIButton!
@@ -37,13 +35,9 @@ class BookMarkTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }

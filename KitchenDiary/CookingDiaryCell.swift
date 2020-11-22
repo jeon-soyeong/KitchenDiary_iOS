@@ -9,7 +9,6 @@
 import UIKit
 
 class CookingDiaryCell: UICollectionViewCell {
-    
     @IBOutlet weak var cookingName: UILabel!
     @IBOutlet weak var cookingPhoto: UIImageView!
     @IBOutlet weak var cookingRating: RatingControl!

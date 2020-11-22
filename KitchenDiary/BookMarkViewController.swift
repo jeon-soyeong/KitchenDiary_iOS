@@ -88,10 +88,3 @@ extension BookMarkViewController: UITableViewDataSource {
 }
 
 
-extension BookMarkViewController: UITableViewDelegate {
-    
-}
-
-
-
-

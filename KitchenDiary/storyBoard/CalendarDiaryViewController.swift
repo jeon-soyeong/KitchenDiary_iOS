@@ -60,6 +60,7 @@ class CalendarDiaryViewController: UIViewController {
         headerViewHeight = calendarHeight + headerFixPart
         if calendar.scope == FSCalendarScope.month {
             calendar.scope = .week
+            calendar.setScope(.week, animated: true)
         } else {
             calendar.scope = .month
             calendar.setScope(.month, animated: true)
@@ -176,7 +177,6 @@ extension CalendarDiaryViewController: UICollectionViewDataSource, UICollectionV
             print("eventDatesDictionary: \(eventDatesDictionary)")
             CalendarDiaryViewController.eventDatesDictionary = eventDatesDictionary
         }
-        
         print("CalendarDiaryViewController.eventDatesDictionary : \(CalendarDiaryViewController.eventDatesDictionary)")
         CalendarDiaryViewController.eventDatesDictionary.updateValue(eventDownCount-1, forKey: String(selectDateTitleSubString))
         print("CalendarDiaryViewController.eventDatesDictionary : \(CalendarDiaryViewController.eventDatesDictionary)")

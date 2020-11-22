@@ -55,7 +55,7 @@ public class CookingEvaluationDataManager {
         let insertStatementString = "INSERT INTO CookingEvaluation (cookingName, cookingPhoto, cookingRating, cookingMemo, todayDate) VALUES (?, ?, ?, ?, ?);"
         var stmt: OpaquePointer? //query를 가리키는 포인터
         queue.sync {
-            print("insert cooking : \(cookingName), \(cookingPhoto), \(cookingRating), \(cookingMemo)")
+            print("insert cooking : \(cookingName), \(cookingPhoto), \(cookingRating), \(cookingMemo), \(todayDate)")
             guard let data = cookingPhoto.pngData() as NSData? else {
                 return
             }
@@ -81,7 +81,7 @@ public class CookingEvaluationDataManager {
             sqlite3_finalize(stmt)
         }
     }
-   
+    
     
     func updateCookingEvaluations(_ cookingName: String, _ cookingPhoto: UIImage, _ cookingRating: Int, _ cookingMemo: String, _ cookingIndex: Int) {
         
@@ -117,7 +117,6 @@ public class CookingEvaluationDataManager {
         sqlite3_finalize(stmt)
     }
     
-    
     func readCookingEvaluations(_ todayDate: String) -> [CookingDiary] {
         let queryStatementString = "SELECT *, rowid FROM CookingEvaluation WHERE todayDate = ?;"
         var queryStatement: OpaquePointer?
@@ -150,7 +149,7 @@ public class CookingEvaluationDataManager {
                     let cookingIndex = sqlite3_column_int(queryStatement, 5)
                     print("cookingIndex : \(cookingIndex)")
                     
-                   
+                    
                     guard let cookingDiary = CookingDiary(cookingName: cookingName, cookingPhoto: cookingPhoto, cookingRating: Int(cookingRating), cookingMemo: cookingMemo, cookingIndex: Int(cookingIndex), todayDate: todayDate) else {
                         fatalError("no cookingDiary")
                     }
