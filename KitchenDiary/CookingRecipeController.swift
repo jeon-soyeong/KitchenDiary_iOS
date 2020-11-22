@@ -39,7 +39,6 @@ class CookingRecipeController: UITableViewController {
         getCookingCourse(cookings: cookings)
         print("getCookingCourse.count: \(getCookingCourse(cookings: cookings).count)")
         print("getCookingCourse: \(getCookingCourse(cookings: cookings))")
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -52,13 +51,13 @@ class CookingRecipeController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         super.tableView(tableView, numberOfRowsInSection: section)
         // #warning Incomplete implementation, return the number of rows
         return cookings.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         super.tableView(tableView, cellForRowAt: indexPath)
         
@@ -69,7 +68,7 @@ class CookingRecipeController: UITableViewController {
         }
         cookingCell.cooking = cookings[indexPath.row]
         cookingCell.loadCooking = loadCooking
-     
+        
         cookingCell.bookMarkButton.tag = indexPath.row
         cookingCell.bookMarkButton.addTarget(self, action: #selector(bookMarkbuttonPressed(_:)), for: .touchUpInside)
         
@@ -77,15 +76,13 @@ class CookingRecipeController: UITableViewController {
     }
     
     @objc func bookMarkbuttonPressed(_ sender: UIButton) {
-         let indexPath = sender.tag
-
+        let indexPath = sender.tag
+        
         let cooking = cookings[indexPath]
         if sender.isSelected == true {//delete
             sender.isSelected = false
             sqlDataManager.deleteByRecipeId(recipeId: cooking.recipeId)
             print("-------delete: \(cooking.recipeId)-------")
-            
-           
         }
         else {// insert
             sender.isSelected = true
@@ -103,77 +100,76 @@ class CookingRecipeController: UITableViewController {
             }
             print("url: \(url)")
             myGroup.enter()
-                URLSession.shared.dataTask(with: url) { [self] data, response, err in
-                    let task = DispatchWorkItem {
-                        guard let data = data else {return}
-                        do {
-                            let decoder = JSONDecoder()
-                            let cookingCourseInfo = try? decoder.decode(CookingCourseInfo.self, from: data)
-                            guard let cookingCourseCount = cookingCourseInfo?.Grid_20150827000000000228_1.row.count else {return}
+            URLSession.shared.dataTask(with: url) { [self] data, response, err in
+                let task = DispatchWorkItem {
+                    guard let data = data else {return}
+                    do {
+                        let decoder = JSONDecoder()
+                        let cookingCourseInfo = try? decoder.decode(CookingCourseInfo.self, from: data)
+                        guard let cookingCourseCount = cookingCourseInfo?.Grid_20150827000000000228_1.row.count else {return}
+                        
+                        cookingDescriptionArr = []
+                        for j in 0 ..< cookingCourseCount {
+                            guard let cookingDescription = cookingCourseInfo?.Grid_20150827000000000228_1.row[j].COOKING_DC else {return}
                             
-                            cookingDescriptionArr = []
-                            for j in 0 ..< cookingCourseCount {
-                                guard let cookingDescription = cookingCourseInfo?.Grid_20150827000000000228_1.row[j].COOKING_DC else {return}
-                               
-                                cookingDescriptionArr.append(cookingDescription)
-                            }
-                            cookingDictionary.updateValue(cookingDescriptionArr, forKey: i)
-                        } catch let jsonArr {
+                            cookingDescriptionArr.append(cookingDescription)
                         }
-                        myGroup.leave()
+                        cookingDictionary.updateValue(cookingDescriptionArr, forKey: i)
+                    } catch let jsonArr {
                     }
-                    self.cookingCourseQueue.sync(execute: task)
+                    myGroup.leave()
                 }
-                .resume()
+                self.cookingCourseQueue.sync(execute: task)
+            }
+            .resume()
         }
         myGroup.wait(timeout: .distantFuture)
         return cookingDictionary
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         super.prepare(for: segue, sender: sender)
         
         switch(segue.identifier ?? "") {
-            case "CookingCourse":
-                guard let cookingCourseController = segue.destination as? CookingCourseController else {
-                    fatalError("Unexpected destination: \(segue.destination)")
-                }
-                guard let selectedCookingCell = sender as? CookingTableViewCell else {
-                    fatalError("Unexpected sender: \(sender)")
-                }
-                
-                guard let indexPath = tableView.indexPath(for: selectedCookingCell) else {
-                    fatalError("The selected cell is not being displayed by the table")
-                }
-    
-                guard let selectCookingDecriptionArray = cookingDictionary[indexPath.row] else {
-                    return
-                }
-                cookingCourseController.cookingDescriptionArray = selectCookingDecriptionArray
-                
-                let cooking = cookings[indexPath.row]
-                cookingCourseController.cooking = cooking
-                
-            case "goToDetailDiary":
-                guard let diaryDetailController = segue.destination as? DiaryDetailController else {
-                    fatalError("Unexpected destination: \(segue.destination)")
-                }
-                guard let goDiaryButton = sender as? UIButton else {
-                    fatalError("Unexpected sender: \(sender)")
-                }
-                
-                let buttonPosition: CGPoint = goDiaryButton.convert(CGPoint.zero, to: self.tableView)
-
-                guard let indexPath = self.tableView.indexPathForRow(at: buttonPosition)?.row else {
-                    fatalError("Unexpected indexPath")
-                }
-
-                let cookingName = cookings[indexPath].recipeName
-                print("cookings[indexPath.row].recipeName: \(cookings[indexPath].recipeName)")
-                diaryDetailController.recipeName = cookingName
+        case "CookingCourse":
+            guard let cookingCourseController = segue.destination as? CookingCourseController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            guard let selectedCookingCell = sender as? CookingTableViewCell else {
+                fatalError("Unexpected sender: \(sender)")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedCookingCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            guard let selectCookingDecriptionArray = cookingDictionary[indexPath.row] else {
+                return
+            }
+            cookingCourseController.cookingDescriptionArray = selectCookingDecriptionArray
+            
+            let cooking = cookings[indexPath.row]
+            cookingCourseController.cooking = cooking
+            
+        case "goToDetailDiary":
+            guard let diaryDetailController = segue.destination as? DiaryDetailController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            guard let goDiaryButton = sender as? UIButton else {
+                fatalError("Unexpected sender: \(sender)")
+            }
+            
+            let buttonPosition: CGPoint = goDiaryButton.convert(CGPoint.zero, to: self.tableView)
+            
+            guard let indexPath = self.tableView.indexPathForRow(at: buttonPosition)?.row else {
+                fatalError("Unexpected indexPath")
+            }
+            
+            let cookingName = cookings[indexPath].recipeName
+            print("cookings[indexPath.row].recipeName: \(cookings[indexPath].recipeName)")
+            diaryDetailController.recipeName = cookingName
+            diaryDetailController.saveButtonMode = "save"
         default: break
         }
     }
-
 }

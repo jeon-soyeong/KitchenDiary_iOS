@@ -9,9 +9,7 @@
 import UIKit
 
 class CookingDiaryTableViewCell: UITableViewCell {
-
     @IBOutlet weak var cookingName: UILabel!
- 
     @IBOutlet weak var cookingPhoto: UIImageView!
     @IBOutlet weak var cookingRating: RatingControl!
     
@@ -37,8 +35,5 @@ class CookingDiaryTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }

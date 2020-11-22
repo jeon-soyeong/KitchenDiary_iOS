@@ -16,13 +16,5 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        goToMyKitchen.addTarget(self, action: #selector(buttonTapped()), for: UIControl.Event.touchUpInside)
-//
-        
-        // Do any additional setup after loading the view.
     }
-    
-
 }
-
