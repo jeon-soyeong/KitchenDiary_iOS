@@ -9,7 +9,6 @@
 import UIKit
 
 class IngredientTableViewCell: UITableViewCell {
-
     @IBOutlet weak var ingredientsName: UILabel!
     @IBOutlet weak var storageMethod: UILabel!
     @IBOutlet weak var expirationDate: UILabel!
@@ -19,10 +18,7 @@ class IngredientTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 }

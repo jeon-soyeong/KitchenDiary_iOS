@@ -11,7 +11,7 @@ import sqlite3
 
 public class SQLDataManager {
     let dbPath: String = "CookingBookMark.sqlite"
-    var db:OpaquePointer?
+    var db: OpaquePointer?
     
     init(){
         db = openDatabase()
@@ -71,8 +71,41 @@ public class SQLDataManager {
             print("\nInsert Statement is not prepared")
         }
         sqlite3_finalize(stmt)
-        //return Int(sqlite3_last_insert_rowid(db))
     }
+    
+//    insert(tableName: "cooking", values: ["recipeId": "aa"])
+//    func insert(tableName: String, values: [String: Any]) {
+//        //(1) insert sql문
+//        let columns = values.keys.joined(separator: ",") // recipeId, recipeName, imageUrl
+//        let insertStatementString = "INSERT INTO \(tableName) ("\(columns)") VALUES (?, ?, ?);"
+//        //(2) 쿼리 저장 변수
+//        var stmt: OpaquePointer? //query를 가리키는 포인터
+//        let recipeId = Int32(recipeId)
+//
+//        if sqlite3_prepare_v2(db, insertStatementString, -1, &stmt, nil) == SQLITE_OK{
+//            for index, value in values.enumerated() {
+//                if let intValue = value as? Int {
+//                    sqlite3_bind_int(stmt, index + 1, intValue)
+//                } else if stringValue = value as? String {
+//
+//                }
+//            }
+//            sqlite3_bind_text(stmt, 2, recipeName, -1, nil)
+//            sqlite3_bind_text(stmt, 3, imageUrl, -1, nil)
+//
+//            if sqlite3_step(stmt) == SQLITE_DONE{
+//                print("\nInsert row Success")
+//            }else{
+//                print("\nInsert row Faild")
+//            }
+//        }else{
+//            let errmsg = String(cString: sqlite3_errmsg(db)!)
+//            print("error preparing insert: \(errmsg)")
+//            print("\nInsert Statement is not prepared")
+//        }
+//        sqlite3_finalize(stmt)
+//        //return Int(sqlite3_last_insert_rowid(db))
+//    }
     
     func readCookings() -> [Cooking] {
         let queryStatementString = "SELECT * FROM Cooking;"

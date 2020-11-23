@@ -9,7 +9,6 @@
 import UIKit
 
 class CookingDiary: NSObject {
-    //, NSCoding
     //MARK: Properties
     var cookingName: String
     var cookingPhoto: UIImage?

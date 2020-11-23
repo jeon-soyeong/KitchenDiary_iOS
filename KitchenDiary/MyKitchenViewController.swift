@@ -1,5 +1,5 @@
 //
-//  MyKitchenController.swift
+//  MyKitchenViewController.swift
 //  KitchenDiary
 //
 //  Created by 전소영 on 2020/09/18.
@@ -36,73 +36,74 @@ struct CookingRecipeInfo: Codable {
     let IMG_URL: String
 }
 
-class MyKitchenController: UITableViewController {
+class MyKitchenViewController: UITableViewController {
     @IBOutlet weak var cookingButton: UIButton!
-    
-    var ingredients = [Ingredients]()
-    var ingredientsArr = [String]()
-    
-    var recipeIdArr = [Int]()
-    var overlapValueArr = [Int]()
-    var overlapValueSet = Set<Int>()
+    var ingredients: [Ingredients] = []
+    var ingredientsArr: [String] = []
+    var recipeIdArr: [Int] = []
+    var overlapValueArr: [Int] = []
+    var overlapValueSet: Set<Int> = []
     let ingredientQueue = DispatchQueue(label: "ingredient")
-    var lastrecipeIdArr = [Int]()
+    var lastrecipeIdArr: [Int] = []
     let myGroup = DispatchGroup()
-    var essentialIrdntArr = [String]()
-    
+    var essentialIrdntArr: [String] = []
     var cookings: [Cooking] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        cookingButton.layer.cornerRadius = 0.3 * cookingButton.bounds.size.height
-        
-        // tableViewCell Height AutoSizing
-        tableView.rowHeight = UITableView.automaticDimension
-        
-        if let savedIngredients = loadIngredients() {
-            ingredients += savedIngredients
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        switch(segue.identifier ?? "") {
+        case "Cooking":
+            guard let cookingRecipeViewController = segue.destination as? CookingRecipeViewController else{
+                return
+            }
+            cookingRecipeViewController.cookings = cookings
+        case "ShowDetail":
+            guard let fillInIngredientsViewController = segue.destination as? FillInIngredientsViewController else {
+                return
+            }
+            guard let selectedIngredientsCell = sender as? IngredientTableViewCell else {
+                return
+            }
+            guard let indexPath = tableView.indexPath(for: selectedIngredientsCell) else {
+                return
+            }
+            let selectedIngredients = ingredients[indexPath.row]
+            fillInIngredientsViewController.ingredient = selectedIngredients
+        default:
+            break
         }
-        
-        //CookingController로 보낼 재료 배열
-        for i in 0..<ingredients.count {
-            ingredientsArr.append(ingredients[i].name)
-            print(" ingredientsArr: \(ingredientsArr[i])")
-        }
-        
-        self.getRecipeIdFromIngredients()
     }
     
-    //섹션표시 - Table view 1개만 필요
+    private func saveIngredients() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ingredients, toFile: Ingredients.ArchiveURL.path)
+    }
+    
+    private func loadIngredients() -> [Ingredients]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Ingredients.ArchiveURL.path) as? [Ingredients]
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
+        super.numberOfSections(in: tableView)
         return 1
     }
     
-    //행 수 반환
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        super.tableView(tableView, numberOfRowsInSection: section)
         return ingredients.count
     }
-    
-    //셀 구성 & 표시
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        super.tableView(tableView, cellForRowAt: indexPath)
         let cellIdentifier = "IngredientTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? IngredientTableViewCell else {
             fatalError ("The dequeued cell is not an instance of IngredientTableViewCell.")
         }
-        
         let ingredient = ingredients[indexPath.row]
-        
         cell.ingredientsName.text = ingredient.name
         cell.storageMethod.text = ingredient.storageMethod
         cell.expirationDate.text = ingredient.expirationDate
         cell.ingredientsMemo.text = ingredient.memo
-        
-        print("cell.ingredientsName.text : \(cell.ingredientsName.text)")
-        print("ingredient.name : \(ingredient.name)")
-        
         cell.warning.isHidden = true
         
-        //날짜 차이 구하기
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
         let now = NSDate()
@@ -121,100 +122,59 @@ class MyKitchenController: UITableViewController {
         //label 줄바꿈
         cell.ingredientsMemo.preferredMaxLayoutWidth = (tableView.bounds.width - 120)
         cell.ingredientsMemo.numberOfLines = 0
-        
         return cell
     }
     
-    // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
     
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
             ingredients.remove(at: indexPath.row)
             saveIngredients()
-            // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-    
-    //전달
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        switch(segue.identifier ?? "") {
-        case "AddItem":
-            os_log("Adding a new ingredient.", log: OSLog.default, type: .debug)
-            
-        case "Cooking":
-            guard let cookingRecipeController = segue.destination as? CookingRecipeController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            cookingRecipeController.cookings = cookings
-            
-        case "ShowDetail":
-            guard let fillInIngredientsController = segue.destination as? FillInIngredientsController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
-            guard let selectedIngredientsCell = sender as? IngredientTableViewCell else {
-                fatalError("Unexpected sender: \(sender)")
-            }
-            
-            guard let indexPath = tableView.indexPath(for: selectedIngredientsCell) else {
-                fatalError("The selected cell is not being displayed by the table")
-            }
-            
-            let selectedIngredients = ingredients[indexPath.row]
-            fillInIngredientsController.ingredient = selectedIngredients
-            
-        default:
-            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+}
+
+// MARK: Life Cycle
+extension MyKitchenViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        cookingButton.layer.cornerRadius = 0.3 * cookingButton.bounds.size.height
+        tableView.rowHeight = UITableView.automaticDimension
+        if let savedIngredients = loadIngredients() {
+            ingredients += savedIngredients
         }
+        for i in 0..<ingredients.count {
+            ingredientsArr.append(ingredients[i].name)
+        }
+        self.getRecipeIdFromIngredients()
     }
-    
-    //MARK: Actions
+}
+
+// MARK: IBAction
+extension MyKitchenViewController {
     @IBAction func unwindToIngredientslList (sender: UIStoryboardSegue) {
-        print("unwindToIngredientslList 호출 1")
-        if let sourceViewController = sender.source as? FillInIngredientsController, let ingredient = sourceViewController.ingredient {
-            
-            //행이 선택(편집)되었는지 여부 확인
+        if let sourceViewController = sender.source as? FillInIngredientsViewController, let ingredient = sourceViewController.ingredient {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                // Update an existing meal.
                 ingredients[selectedIndexPath.row] = ingredient
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             }
             else {
-                // Add a new ingredient.
                 let newIndexPath = IndexPath(row: ingredients.count, section: 0)
                 
                 ingredients.append(ingredient)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
-            //Save the meals.
             saveIngredients()
         }
     }
-    
-    private func saveIngredients() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ingredients, toFile: Ingredients.ArchiveURL.path)
-        if isSuccessfulSave {
-            os_log("Ingredients successfully saved.", log: OSLog.default, type: .debug)
-        } else {
-            os_log("failed to save Ingredients", log: OSLog.default, type: .error)
-        }
-    }
-    
-    private func loadIngredients() -> [Ingredients]? {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: Ingredients.ArchiveURL.path) as? [Ingredients]
-    }
-    
+}
+
+// MARK: Parsing
+extension MyKitchenViewController {
     func getRecipeIdFromIngredients() {
         for i in 0..<self.ingredientsArr.count {
             let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?IRDNT_NM=\(self.ingredientsArr[i])"
@@ -303,15 +263,11 @@ class MyKitchenController: UITableViewController {
         guard let url = URL(string: encoded) else {return }
         
         URLSession.shared.dataTask(with: url) { [self] data, response, err in
-            print("getRecipe 1")
             let task = DispatchWorkItem {
-                print("getRecipe 2")
                 guard let data = data else {return}
                 do {
-                    print("getRecipe 3")
                     let decoder = JSONDecoder()
                     let cookingInfo = try? decoder.decode(CookingInfo.self, from: data)
-                    print("cookingInfo: \(cookingInfo)")
                     guard let recipeCount = cookingInfo?.Grid_20150827000000000226_1.row.count else {return}
                     
                     for i in 0 ..< lastrecipeIdArr.count {
@@ -324,9 +280,7 @@ class MyKitchenController: UITableViewController {
                                 guard let cooking = Cooking(recipeId: recipeId, recipeName: recipeName, imageUrl: imageUrl) else {
                                     return
                                 }
-                                print("cooking: \(cooking.recipeId) \(cooking.recipeName) \(cooking.imageUrl)")
                                 cookings.append(cooking)
-                                print("cookingsArr:\(cookings) ")
                             }
                         }
                     }

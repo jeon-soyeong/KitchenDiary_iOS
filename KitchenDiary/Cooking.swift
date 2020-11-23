@@ -9,7 +9,6 @@
 import UIKit
 
 class Cooking: NSObject {
-    
     var recipeId: Int
     var recipeName: String
     var imageUrl: String

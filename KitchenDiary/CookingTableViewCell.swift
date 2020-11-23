@@ -40,21 +40,15 @@ class CookingTableViewCell: UITableViewCell {
         guard let loadCooking = loadCooking else {
             return
         }
-        
         bookMarkButton.isSelected = loadCooking.contains(where: { (loadCooking) -> Bool in
             return cooking.recipeId == loadCooking.recipeId
         })
-        
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 }
