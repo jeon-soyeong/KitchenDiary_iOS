@@ -29,8 +29,8 @@ class CalendarDiaryViewController: UIViewController {
     var eventCount: Int = 0
     static var eventDatesDictionary: [String : Int] = [:]
     var retunCount: String = ""
-    let userDefaults = UserDefaults.standard
-   
+    let cookingDiaryDataManager = CookingDiaryDataManager.init()
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if segue.identifier == "showDiaryDetail" {
@@ -51,7 +51,7 @@ class CalendarDiaryViewController: UIViewController {
             return
         }
         let selectDateTitleSubString =  selectDateTitle.dropLast(2)
-        viewModel.cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations(String(selectDateTitleSubString))
+        viewModel.cookingDiaries = cookingDiaryDataManager.selectCookingDiary([SQLValue(key: "cookingName", value: "String"),SQLValue(key: "cookingPhoto", value: "UIImage"),SQLValue(key: "cookingRating", value: "Int"),SQLValue(key: "cookingMemo", value: "String"),SQLValue(key: "todayDate", value: "String"),SQLValue(key: "rowid", value: "Int")],[SQLValue(key: "todayDate", value: String(selectDateTitleSubString))])
         collectionView.reloadData()
     }
 }
@@ -75,11 +75,13 @@ extension CalendarDiaryViewController {
         dateFormatter.dateFormat = "YYYY년 MM월 dd일 ▼"
         let selectDateString = dateFormatter.string(from: Date())
         selectDate.setTitle(selectDateString, for: .normal)
+        //eventDates = CookingEvaluationDataManager.shared.selectEventDate()
+        eventDates = cookingDiaryDataManager.selectEventDate([SQLValue(key: "todayDate", value: "String")],[SQLValue(key: "nil", value: "nil")])
+        print("eventDates: \(eventDates)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        eventDates = CookingEvaluationDataManager.shared.selectEventDate()
         calendar(calendar, numberOfEventsFor: Date())
         calendar.reloadData()
         scrollView.addGestureRecognizer(collectionView.panGestureRecognizer)
@@ -98,7 +100,8 @@ extension CalendarDiaryViewController {
         
         dateFormatter.dateFormat = "YYYY년 MM월 dd일"
         let todayDateString = dateFormatter.string(from: Date())
-        viewModel.cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations(todayDateString)
+        viewModel.cookingDiaries = cookingDiaryDataManager.selectCookingDiary([SQLValue(key: "cookingName", value: "String"),SQLValue(key: "cookingPhoto", value: "UIImage"),SQLValue(key: "cookingRating", value: "Int"),SQLValue(key: "cookingMemo", value: "String"),SQLValue(key: "todayDate", value: "String"),SQLValue(key: "rowid", value: "Int")],[SQLValue(key: "todayDate", value: todayDateString)])
+        //viewModel.cookingDiaries = cookingDiaryDataManager.readCookingEvaluations(todayDateString)
         collectionView.reloadData()
     }
     
@@ -134,7 +137,8 @@ extension CalendarDiaryViewController: UICollectionViewDataSource {
     @objc func deletingCell(sender : UIButton) {
         let cookingDiary = viewModel.cookingDiaries(at: sender.tag)
         collectionView.deleteItems(at: [IndexPath.init(item: sender.tag, section: 0)])
-        CookingEvaluationDataManager.shared.deleteByCookingIndex(cookingIndex: cookingDiary.cookingIndex)
+        cookingDiaryDataManager.deleteByCookingIndex([SQLValue(key: "rowid", value: cookingDiary.cookingIndex)])
+//            .deleteByCookingIndex(cookingIndex: cookingDiary.cookingIndex)
         collectionViewReloadData()
         guard let selectDateTitle = selectDate.titleLabel?.text else {
             return
@@ -143,14 +147,18 @@ extension CalendarDiaryViewController: UICollectionViewDataSource {
         guard let eventDownCount = CalendarDiaryViewController.eventDatesDictionary[String(selectDateTitleSubString)] else {
             return
         }
-        guard let eventDictionary = UserDefaults.standard.object(forKey: "eventDictionary") as? Data,
-              let eventDatesDictionary = NSKeyedUnarchiver.unarchiveObject(with: eventDictionary) as? [String : Int] else {
-            return
-        }
-        CalendarDiaryViewController.eventDatesDictionary = eventDatesDictionary
+//        guard let eventDictionary = UserDefaults.standard.object(forKey: "eventDictionary") as? Data,
+//              let eventDatesDictionary = NSKeyedUnarchiver.unarchiveObject(with: eventDictionary) as? [String : Int] else {
+//            return
+//        }
+//        CalendarDiaryViewController.eventDatesDictionary = eventDatesDictionary
+        cookingDiaryDataManager.selectRowId([SQLValue(key: "rowid", value: "Int")],[SQLValue(key: "nil", value: "nil")]).count
+//        print("delete 전 eventDatesDictionary: \(eventDatesDictionary)")
+//        print("delete 전 CalendarDiaryViewController.eventDatesDictionary: \(CalendarDiaryViewController.eventDatesDictionary)")
         CalendarDiaryViewController.eventDatesDictionary.updateValue(eventDownCount-1, forKey: String(selectDateTitleSubString))
-        let eventDateDictionary = try? NSKeyedArchiver.archivedData(withRootObject: CalendarDiaryViewController.eventDatesDictionary, requiringSecureCoding: false)
-        UserDefaults.standard.set(eventDateDictionary, forKey: "eventDictionary")
+//        print("delete CalendarDiaryViewController.eventDatesDictionary: \(CalendarDiaryViewController.eventDatesDictionary)")
+//        let eventDateDictionary = try? NSKeyedArchiver.archivedData(withRootObject: CalendarDiaryViewController.eventDatesDictionary, requiringSecureCoding: false)
+//        UserDefaults.standard.set(eventDateDictionary, forKey: "eventDictionary")
         calendar(calendar, numberOfEventsFor: Date())
         calendar.reloadData()
     }
@@ -184,7 +192,8 @@ extension CalendarDiaryViewController: FSCalendarDelegate {
         
         dateFormatter.dateFormat = "YYYY년 MM월 dd일"
         let selectDateString = dateFormatter.string(from: date)
-        viewModel.cookingDiaries = CookingEvaluationDataManager.shared.readCookingEvaluations(selectDateString)
+        viewModel.cookingDiaries = cookingDiaryDataManager.selectCookingDiary([SQLValue(key: "cookingName", value: "String"),SQLValue(key: "cookingPhoto", value: "UIImage"),SQLValue(key: "cookingRating", value: "Int"),SQLValue(key: "cookingMemo", value: "String"),SQLValue(key: "todayDate", value: "String"),SQLValue(key: "rowid", value: "Int")],[SQLValue(key: "todayDate", value: selectDateString)])
+        //viewModel.cookingDiaries = cookingDiaryDataManager.readCookingEvaluations(selectDateString)
         collectionView.reloadData()
     }
 }
@@ -201,8 +210,6 @@ extension CalendarDiaryViewController: FSCalendarDataSource {
                 if eventDates[i].contains(dateString) {
                     eventCount += 1
                     CalendarDiaryViewController.eventDatesDictionary.updateValue(eventCount, forKey: eventDates[i])
-                    let eventDictionary = try? NSKeyedArchiver.archivedData(withRootObject: CalendarDiaryViewController.eventDatesDictionary, requiringSecureCoding: false)
-                    UserDefaults.standard.set(eventDictionary, forKey: "eventDictionary")
                 }
             }
         } else {

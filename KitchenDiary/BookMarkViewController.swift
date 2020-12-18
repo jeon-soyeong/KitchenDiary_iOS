@@ -11,10 +11,11 @@ import UIKit
 class BookMarkViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let myGroup = DispatchGroup()
-    let sqlDataManager = SQLDataManager.init()
+    let bookMarkDataManager = BookMarkDataManager.init()
     let cookingRecipeController = CookingRecipeViewController.init()
     var cookings: [Cooking] = []
     var cookingDictionary: [Int : [String]] = [:]
+    var recipeIdArray: [Int] = []
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -35,6 +36,7 @@ class BookMarkViewController: UIViewController {
                 }
                 cookingCourseViewController.cookingDescriptionArray = selectCookingDecriptionArray
                 let cooking = cookings[indexPath.row]
+                print("cooking book: \(cooking)")
                 cookingCourseViewController.cooking = cooking
             default:
                 break
@@ -46,10 +48,10 @@ class BookMarkViewController: UIViewController {
 extension BookMarkViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        cookings = sqlDataManager.readCookings()
+        cookings = bookMarkDataManager.selectBookMark([SQLValue(key: "recipeId", value: "Int"),SQLValue(key: "recipeName", value: "String"),SQLValue(key: "imageUrl", value: "String")],[SQLValue(key: "nil", value: "nil")])
     }
     override func viewWillAppear(_ animated: Bool) {
-        cookings = sqlDataManager.readCookings()
+        cookings = bookMarkDataManager.selectBookMark([SQLValue(key: "recipeId", value: "Int"),SQLValue(key: "recipeName", value: "String"),SQLValue(key: "imageUrl", value: "String")],[SQLValue(key: "nil", value: "nil")])
         tableView.reloadData()
     }
 }
@@ -65,6 +67,7 @@ extension BookMarkViewController: UITableViewDataSource {
         guard let bookMarkCell = cell as? BookMarkTableViewCell else {
             return cell
         }
+       // bookMarkCell.cooking = cookings[indexPath.row]
         bookMarkCell.cooking = cookings[indexPath.row]
         bookMarkCell.bookMarkButton.tag = indexPath.row
         bookMarkCell.bookMarkButton.addTarget(self, action: #selector(bookMarkbuttonPressed(_:)), for: .touchUpInside)
@@ -74,7 +77,7 @@ extension BookMarkViewController: UITableViewDataSource {
     @objc func bookMarkbuttonPressed(_ sender: UIButton) {
         let indexPath = sender.tag
         let cooking = cookings[indexPath]
-        sqlDataManager.deleteByRecipeId(recipeId: cooking.recipeId)
+        bookMarkDataManager.deleteBookMark([SQLValue(key: "recipeId", value: cooking.recipeId)])
         cookings.remove(at: indexPath)
         tableView.reloadData()
     }

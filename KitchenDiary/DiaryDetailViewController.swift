@@ -13,6 +13,8 @@ class DiaryDetailViewController: UIViewController {
     var cookingDiary: CookingDiary?
     var saveButtonMode: String?
     let viewModel = DiaryDetailViewModel()
+    let cookingDiaryDataManager = CookingDiaryDataManager.init()
+    var selectRowIdCount = 0
     @IBOutlet weak var cookingName: UITextField!
     @IBOutlet weak var cookingPhoto: UIImageView!
     @IBOutlet weak var cookingRating: RatingControl!
@@ -23,7 +25,7 @@ class DiaryDetailViewController: UIViewController {
     @IBOutlet weak var memoHeight: NSLayoutConstraint!
     @IBOutlet weak var memoTextBottom: NSLayoutConstraint!
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
- 
+    
     func updateUI() {
         if let cookingDiary = viewModel.cookingDiary {
             cookingName.text = cookingDiary.cookingName
@@ -35,7 +37,7 @@ class DiaryDetailViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        guard let button = sender as? UIBarButtonItem, button === saveButton else{
+        guard let button = sender as? UIBarButtonItem, button === saveButton else {
             return
         }
         let name = cookingName.text ?? ""
@@ -70,6 +72,9 @@ extension DiaryDetailViewController {
         cookingPhoto.isUserInteractionEnabled = true
         textViewDidChange(cookingMemoText)
         cookingName.placeholder = recipeName
+        selectRowIdCount = cookingDiaryDataManager.selectRowId([SQLValue(key: "rowid", value: "Int")],[SQLValue(key: "nil", value: "nil")]).count
+//        selectRowIdCount = cookingDiaryDataManager.selectRowId().count
+        print("불러온 selectRowIdCount: \(selectRowIdCount)")
     }
 }
 
@@ -85,29 +90,17 @@ extension DiaryDetailViewController {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 MM월 dd일"
-        let selectDateString = dateFormatter.string(from: Date())
+        let todayDateString = dateFormatter.string(from: Date())
         
         //DB 저장하기
-        let cookingEvaluationDataManager = CookingEvaluationDataManager.shared
-        let userDefaults = UserDefaults.standard
         if saveButtonMode == "save" {
-            guard let eventDictionary = UserDefaults.standard.object(forKey: "eventDictionary") as? Data,
-                  let eventDatesDictionary = NSKeyedUnarchiver.unarchiveObject(with: eventDictionary) as? [String : Int] else {
-                return
-            }
-            CalendarDiaryViewController.eventDatesDictionary = eventDatesDictionary
-            
-            var dicCount = CalendarDiaryViewController.eventDatesDictionary[selectDateString]
-            if dicCount == nil {
-                dicCount = 0
-            }
-            CalendarDiaryViewController.eventDatesDictionary.updateValue(dicCount!+1, forKey: selectDateString)
-            let eventDateDictionary = try? NSKeyedArchiver.archivedData(withRootObject: CalendarDiaryViewController.eventDatesDictionary, requiringSecureCoding: false)
-            UserDefaults.standard.set(eventDateDictionary, forKey: "eventDictionary")
-            cookingEvaluationDataManager.insertCookingEvaluations(name, photo, rating, memo, selectDateString)
+            CalendarDiaryViewController.eventDatesDictionary.updateValue(selectRowIdCount+1, forKey: todayDateString)
+            print("+1 CalendarDiaryViewController.eventDatesDictionary: \(CalendarDiaryViewController.eventDatesDictionary)")
+            cookingDiaryDataManager.insertCookingDiary([SQLValue(key: "cookingName", value: name), SQLValue(key: "cookingPhoto", value: photo), SQLValue(key: "cookingRating", value: rating), SQLValue(key: "cookingMemo", value: memo), SQLValue(key: "todayDate", value: todayDateString)])
         }
         if saveButtonMode == "edit", let index = viewModel.cookingDiary?.cookingIndex {
-            cookingEvaluationDataManager.updateCookingEvaluations(name, photo, rating, memo, index)
+            print("index: \(index)")
+            cookingDiaryDataManager.updateCookingDiary([SQLValue(key: "cookingName", value: name), SQLValue(key: "cookingPhoto", value: photo), SQLValue(key: "cookingRating", value: rating), SQLValue(key: "cookingMemo", value: memo)], [SQLValue(key: "rowid", value: index)])
         }
         //창 닫기
         if let owningNavigationController = navigationController{

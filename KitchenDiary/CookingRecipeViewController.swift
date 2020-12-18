@@ -28,9 +28,10 @@ class CookingRecipeViewController: UITableViewController {
     let cookingCourseQueue = DispatchQueue(label: "cookingCourse")
     var cookingDescriptionArr: [String] = []
     var cookingDictionary: [Int : [String]] = [:]
-    let sqlDataManager = SQLDataManager.init()
+    let bookMarkDataManager = BookMarkDataManager.init()
     var loadCooking: [Cooking] = []
     let myGroup = DispatchGroup()
+    var recipeIdArray: [Int] = []
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -39,7 +40,7 @@ class CookingRecipeViewController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadCooking = sqlDataManager.readCookings()
+        loadCooking = bookMarkDataManager.selectBookMark([SQLValue(key: "recipeId", value: "Int"),SQLValue(key: "recipeName", value: "String"),SQLValue(key: "imageUrl", value: "String")],[SQLValue(key: "nil", value: "nil")])
         tableView.reloadData()
     }
     
@@ -49,11 +50,13 @@ class CookingRecipeViewController: UITableViewController {
         let cooking = cookings[indexPath]
         if sender.isSelected == true {//delete
             sender.isSelected = false
-            sqlDataManager.deleteByRecipeId(recipeId: cooking.recipeId)
+            bookMarkDataManager.deleteBookMark([SQLValue(key: "recipeId", value: cooking.recipeId)])
+            //sqlDataManager.deleteByRecipeId(recipeId: cooking.recipeId)
         }
         else {// insert
             sender.isSelected = true
-            sqlDataManager.insertCookings(cooking.recipeId, cooking.recipeName, cooking.imageUrl)
+            //sqlDataManager.insertCookings(cooking.recipeId, cooking.recipeName, cooking.imageUrl)
+            bookMarkDataManager.insertBookMark([SQLValue(key: "recipeId", value: cooking.recipeId),SQLValue(key: "recipeName", value: cooking.recipeName),SQLValue(key: "imageUrl", value: cooking.imageUrl)])
         }
     }
     
@@ -124,7 +127,7 @@ class CookingRecipeViewController: UITableViewController {
             }
             
             let cookingName = cookings[indexPath].recipeName
-            print("cookings[indexPath.row].recipeName: \(cookings[indexPath].recipeName)")
+          //  print("cookings[indexPath.row].recipeName: \(cookings[indexPath].recipeName)")
             diaryDetailViewController.recipeName = cookingName
             diaryDetailViewController.saveButtonMode = "save"
         default: break

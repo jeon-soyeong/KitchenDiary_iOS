@@ -38,6 +38,16 @@
                ReferencedContainer = "container:KitchenDiary.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9B6FA34E2570F4D100DFF42A"
+               BuildableName = "KitchenDiaryUITests.xctest"
+               BlueprintName = "KitchenDiaryUITests"
+               ReferencedContainer = "container:KitchenDiary.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

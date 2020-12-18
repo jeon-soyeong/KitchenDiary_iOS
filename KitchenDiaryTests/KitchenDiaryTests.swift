@@ -11,8 +11,8 @@ import XCTest
 
 class KitchenDiaryTests: XCTestCase {
 
-    let manager = SQLdataManager()
-    
+//    let manager = SQLdataManager()
+//
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -24,7 +24,7 @@ class KitchenDiaryTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        XCTAssert(manager.insert())
+      //  XCTAssert(insert(paramValues: ["recipeId":cooking.recipeId, "recipeName":cooking.recipeName, "imageUrl":cooking.imageUrl]))
     }
 
     func testPerformanceExample() throws {
@@ -33,5 +33,4 @@ class KitchenDiaryTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
 }

@@ -12,8 +12,9 @@ import sqlite3
 public class CookingEvaluationDataManager {
     static let shared: CookingEvaluationDataManager = CookingEvaluationDataManager.init()
     let queue = DispatchQueue(label: "dataQueue")
-    var eventDates = [String]()
-    
+    var eventDatesArrays: [String] = []
+    var rowIdArrays: Set<Int32> = []
+  
     let dbPath: String = "CookingEvaluation.sqlite"
     var db: OpaquePointer?
     
@@ -124,12 +125,10 @@ public class CookingEvaluationDataManager {
         
         queue.sync {
             if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
-                
                 let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
                 sqlite3_bind_text(queryStatement, 1, todayDate, -1, SQLITE_TRANSIENT)
                 
                 while sqlite3_step(queryStatement) == SQLITE_ROW {
-                    
                     let cookingName = String(describing: String(cString: sqlite3_column_text(queryStatement, 0)))
                     print("cookingName : \(cookingName)")
                     let image = sqlite3_column_blob(queryStatement, 1);
@@ -149,7 +148,6 @@ public class CookingEvaluationDataManager {
                     let cookingIndex = sqlite3_column_int(queryStatement, 5)
                     print("cookingIndex : \(cookingIndex)")
                     
-                    
                     guard let cookingDiary = CookingDiary(cookingName: cookingName, cookingPhoto: cookingPhoto, cookingRating: Int(cookingRating), cookingMemo: cookingMemo, cookingIndex: Int(cookingIndex), todayDate: todayDate) else {
                         fatalError("no cookingDiary")
                     }
@@ -158,7 +156,7 @@ public class CookingEvaluationDataManager {
                     print("\(cookingName) | \(cookingPhoto) | \(cookingRating) | \(cookingMemo) | \(cookingIndex) | \(todayDate)")
                 }
             } else {
-                print("SELECT statement could not be prepared")
+                print("SELECT statement could not be prepared!!!")
             }
             sqlite3_finalize(queryStatement)
         }
@@ -171,6 +169,7 @@ public class CookingEvaluationDataManager {
         if sqlite3_prepare_v2(db, deleteStatementStirng, -1, &deleteStatement, nil) == SQLITE_OK {
             sqlite3_bind_int(deleteStatement, 1, Int32(cookingIndex))
             if sqlite3_step(deleteStatement) == SQLITE_DONE {
+                print("delete cookingIndex: \(cookingIndex)")
                 print("Successfully deleted row.")
             } else {
                 print("Could not delete row.")
@@ -188,13 +187,37 @@ public class CookingEvaluationDataManager {
             if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
                 while sqlite3_step(queryStatement) == SQLITE_ROW {
                     let todayDate = String(describing: String(cString: sqlite3_column_text(queryStatement, 0)))
-                    eventDates.append(todayDate)
+                    eventDatesArrays.append(todayDate)
+                    print("select eventDatesArrays: \(eventDatesArrays)")
                 }
             } else {
-                print("SELECT statement could not be prepared")
+                print("SELECT statement could not be prepared..")
             }
             sqlite3_finalize(queryStatement)
         }
-        return eventDates
+        return eventDatesArrays
+    }
+    
+    func selectRowId() -> Set<Int32> {
+        let queryStatementString = "SELECT rowid FROM CookingEvaluation;"
+        var queryStatement: OpaquePointer?
+        queue.sync {
+            if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+                rowIdArrays = []
+                while sqlite3_step(queryStatement) == SQLITE_ROW {
+                    let rowid = sqlite3_column_int(queryStatement, 0)
+                    print("selecting rowid : \(rowid)")
+                    rowIdArrays.insert(rowid)
+                    for index in rowIdArrays{
+                        print("set: \(index)")
+                    }
+                }
+            } else {
+                print("SELECT statement could not be prepared..")
+            }
+            sqlite3_finalize(queryStatement)
+        }
+        print("rowIdArrays.count: \(rowIdArrays.count)")
+        return rowIdArrays
     }
 }

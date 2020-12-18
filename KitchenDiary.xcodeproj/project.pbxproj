@@ -25,6 +25,8 @@
 		9B6FA343256ACF1000DFF42A /* KitchenDiaryTests in Resources */ = {isa = PBXBuildFile; fileRef = 9B6FA342256ACF1000DFF42A /* KitchenDiaryTests */; };
 		9B6FA345256BAB3D00DFF42A /* DiaryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6FA344256BAB3D00DFF42A /* DiaryDetailViewModel.swift */; };
 		9B6FA347256BAB9700DFF42A /* CalendarDiaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6FA346256BAB9700DFF42A /* CalendarDiaryViewModel.swift */; };
+		9B6FA349256CCBAD00DFF42A /* BookMarkDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6FA348256CCBAD00DFF42A /* BookMarkDataManager.swift */; };
+		9B6FA3522570F4D200DFF42A /* KitchenDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6FA3512570F4D200DFF42A /* KitchenDiaryUITests.swift */; };
 		9B96C3F5253B5FC000F1CB1C /* CookingRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96C3F4253B5FC000F1CB1C /* CookingRecipeViewController.swift */; };
 		9B98930F2512498B00589B5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B98930E2512498B00589B5B /* AppDelegate.swift */; };
 		9B9893112512498B00589B5B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9893102512498B00589B5B /* SceneDelegate.swift */; };
@@ -34,6 +36,7 @@
 		9B98931B2512499100589B5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B9893192512499100589B5B /* LaunchScreen.storyboard */; };
 		9BA29EFB251B32C30075703D /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA29EFA251B32C30075703D /* RatingControl.swift */; };
 		9BA29EFF251C4AC70075703D /* DiaryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA29EFE251C4AC60075703D /* DiaryDetailViewController.swift */; };
+		9BE95748258A3B7F0073DAED /* CookingDiaryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE95747258A3B7F0073DAED /* CookingDiaryDataManager.swift */; };
 		9BF09CD0251353440094ABC5 /* a펜글씨L.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9BF09CC5251352E90094ABC5 /* a펜글씨L.otf */; };
 		9BF09CDB251353720094ABC5 /* a펜글씨B.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9BF09CCD251352EA0094ABC5 /* a펜글씨B.otf */; };
 		9BF218D32534BF2700E7C6C8 /* FillInIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF218D22534BF2600E7C6C8 /* FillInIngredientsViewController.swift */; };
@@ -42,6 +45,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9B6FA3542570F4D200DFF42A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B9893032512498B00589B5B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B98930A2512498B00589B5B;
+			remoteInfo = KitchenDiary;
+		};
 		9B9893222512499200589B5B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9B9893032512498B00589B5B /* Project object */;
@@ -71,6 +81,10 @@
 		9B6FA342256ACF1000DFF42A /* KitchenDiaryTests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KitchenDiaryTests; sourceTree = "<group>"; };
 		9B6FA344256BAB3D00DFF42A /* DiaryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailViewModel.swift; sourceTree = "<group>"; };
 		9B6FA346256BAB9700DFF42A /* CalendarDiaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDiaryViewModel.swift; sourceTree = "<group>"; };
+		9B6FA348256CCBAD00DFF42A /* BookMarkDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkDataManager.swift; sourceTree = "<group>"; };
+		9B6FA34F2570F4D100DFF42A /* KitchenDiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KitchenDiaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B6FA3512570F4D200DFF42A /* KitchenDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenDiaryUITests.swift; sourceTree = "<group>"; };
+		9B6FA3532570F4D200DFF42A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B96C3F4253B5FC000F1CB1C /* CookingRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingRecipeViewController.swift; sourceTree = "<group>"; };
 		9B98930B2512498B00589B5B /* KitchenDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KitchenDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B98930E2512498B00589B5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +97,7 @@
 		9B9893212512499200589B5B /* KitchenDiaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KitchenDiaryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BA29EFA251B32C30075703D /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		9BA29EFE251C4AC60075703D /* DiaryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailViewController.swift; sourceTree = "<group>"; };
+		9BE95747258A3B7F0073DAED /* CookingDiaryDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingDiaryDataManager.swift; sourceTree = "<group>"; };
 		9BF09CC5251352E90094ABC5 /* a펜글씨L.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "a펜글씨L.otf"; path = "../../../../../../Library/Fonts/a펜글씨L.otf"; sourceTree = "<group>"; };
 		9BF09CCD251352EA0094ABC5 /* a펜글씨B.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "a펜글씨B.otf"; path = "../../../../../../Library/Fonts/a펜글씨B.otf"; sourceTree = "<group>"; };
 		9BF218D22534BF2600E7C6C8 /* FillInIngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillInIngredientsViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +109,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9B6FA34C2570F4D100DFF42A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9B9893082512498B00589B5B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -132,11 +154,21 @@
 			path = storyBoard;
 			sourceTree = "<group>";
 		};
+		9B6FA3502570F4D200DFF42A /* KitchenDiaryUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9B6FA3512570F4D200DFF42A /* KitchenDiaryUITests.swift */,
+				9B6FA3532570F4D200DFF42A /* Info.plist */,
+			);
+			path = KitchenDiaryUITests;
+			sourceTree = "<group>";
+		};
 		9B9893022512498B00589B5B = {
 			isa = PBXGroup;
 			children = (
 				9B6FA342256ACF1000DFF42A /* KitchenDiaryTests */,
 				9B98930D2512498B00589B5B /* KitchenDiary */,
+				9B6FA3502570F4D200DFF42A /* KitchenDiaryUITests */,
 				9B98930C2512498B00589B5B /* Products */,
 				542D36BD758B276C2B744E51 /* Pods */,
 				CD1E20DEEF7CA3D8C1A18B32 /* Frameworks */,
@@ -148,6 +180,7 @@
 			children = (
 				9B98930B2512498B00589B5B /* KitchenDiary.app */,
 				9B9893212512499200589B5B /* KitchenDiaryTests.xctest */,
+				9B6FA34F2570F4D100DFF42A /* KitchenDiaryUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -157,7 +190,9 @@
 			children = (
 				9B144F7225440CD8001307D5 /* storyBoard */,
 				9B0F4D17254489930077E4D9 /* SQLDataManager.swift */,
+				9B6FA348256CCBAD00DFF42A /* BookMarkDataManager.swift */,
 				9B213D38254EB2DA006C7625 /* CookingEvaluationDataManager.swift */,
+				9BE95747258A3B7F0073DAED /* CookingDiaryDataManager.swift */,
 				9B3540B725406A2300343FEB /* Cooking.swift */,
 				9B98930E2512498B00589B5B /* AppDelegate.swift */,
 				9B9893102512498B00589B5B /* SceneDelegate.swift */,
@@ -201,6 +236,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9B6FA34E2570F4D100DFF42A /* KitchenDiaryUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9B6FA3562570F4D200DFF42A /* Build configuration list for PBXNativeTarget "KitchenDiaryUITests" */;
+			buildPhases = (
+				9B6FA34B2570F4D100DFF42A /* Sources */,
+				9B6FA34C2570F4D100DFF42A /* Frameworks */,
+				9B6FA34D2570F4D100DFF42A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9B6FA3552570F4D200DFF42A /* PBXTargetDependency */,
+			);
+			name = KitchenDiaryUITests;
+			productName = KitchenDiaryUITests;
+			productReference = 9B6FA34F2570F4D100DFF42A /* KitchenDiaryUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		9B98930A2512498B00589B5B /* KitchenDiary */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B98932A2512499200589B5B /* Build configuration list for PBXNativeTarget "KitchenDiary" */;
@@ -246,10 +299,15 @@
 		9B9893032512498B00589B5B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1170;
+				DefaultBuildSystemTypeForWorkspace = Original;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1170;
 				ORGANIZATIONNAME = "Soyeong Jeon";
 				TargetAttributes = {
+					9B6FA34E2570F4D100DFF42A = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = 9B98930A2512498B00589B5B;
+					};
 					9B98930A2512498B00589B5B = {
 						CreatedOnToolsVersion = 11.7;
 					};
@@ -274,11 +332,19 @@
 			targets = (
 				9B98930A2512498B00589B5B /* KitchenDiary */,
 				9B9893202512499200589B5B /* KitchenDiaryTests */,
+				9B6FA34E2570F4D100DFF42A /* KitchenDiaryUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9B6FA34D2570F4D100DFF42A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9B9893092512498B00589B5B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -383,6 +449,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9B6FA34B2570F4D100DFF42A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B6FA3522570F4D200DFF42A /* KitchenDiaryUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9B9893072512498B00589B5B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -393,11 +467,13 @@
 				9BA29EFF251C4AC70075703D /* DiaryDetailViewController.swift in Sources */,
 				9B96C3F5253B5FC000F1CB1C /* CookingRecipeViewController.swift in Sources */,
 				9B6FA345256BAB3D00DFF42A /* DiaryDetailViewModel.swift in Sources */,
+				9B6FA349256CCBAD00DFF42A /* BookMarkDataManager.swift in Sources */,
 				9B0F4D18254489930077E4D9 /* SQLDataManager.swift in Sources */,
 				9B309992254BDA44009D067D /* CookingDiary.swift in Sources */,
 				9B3540B825406A2300343FEB /* Cooking.swift in Sources */,
 				9B213D39254EB2DA006C7625 /* CookingEvaluationDataManager.swift in Sources */,
 				9B481F5F25413B31001FAFC8 /* CookingTableViewCell.swift in Sources */,
+				9BE95748258A3B7F0073DAED /* CookingDiaryDataManager.swift in Sources */,
 				9BF6FB4F254736F200DEF139 /* BookMarkViewController.swift in Sources */,
 				9B9893132512498B00589B5B /* ViewController.swift in Sources */,
 				9B98930F2512498B00589B5B /* AppDelegate.swift in Sources */,
@@ -424,6 +500,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9B6FA3552570F4D200DFF42A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9B98930A2512498B00589B5B /* KitchenDiary */;
+			targetProxy = 9B6FA3542570F4D200DFF42A /* PBXContainerItemProxy */;
+		};
 		9B9893232512499200589B5B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9B98930A2512498B00589B5B /* KitchenDiary */;
@@ -451,6 +532,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9B6FA3572570F4D200DFF42A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 577SG3C42S;
+				INFOPLIST_FILE = KitchenDiaryUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.soyeong.KitchenDiaryUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KitchenDiary;
+			};
+			name = Debug;
+		};
+		9B6FA3582570F4D200DFF42A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 577SG3C42S;
+				INFOPLIST_FILE = KitchenDiaryUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.soyeong.KitchenDiaryUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KitchenDiary;
+			};
+			name = Release;
+		};
 		9B9893282512499200589B5B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -654,6 +777,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9B6FA3562570F4D200DFF42A /* Build configuration list for PBXNativeTarget "KitchenDiaryUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B6FA3572570F4D200DFF42A /* Debug */,
+				9B6FA3582570F4D200DFF42A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9B9893062512498B00589B5B /* Build configuration list for PBXProject "KitchenDiary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -48,7 +48,7 @@ class MyKitchenViewController: UITableViewController {
     let myGroup = DispatchGroup()
     var essentialIrdntArr: [String] = []
     var cookings: [Cooking] = []
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         switch(segue.identifier ?? "") {
@@ -179,12 +179,16 @@ extension MyKitchenViewController {
         for i in 0..<self.ingredientsArr.count {
             let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000227_1//1/1000?IRDNT_NM=\(self.ingredientsArr[i])"
             let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            guard let url = URL(string: encoded) else {return }
+            guard let url = URL(string: encoded) else {
+                return
+            }
             
             myGroup.enter()
             URLSession.shared.dataTask(with: url) { [self] data, response, err in
                 let task = DispatchWorkItem {
-                    guard let data = data else {return}
+                    guard let data = data else {
+                        return
+                    }
                     do {
                         let decoder = JSONDecoder()
                         let recipeInfo = try? decoder.decode(IngredientsInfo.self, from: data)
@@ -260,7 +264,9 @@ extension MyKitchenViewController {
         
         let jsonString = "http://211.237.50.150:7080/openapi/c3f0717712af36dd95565986287a795a5b0a771beb317dfd99e462b743530477/json/Grid_20150827000000000226_1//1/1000"
         let encoded: String = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        guard let url = URL(string: encoded) else {return }
+        guard let url = URL(string: encoded) else {
+            return
+        }
         
         URLSession.shared.dataTask(with: url) { [self] data, response, err in
             let task = DispatchWorkItem {
@@ -293,3 +299,4 @@ extension MyKitchenViewController {
         .resume()
     }
 }
+
