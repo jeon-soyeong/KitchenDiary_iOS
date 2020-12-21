@@ -52,6 +52,13 @@ class DiaryDetailViewController: UIViewController {
         }
         cookingDiary = CookingDiary(cookingName: name, cookingPhoto: photo, cookingRating: rating, cookingMemo: memo, cookingIndex: index, todayDate: todayDate)
     }
+    
+    func getToday() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY년 MM월 dd일"
+        let todayDateString = dateFormatter.string(from: Date())
+        return todayDateString
+    }
 }
 
 // MARK: Life Cycle
@@ -72,8 +79,7 @@ extension DiaryDetailViewController {
         cookingPhoto.isUserInteractionEnabled = true
         textViewDidChange(cookingMemoText)
         cookingName.placeholder = recipeName
-        selectRowIdCount = cookingDiaryDataManager.selectRowId([SQLValue(key: "rowid", value: "Int")],[SQLValue(key: "nil", value: "nil")]).count
-//        selectRowIdCount = cookingDiaryDataManager.selectRowId().count
+        selectRowIdCount = cookingDiaryDataManager.selectRowId([SQLValue(key: "rowid", value: "Int")],[SQLValue(key: "todayDate", value: getToday())]).count
         print("불러온 selectRowIdCount: \(selectRowIdCount)")
     }
 }
@@ -87,16 +93,11 @@ extension DiaryDetailViewController {
         }
         let rating = cookingRating.rating
         let memo = cookingMemoText.text ?? ""
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY년 MM월 dd일"
-        let todayDateString = dateFormatter.string(from: Date())
-        
         //DB 저장하기
         if saveButtonMode == "save" {
-            CalendarDiaryViewController.eventDatesDictionary.updateValue(selectRowIdCount+1, forKey: todayDateString)
+            CalendarDiaryViewController.eventDatesDictionary.updateValue(selectRowIdCount+1, forKey: getToday())
             print("+1 CalendarDiaryViewController.eventDatesDictionary: \(CalendarDiaryViewController.eventDatesDictionary)")
-            cookingDiaryDataManager.insertCookingDiary([SQLValue(key: "cookingName", value: name), SQLValue(key: "cookingPhoto", value: photo), SQLValue(key: "cookingRating", value: rating), SQLValue(key: "cookingMemo", value: memo), SQLValue(key: "todayDate", value: todayDateString)])
+            cookingDiaryDataManager.insertCookingDiary([SQLValue(key: "cookingName", value: name), SQLValue(key: "cookingPhoto", value: photo), SQLValue(key: "cookingRating", value: rating), SQLValue(key: "cookingMemo", value: memo), SQLValue(key: "todayDate", value: getToday())])
         }
         if saveButtonMode == "edit", let index = viewModel.cookingDiary?.cookingIndex {
             print("index: \(index)")

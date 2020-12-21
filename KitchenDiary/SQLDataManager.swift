@@ -144,11 +144,8 @@ public class SQLDataManager {
         return isSuccess
     }
     
-    //(_ cookingName: String, _ cookingPhoto: UIImage, _ cookingRating: Int, _ cookingMemo: String, _ cookingIndex: Int)
     @discardableResult
     func update(_ paramValues: [SQLValue], _ whereValues: [SQLValue]) -> Bool {
-        //let updateStatementString =  "UPDATE \(tableName) SET cookingName = ?, cookingPhoto = ?, cookingRating = ?, cookingMemo = ? WHERE rowid = ?;"
-        
         var columns: String = ""
         for i in 0..<paramValues.count {
             columns.append(paramValues[i].key)
