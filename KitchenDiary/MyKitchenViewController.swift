@@ -151,8 +151,12 @@ extension MyKitchenViewController {
             ingredientsArr.append(ingredients[i].name)
         }
         self.getRecipeIdFromIngredients()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
+
+// MARK: UIGestureRecognizerDelegate
+extension MyKitchenViewController: UIGestureRecognizerDelegate {}
 
 // MARK: IBAction
 extension MyKitchenViewController {

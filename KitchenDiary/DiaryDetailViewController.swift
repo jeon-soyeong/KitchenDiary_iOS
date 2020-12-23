@@ -59,6 +59,9 @@ class DiaryDetailViewController: UIViewController {
         let todayDateString = dateFormatter.string(from: Date())
         return todayDateString
     }
+    @objc func back() {
+          self.navigationController?.popViewController(animated: true)
+    }
 }
 
 // MARK: Life Cycle
@@ -81,6 +84,10 @@ extension DiaryDetailViewController {
         cookingName.placeholder = recipeName
         selectRowIdCount = cookingDiaryDataManager.selectRowId([SQLValue(key: "rowid", value: "Int")],[SQLValue(key: "todayDate", value: getToday())]).count
         print("불러온 selectRowIdCount: \(selectRowIdCount)")
+        let backwardImage = UIImage(systemName: "chevron.backward")
+        let backbutton = UIBarButtonItem(image: backwardImage, style: .done, target: self, action: #selector(back))
+        navigationItem.leftBarButtonItem = backbutton
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.black
     }
 }
 

@@ -42,6 +42,9 @@ class FillInIngredientsViewController: UIViewController {
         let memo = ingredientsMemo.text ?? ""
         ingredient = Ingredients(name: name, storageMethod: storage, expirationDate: exprirationDateStr, memo: memo)
     }
+    @objc func back() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 // MARK: Life Cycle
@@ -78,7 +81,6 @@ extension FillInIngredientsViewController {
             ingredientsMemo.text = ingredient.memo
             updateSaveButtonState()
         }
-        
         ingredientsMemo.layer.borderWidth = 1.0
         ingredientsMemo.layer.borderColor = UIColor.black.cgColor
         registerForKeyboardNotification()
@@ -89,8 +91,19 @@ extension FillInIngredientsViewController {
         singleTapGestureRecognizer.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(singleTapGestureRecognizer)
         textViewDidChange(ingredientsMemo)
+        
+        let backwardImage = UIImage(systemName: "chevron.backward")
+        let backbutton = UIBarButtonItem(image: backwardImage, style: .done, target: self, action: #selector(back))
+        navigationItem.leftBarButtonItem = backbutton
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
+extension FillInIngredientsViewController: UIGestureRecognizerDelegate {
+
+}
+
 
 // MARK: - UITextViewDelegate
 extension FillInIngredientsViewController: UITextViewDelegate {

@@ -78,6 +78,7 @@ extension CalendarDiaryViewController {
         //eventDates = CookingEvaluationDataManager.shared.selectEventDate()
         eventDates = cookingDiaryDataManager.selectEventDate([SQLValue(key: "todayDate", value: "String")],[SQLValue(key: "nil", value: "nil")])
         print("eventDates: \(eventDates)")
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,6 +89,9 @@ extension CalendarDiaryViewController {
         collectionViewReloadData()
     }
 }
+
+// MARK: UIGestureRecognizerDelegate
+extension CalendarDiaryViewController: UIGestureRecognizerDelegate {}
 
 // MARK: IBAction
 extension CalendarDiaryViewController {

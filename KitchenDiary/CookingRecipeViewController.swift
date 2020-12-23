@@ -37,6 +37,10 @@ class CookingRecipeViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getCookingCourse(cookings: cookings)
+        let backwardImage = UIImage(systemName: "chevron.backward")
+        let backbutton = UIBarButtonItem(image: backwardImage, style: .done, target: self, action: #selector(back))
+        navigationItem.leftBarButtonItem = backbutton
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.black
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -88,6 +92,9 @@ class CookingRecipeViewController: UITableViewController {
         return cell
     }
     
+    @objc func back() {
+          self.navigationController?.popViewController(animated: true)
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
@@ -127,7 +134,6 @@ class CookingRecipeViewController: UITableViewController {
             }
             
             let cookingName = cookings[indexPath].recipeName
-          //  print("cookings[indexPath.row].recipeName: \(cookings[indexPath].recipeName)")
             diaryDetailViewController.recipeName = cookingName
             diaryDetailViewController.saveButtonMode = "save"
         default: break

@@ -24,24 +24,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 부엌으로 이동하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rol-BQ-zNq">
-                                <rect key="frame" x="135" y="174" width="200" height="23.5"/>
+                                <rect key="frame" x="135" y="174" width="200" height="20"/>
                                 <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgA-d4-YBt">
-                                <rect key="frame" x="282" y="201" width="68" height="39"/>
-                                <fontDescription key="fontDescription" name="KoreanPGS-B" family="KoreanPGSB" pointSize="23"/>
-                                <state key="normal" title="&gt;">
-                                    <color key="titleColor" systemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="goToMyKitchen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zW7-V8-7Ul"/>
-                                    <segue destination="8yG-kb-EZz" kind="show" id="CxJ-fn-yKM"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="garden" translatesAutoresizingMaskIntoConstraints="NO" id="ehN-oC-yM3">
-                                <rect key="frame" x="37.5" y="245" width="300" height="337"/>
+                                <rect key="frame" x="37.5" y="226" width="300" height="337"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="N8k-ns-Nw9"/>
                                     <constraint firstAttribute="height" constant="337" id="mJL-7l-eca"/>
@@ -51,12 +40,9 @@
                         <viewLayoutGuide key="safeArea" id="Q9K-ED-Z8c"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="cgA-d4-YBt" firstAttribute="top" secondItem="Rol-BQ-zNq" secondAttribute="bottom" constant="3.5" id="2MX-Jt-fCq"/>
                             <constraint firstItem="Rol-BQ-zNq" firstAttribute="leading" secondItem="Q9K-ED-Z8c" secondAttribute="leading" constant="135" id="5dH-3A-gb4"/>
-                            <constraint firstItem="Q9K-ED-Z8c" firstAttribute="trailing" secondItem="cgA-d4-YBt" secondAttribute="trailing" constant="25" id="8TP-jG-6dK"/>
-                            <constraint firstItem="ehN-oC-yM3" firstAttribute="top" secondItem="cgA-d4-YBt" secondAttribute="bottom" constant="5" id="D7m-EQ-JYQ"/>
+                            <constraint firstItem="ehN-oC-yM3" firstAttribute="top" secondItem="Rol-BQ-zNq" secondAttribute="bottom" constant="32" id="Ff3-fU-m5U"/>
                             <constraint firstItem="Q9K-ED-Z8c" firstAttribute="trailing" secondItem="Rol-BQ-zNq" secondAttribute="trailing" constant="40" id="Ney-bk-pBu"/>
-                            <constraint firstItem="cgA-d4-YBt" firstAttribute="leading" secondItem="Q9K-ED-Z8c" secondAttribute="leading" constant="282" id="RwS-2V-fYS"/>
                             <constraint firstItem="ehN-oC-yM3" firstAttribute="centerX" secondItem="Q9K-ED-Z8c" secondAttribute="centerX" id="h2U-sH-NBl"/>
                             <constraint firstItem="Rol-BQ-zNq" firstAttribute="top" secondItem="Q9K-ED-Z8c" secondAttribute="top" constant="130" id="wse-XE-Dmg"/>
                         </constraints>
@@ -64,9 +50,11 @@
                     <navigationItem key="navigationItem" id="2kD-IM-lp1">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="category" id="6ME-OE-MwE">
                             <inset key="imageInsets" minX="-35" minY="0.0" maxX="13" maxY="-9"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="setting" id="aJc-Pn-983">
                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-31" maxY="-11"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
@@ -193,7 +181,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIh-Sm-pRb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2910" y="1359"/>
+            <point key="canvasLocation" x="2988" y="1394"/>
         </scene>
         <!--부엌 채우기-->
         <scene sceneID="9Qg-S7-dQQ">
@@ -457,6 +445,7 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="pH3-9L-kU5" firstAttribute="top" secondItem="ifi-v4-gy4" secondAttribute="bottom" constant="30" id="1uy-8x-1YQ"/>
                                             <constraint firstItem="8zp-Es-ReP" firstAttribute="leading" secondItem="0aM-0J-l4J" secondAttribute="leading" constant="36" id="3MT-Bo-Wmi"/>
@@ -494,6 +483,9 @@
                                             <constraint firstItem="pKW-nx-exg" firstAttribute="top" secondItem="4Ix-nd-a3j" secondAttribute="bottom" constant="30" id="xmV-GP-lnq"/>
                                             <constraint firstItem="A3a-EO-psP" firstAttribute="top" secondItem="4Ix-nd-a3j" secondAttribute="bottom" constant="13" id="xs6-Zy-Dkz"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="23I-zF-dzV" appends="YES" id="fsd-t0-eEr"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -518,7 +510,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="부엌 채우기" id="dYC-cN-m20">
                         <barButtonItem key="rightBarButtonItem" title="저장" id="rtd-0e-M6a">
-                            <color key="tintColor" red="1" green="0.52762569059999997" blue="0.1529166981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="TAU-OT-wsj" kind="unwind" unwindAction="unwindToIngredientslListWithSender:" id="xaq-o7-gcm"/>
                             </connections>
@@ -537,6 +529,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p5s-ee-FTG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="TAU-OT-wsj" userLabel="Exit" sceneMemberID="exit"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="23I-zF-dzV"/>
             </objects>
             <point key="canvasLocation" x="3073" y="675"/>
         </scene>
@@ -719,6 +712,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="나의 부엌" id="2DA-t5-89N">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="1Ka-UU-7J4">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="bDc-cX-KJ5" kind="show" identifier="AddItem" id="Buy-PT-RwW"/>
                             </connections>
@@ -1365,9 +1359,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="WZB-HX-X5Q"/>
+        <segue reference="rVT-0N-VJY"/>
         <segue reference="1ie-PP-cGM"/>
-        <segue reference="CxJ-fn-yKM"/>
         <segue reference="eHf-BD-2a8"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -1390,9 +1383,6 @@
         <image name="underDiary" width="38" height="38"/>
         <image name="underMyKitchen" width="53" height="51.5"/>
         <image name="warning" width="3125" height="3125"/>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

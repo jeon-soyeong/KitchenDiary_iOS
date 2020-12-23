@@ -28,6 +28,15 @@ class CookingCourseViewController: UITableViewController {
         }
         //tableViewCell Height AutoSizing
         tableView.rowHeight = UITableView.automaticDimension
+        
+        let backwardImage = UIImage(systemName: "chevron.backward")
+        let backbutton = UIBarButtonItem(image: backwardImage, style: .done, target: self, action: #selector(back))
+        navigationItem.leftBarButtonItem = backbutton
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+    }
+    
+    @objc func back() {
+          self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Table view data source

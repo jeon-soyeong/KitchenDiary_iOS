@@ -21,25 +21,25 @@ class BookMarkViewController: UIViewController {
         super.prepare(for: segue, sender: sender)
         cookingDictionary = cookingRecipeController.getCookingCourse(cookings: cookings)
         switch(segue.identifier ?? "") {
-            case "bookMarkCookingCourse":
-                guard let cookingCourseViewController = segue.destination as? CookingCourseViewController else {
-                    return
-                }
-                guard let selectedCookingCell = sender as? BookMarkTableViewCell else {
-                    return
-                }
-                guard let indexPath = tableView.indexPath(for: selectedCookingCell) else {
-                    return
-                }
-                guard let selectCookingDecriptionArray = cookingDictionary[indexPath.row] else {
-                    return
-                }
-                cookingCourseViewController.cookingDescriptionArray = selectCookingDecriptionArray
-                let cooking = cookings[indexPath.row]
-                print("cooking book: \(cooking)")
-                cookingCourseViewController.cooking = cooking
-            default:
-                break
+        case "bookMarkCookingCourse":
+            guard let cookingCourseViewController = segue.destination as? CookingCourseViewController else {
+                return
+            }
+            guard let selectedCookingCell = sender as? BookMarkTableViewCell else {
+                return
+            }
+            guard let indexPath = tableView.indexPath(for: selectedCookingCell) else {
+                return
+            }
+            guard let selectCookingDecriptionArray = cookingDictionary[indexPath.row] else {
+                return
+            }
+            cookingCourseViewController.cookingDescriptionArray = selectCookingDecriptionArray
+            let cooking = cookings[indexPath.row]
+            print("cooking book: \(cooking)")
+            cookingCourseViewController.cooking = cooking
+        default:
+            break
         }
     }
 }
@@ -49,12 +49,16 @@ extension BookMarkViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         cookings = bookMarkDataManager.selectBookMark([SQLValue(key: "recipeId", value: "Int"),SQLValue(key: "recipeName", value: "String"),SQLValue(key: "imageUrl", value: "String")],[SQLValue(key: "nil", value: "nil")])
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     override func viewWillAppear(_ animated: Bool) {
         cookings = bookMarkDataManager.selectBookMark([SQLValue(key: "recipeId", value: "Int"),SQLValue(key: "recipeName", value: "String"),SQLValue(key: "imageUrl", value: "String")],[SQLValue(key: "nil", value: "nil")])
         tableView.reloadData()
     }
 }
+
+// MARK: UIGestureRecognizerDelegate
+extension BookMarkViewController: UIGestureRecognizerDelegate {}
 
 extension BookMarkViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,7 +71,7 @@ extension BookMarkViewController: UITableViewDataSource {
         guard let bookMarkCell = cell as? BookMarkTableViewCell else {
             return cell
         }
-       // bookMarkCell.cooking = cookings[indexPath.row]
+        // bookMarkCell.cooking = cookings[indexPath.row]
         bookMarkCell.cooking = cookings[indexPath.row]
         bookMarkCell.bookMarkButton.tag = indexPath.row
         bookMarkCell.bookMarkButton.addTarget(self, action: #selector(bookMarkbuttonPressed(_:)), for: .touchUpInside)
