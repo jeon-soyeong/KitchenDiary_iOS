@@ -70,7 +70,7 @@
 		9B213CF2254BF461006C7625 /* CookingDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingDiaryTableViewCell.swift; sourceTree = "<group>"; };
 		9B213D38254EB2DA006C7625 /* CookingEvaluationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingEvaluationDataManager.swift; sourceTree = "<group>"; };
 		9B2715B02537FC72003CA18D /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
-		9B29D6C9255A3ED300AC5986 /* CalendarDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarDiaryViewController.swift; path = storyBoard/CalendarDiaryViewController.swift; sourceTree = "<group>"; };
+		9B29D6C9255A3ED300AC5986 /* CalendarDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDiaryViewController.swift; sourceTree = "<group>"; };
 		9B29D6CB255A485600AC5986 /* CookingDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingDiaryCell.swift; sourceTree = "<group>"; };
 		9B309991254BDA44009D067D /* CookingDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingDiary.swift; sourceTree = "<group>"; };
 		9B3540B725406A2300343FEB /* Cooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cooking.swift; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 		9BF09CCD251352EA0094ABC5 /* a펜글씨B.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "a펜글씨B.otf"; path = "../../../../../../Library/Fonts/a펜글씨B.otf"; sourceTree = "<group>"; };
 		9BF218D22534BF2600E7C6C8 /* FillInIngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillInIngredientsViewController.swift; sourceTree = "<group>"; };
 		9BF6FB4E254736F100DEF139 /* BookMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookMarkViewController.swift; path = KitchenDiary/BookMarkViewController.swift; sourceTree = SOURCE_ROOT; };
-		9BF6FB50254739C800DEF139 /* BookMarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookMarkTableViewCell.swift; path = storyBoard/BookMarkTableViewCell.swift; sourceTree = "<group>"; };
+		9BF6FB50254739C800DEF139 /* BookMarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkTableViewCell.swift; sourceTree = "<group>"; };
 		DB787DB6E08760A3F2D2F6A0 /* Pods-KitchenDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenDiary.debug.xcconfig"; path = "Target Support Files/Pods-KitchenDiary/Pods-KitchenDiary.debug.xcconfig"; sourceTree = "<group>"; };
 		FC52F4C658F0B667AE20CAC4 /* Pods_KitchenDiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KitchenDiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD3B418735807B782F85B94 /* Pods-KitchenDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenDiaryTests.release.xcconfig"; path = "Target Support Files/Pods-KitchenDiaryTests/Pods-KitchenDiaryTests.release.xcconfig"; sourceTree = "<group>"; };

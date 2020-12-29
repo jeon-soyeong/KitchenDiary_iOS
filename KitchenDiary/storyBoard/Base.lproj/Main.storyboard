@@ -1156,7 +1156,7 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="식사평" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q4-Zb-nQK">
-                                                <rect key="frame" x="54" y="427" width="45" height="32"/>
+                                                <rect key="frame" x="54" y="427" width="47" height="32"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="32" id="tZL-eR-R0S"/>
@@ -1183,7 +1183,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEk-rh-wMa">
-                                                <rect key="frame" x="259" y="436" width="25" height="16"/>
+                                                <rect key="frame" x="261" y="436" width="25" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="PFV-Df-Xj7"/>
                                                     <constraint firstAttribute="height" constant="16" id="Yxa-wf-Wbh"/>
@@ -1359,7 +1359,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rVT-0N-VJY"/>
+        <segue reference="WZB-HX-X5Q"/>
         <segue reference="1ie-PP-cGM"/>
         <segue reference="eHf-BD-2a8"/>
     </inferredMetricsTieBreakers>
