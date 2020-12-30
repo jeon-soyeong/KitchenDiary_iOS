@@ -1,1 +1,4 @@
-# KitchenDiary_iOS
+# KitchenDiary_iOS 
+# 나의 부엌 - iOS
+
+  * 나의 부엌 재료를 통해 가능한 레시피를 확인하고 매일의 식사를 기록하는 서비스
