@@ -104,7 +104,6 @@ extension FillInIngredientsViewController: UIGestureRecognizerDelegate {
 
 }
 
-
 // MARK: - UITextViewDelegate
 extension FillInIngredientsViewController: UITextViewDelegate {
     func registerForKeyboardNotification(){

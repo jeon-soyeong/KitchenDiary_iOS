@@ -83,7 +83,6 @@ public class CookingEvaluationDataManager {
         }
     }
     
-    
     func updateCookingEvaluations(_ cookingName: String, _ cookingPhoto: UIImage, _ cookingRating: Int, _ cookingMemo: String, _ cookingIndex: Int) {
         
         let updateStatementString =  "UPDATE CookingEvaluation SET cookingName = ?, cookingPhoto = ?, cookingRating = ?, cookingMemo = ? WHERE rowid = ?;"
@@ -93,11 +92,6 @@ public class CookingEvaluationDataManager {
                 return
             }
             let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
-            print("전달받은 cookingName: \(cookingName)")
-            print("전달받은 cookingPhoto: \(cookingPhoto)")
-            print("전달받은 cookingRating: \(cookingRating)")
-            print("전달받은 cookingMemo: \(cookingMemo)")
-            print("전달받은 cookingIndex: \(cookingIndex)")
             sqlite3_bind_text(stmt, 1, cookingName, -1, SQLITE_TRANSIENT)
             sqlite3_bind_blob(stmt, 2, data.bytes, Int32(data.length), SQLITE_TRANSIENT)
             sqlite3_bind_int(stmt, 3, Int32(cookingRating))
