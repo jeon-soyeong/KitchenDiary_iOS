@@ -10,18 +10,18 @@ import UIKit
 
 @IBDesignable class RatingControl: UIStackView {
     //MARK: Properties
-    private var ratingButtons = [UIButton]()
+    private var ratingButtons: [UIButton] = []
     var rating = 0 {
         didSet {
             updateButtonsSelectionStates()
         }
     }
-    @IBInspectable var starSize:CGSize = CGSize(width: 40.0, height: 40.0) {
+    @IBInspectable var starSize = CGSize(width: 40.0, height: 40.0) {
         didSet {
             setupButtons()
         }
     }
-    @IBInspectable var starCount: Int = 5 {
+    @IBInspectable var starCount = 5 {
         didSet {
             setupButtons()
         }
@@ -34,7 +34,7 @@ import UIKit
     }
     
     required init(coder: NSCoder) {
-        super.init(coder:  coder)
+        super.init(coder: coder)
         setupButtons()
     }
     

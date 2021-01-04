@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import os.log
 
 struct IngredientsInfo: Codable {
     let Grid_20150827000000000227_1: IngredientsDetailInfo

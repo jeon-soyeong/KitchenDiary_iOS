@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-struct CookingDiaryColumns {
-    var columnType: ColumnType
-    static let columnArray = [ColumnArray(value: ColumnInfo(name: "cookingName", type: ColumnType.text.rawValue, primaryKey: true)),
+public struct CookingDiaryColumns {
+    public var columnType: ColumnType
+    public static let columnArray = [ColumnArray(value: ColumnInfo(name: "cookingName", type: ColumnType.text.rawValue, primaryKey: true)),
                               ColumnArray(value: ColumnInfo(name: "cookingPhoto", type: ColumnType.blob.rawValue, primaryKey: false)),
                               ColumnArray(value: ColumnInfo(name: "cookingRating", type: ColumnType.integer.rawValue, primaryKey: false)),
                               ColumnArray(value: ColumnInfo(name: "cookingMemo", type: ColumnType.text.rawValue, primaryKey: false)),
@@ -19,9 +19,9 @@ struct CookingDiaryColumns {
 }
 
 class CookingDiaryDataManager {
-    var cookingDiaryDataManager: SQLDataManager
+    var cookingDiaryDataManager: SQLDatabaseManager
     init() {
-        cookingDiaryDataManager = SQLDataManager.init(SQLDataInfo(dbPath: "CookingDiary.sqlite", tableName: "CookingDiary", column: CookingDiaryColumns.columnArray))
+        cookingDiaryDataManager = SQLDatabaseManager.init(SQLDataInfo(dbPath: "CookingDiary.sqlite", tableName: "CookingDiary", column: CookingDiaryColumns.columnArray))
     }
     func insertCookingDiary(_ paramValue: [SQLValue]) {
         cookingDiaryDataManager.insert(paramValue)

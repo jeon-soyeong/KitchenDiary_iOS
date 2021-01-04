@@ -8,18 +8,18 @@
 
 import Foundation
 
-struct RecipeColumns {
-    var columnType: ColumnType
-    static let columnArray = [ColumnArray(value: ColumnInfo(name: "recipeId", type: ColumnType.integer.rawValue, primaryKey: true)),
+public struct RecipeColumns {
+    public var columnType: ColumnType
+    public static let columnArray = [ColumnArray(value: ColumnInfo(name: "recipeId", type: ColumnType.integer.rawValue, primaryKey: true)),
                               ColumnArray(value: ColumnInfo(name: "recipeName", type: ColumnType.text.rawValue, primaryKey: false)),
                               ColumnArray(value: ColumnInfo(name: "imageUrl", type: ColumnType.text.rawValue, primaryKey: false))]
 }
 
 public class BookMarkDataManager {
     
-    var bookMarkDataManager: SQLDataManager
+    var bookMarkDataManager: SQLDatabaseManager
     init() {
-        bookMarkDataManager = SQLDataManager.init(SQLDataInfo(dbPath: "CookingBookMark.sqlite", tableName: "CookingBookMark", column: RecipeColumns.columnArray))
+        bookMarkDataManager = SQLDatabaseManager.init(SQLDataInfo(dbPath: "CookingBookMark.sqlite", tableName: "CookingBookMark", column: RecipeColumns.columnArray))
     }
     func insertBookMark(_ paramValue: [SQLValue]) {
         bookMarkDataManager.insert(paramValue)

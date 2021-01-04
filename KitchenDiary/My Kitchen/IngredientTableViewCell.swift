@@ -8,17 +8,17 @@
 
 import UIKit
 
-class IngredientTableViewCell: UITableViewCell {
+public class IngredientTableViewCell: UITableViewCell {
     @IBOutlet weak var ingredientsName: UILabel!
     @IBOutlet weak var storageMethod: UILabel!
     @IBOutlet weak var expirationDate: UILabel!
     @IBOutlet weak var ingredientsMemo: UILabel!
     @IBOutlet weak var warning: UIImageView!
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    public override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 }

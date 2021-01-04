@@ -928,7 +928,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkq-2H-5AD">
-                                                            <rect key="frame" x="128" y="15" width="191" height="48"/>
+                                                            <rect key="frame" x="128" y="15" width="191" height="22"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="191" id="hMu-IU-TI3"/>
                                                             </constraints>
@@ -937,7 +937,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="i6g-lP-hf0" customClass="RatingControl" customModule="KitchenDiary" customModuleProvider="target">
-                                                            <rect key="frame" x="129" y="65" width="108" height="20"/>
+                                                            <rect key="frame" x="129" y="39" width="108" height="46"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="size" keyPath="starSize">
                                                                     <size key="value" width="20" height="20"/>

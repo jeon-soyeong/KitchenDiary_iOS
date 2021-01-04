@@ -23,7 +23,7 @@ struct CourseInfo: Codable {
     let COOKING_NO: Int
 }
  
-class CookingRecipeViewController: UITableViewController {
+public class CookingRecipeViewController: UITableViewController {
     var cookings: [Cooking] = []
     let cookingCourseQueue = DispatchQueue(label: "cookingCourse")
     var cookingDescriptionArr: [String] = []
@@ -34,7 +34,7 @@ class CookingRecipeViewController: UITableViewController {
     var recipeIdArray: [Int] = []
     
     // MARK: Life Cycle
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         getCookingCourse(cookings: cookings)
         let backwardImage = UIImage(systemName: "chevron.backward")
@@ -42,7 +42,7 @@ class CookingRecipeViewController: UITableViewController {
         navigationItem.leftBarButtonItem = backbutton
         navigationItem.leftBarButtonItem?.tintColor = UIColor.black
     }
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadCooking = bookMarkDataManager.selectBookMark([SQLValue(key: "recipeId", value: "Int"),SQLValue(key: "recipeName", value: "String"),SQLValue(key: "imageUrl", value: "String")],[SQLValue(key: "nil", value: "nil")])
         tableView.reloadData()
@@ -65,18 +65,18 @@ class CookingRecipeViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    public override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         super.tableView(tableView, numberOfRowsInSection: section)
         // #warning Incomplete implementation, return the number of rows
         return cookings.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         super.tableView(tableView, cellForRowAt: indexPath)
         
         let cellIdentifier = "CookingTableViewCell"
@@ -95,7 +95,7 @@ class CookingRecipeViewController: UITableViewController {
     @objc func back() {
           self.navigationController?.popViewController(animated: true)
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
         switch(segue.identifier ?? "") {

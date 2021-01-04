@@ -9,34 +9,34 @@
 import Foundation
 import sqlite3
 
-struct SQLDataInfo {
-    let dbPath: String
-    let tableName: String
-    let column: [ColumnArray]
+public struct SQLDataInfo {
+    public let dbPath: String
+    public let tableName: String
+    public let column: [ColumnArray]
 }
 
-struct ColumnArray {
+public struct ColumnArray {
     let value: ColumnInfo
 }
 
-struct ColumnInfo {
+public struct ColumnInfo {
     let name: String
     let type: String
     let primaryKey: Bool
 }
 
-enum ColumnType: String {
+public enum ColumnType: String {
     case text = "TEXT"
     case integer = "INTEGER"
     case blob = "BLOB"
 }
 
-struct SQLValue {
+public struct SQLValue {
     var key: String
     var value: Any
 }
 
-public class SQLDataManager {
+public class SQLDatabaseManager {
     var db: OpaquePointer?
     let queue = DispatchQueue(label: "dataQueue")
     var dbPath = ""
@@ -46,7 +46,7 @@ public class SQLDataManager {
     var returnArray: [Any] = []
     var returnArrays: [[Any]] = []
     
-    init(_ sqlDataInfo: SQLDataInfo){
+    public init(_ sqlDataInfo: SQLDataInfo) {
         self.dbPath = sqlDataInfo.dbPath
         self.tableName = sqlDataInfo.tableName
         self.column = sqlDataInfo.column
