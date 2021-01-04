@@ -3,7 +3,7 @@
 
 ## 실행화면
 > LaunchScreen
-<img src="https://github.com/jeon-soyeong/KitchenDiary_iOS/blob/develop/KitchenDiary/Assets.xcassets/1.imageset/1.png" width="350" height="650" />
+<img src="https://github.com/jeon-soyeong/KitchenDiary_iOS/blob/develop/KitchenDiary/Supporting Files/Assets.xcassets/1.imageset/1.png" width="350" height="650" />
 
 > 홈
 <img src="https://github.com/jeon-soyeong/KitchenDiary_iOS/blob/develop/KitchenDiary/Assets.xcassets/2.imageset/2.png" width="350" height="650" />
