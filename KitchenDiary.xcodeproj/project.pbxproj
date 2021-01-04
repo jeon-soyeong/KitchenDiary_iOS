@@ -24,7 +24,7 @@
 		9B481F5F25413B31001FAFC8 /* CookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B481F5E25413B31001FAFC8 /* CookingTableViewCell.swift */; };
 		9B481F612541B549001FAFC8 /* CookingCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B481F602541B549001FAFC8 /* CookingCourseViewController.swift */; };
 		9B481F632541E161001FAFC8 /* CookingCourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B481F622541E161001FAFC8 /* CookingCourseTableViewCell.swift */; };
-		9B5889B1253611DA008AFB2A /* Ingredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5889B0253611DA008AFB2A /* Ingredients.swift */; };
+		9B5889B1253611DA008AFB2A /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5889B0253611DA008AFB2A /* Ingredient.swift */; };
 		9B6FA345256BAB3D00DFF42A /* DiaryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6FA344256BAB3D00DFF42A /* DiaryDetailViewModel.swift */; };
 		9B6FA347256BAB9700DFF42A /* CalendarDiaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6FA346256BAB9700DFF42A /* CalendarDiaryViewModel.swift */; };
 		9B6FA349256CCBAD00DFF42A /* BookMarkDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6FA348256CCBAD00DFF42A /* BookMarkDataManager.swift */; };
@@ -73,7 +73,7 @@
 		9B481F5E25413B31001FAFC8 /* CookingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingTableViewCell.swift; sourceTree = "<group>"; };
 		9B481F602541B549001FAFC8 /* CookingCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingCourseViewController.swift; sourceTree = "<group>"; };
 		9B481F622541E161001FAFC8 /* CookingCourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingCourseTableViewCell.swift; sourceTree = "<group>"; };
-		9B5889B0253611DA008AFB2A /* Ingredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredients.swift; sourceTree = "<group>"; };
+		9B5889B0253611DA008AFB2A /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		9B6FA344256BAB3D00DFF42A /* DiaryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailViewModel.swift; sourceTree = "<group>"; };
 		9B6FA346256BAB9700DFF42A /* CalendarDiaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDiaryViewModel.swift; sourceTree = "<group>"; };
 		9B6FA348256CCBAD00DFF42A /* BookMarkDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkDataManager.swift; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 		9B45C67125A3058700D2B16A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9B5889B0253611DA008AFB2A /* Ingredients.swift */,
+				9B5889B0253611DA008AFB2A /* Ingredient.swift */,
 				9B3540B725406A2300343FEB /* Cooking.swift */,
 				9B309991254BDA44009D067D /* CookingDiary.swift */,
 				9BA29EFA251B32C30075703D /* RatingControl.swift */,
@@ -457,7 +457,7 @@
 				9BF6FB51254739C800DEF139 /* BookMarkTableViewCell.swift in Sources */,
 				9B45C68F25A3300D00D2B16A /* SceneDelegate.swift in Sources */,
 				9B29D6CC255A485600AC5986 /* CookingDiaryCell.swift in Sources */,
-				9B5889B1253611DA008AFB2A /* Ingredients.swift in Sources */,
+				9B5889B1253611DA008AFB2A /* Ingredient.swift in Sources */,
 				9B6FA347256BAB9700DFF42A /* CalendarDiaryViewModel.swift in Sources */,
 				9B2715B12537FC72003CA18D /* IngredientTableViewCell.swift in Sources */,
 			);

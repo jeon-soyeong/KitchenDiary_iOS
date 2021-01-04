@@ -37,7 +37,7 @@ struct CookingRecipeInfo: Codable {
 
 class MyKitchenViewController: UITableViewController {
     @IBOutlet weak var cookingButton: UIButton!
-    var ingredients: [Ingredients] = []
+    var ingredients: [Ingredient] = []
     var ingredientsArr: [String] = []
     var recipeIdArr: [Int] = []
     var overlapValueArr: [Int] = []
@@ -74,11 +74,11 @@ class MyKitchenViewController: UITableViewController {
     }
     
     private func saveIngredients() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ingredients, toFile: Ingredients.ArchiveURL.path)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ingredients, toFile: Ingredient.ArchiveURL.path)
     }
     
-    private func loadIngredients() -> [Ingredients]? {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: Ingredients.ArchiveURL.path) as? [Ingredients]
+    private func loadIngredients() -> [Ingredient]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Ingredient.ArchiveURL.path) as? [Ingredient]
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

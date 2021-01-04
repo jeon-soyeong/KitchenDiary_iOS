@@ -329,4 +329,19 @@ public class SQLDatabaseManager {
         }
         return isSuccess
     }
+    
+    func deleteAll() {
+        let deleteStatementStirng = "DELETE FROM \(tableName);"
+        var deleteStatement: OpaquePointer? = nil
+        queue.sync {
+            if sqlite3_prepare_v2(db, deleteStatementStirng, -1, &deleteStatement, nil) == SQLITE_OK {
+                if sqlite3_step(deleteStatement) == SQLITE_DONE {
+                    print("successfully deleted All.")
+                } else {
+                    print("Could not delete All.")
+                }
+                sqlite3_finalize(deleteStatement)
+            }
+        }
+    }
 }

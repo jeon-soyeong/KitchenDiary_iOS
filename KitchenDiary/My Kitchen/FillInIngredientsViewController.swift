@@ -15,7 +15,7 @@ class FillInIngredientsViewController: UIViewController {
     @IBOutlet weak var storageMethod: UISegmentedControl!
     @IBOutlet weak var expirationDate: UIDatePicker!
     @IBOutlet weak var ingredientsMemo: UITextView!
-    var ingredient: Ingredients?
+    var ingredient: Ingredient?
     
     // MARK: Prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -40,7 +40,7 @@ class FillInIngredientsViewController: UIViewController {
         dateFomatter.dateFormat = "yyyy년 MM월 dd일"
         let exprirationDateStr = dateFomatter.string(from: expirationDate.date)
         let memo = ingredientsMemo.text ?? ""
-        ingredient = Ingredients(name: name, storageMethod: storage, expirationDate: exprirationDateStr, memo: memo)
+        ingredient = Ingredient(name: name, storageMethod: storage, expirationDate: exprirationDateStr, memo: memo)
     }
     @objc func back() {
         self.navigationController?.popViewController(animated: true)
